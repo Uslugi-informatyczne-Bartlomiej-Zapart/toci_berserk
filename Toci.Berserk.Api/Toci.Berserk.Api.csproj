@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetCore.AutoRegisterDi" Version="2.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Toci.Berserk.Bll.Interfaces\Toci.Berserk.Bll.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse.Interfaces\Toci.Berserk.Bll.Warehouse.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse\Toci.Berserk.Bll.Warehouse.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll\Toci.Berserk.Bll.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Database.Interfaces\Toci.Berserk.Database.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Database.Persistence\Toci.Berserk.Database.Persistence.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Database\Toci.Berserk.Database.csproj" />
+  </ItemGroup>
+
+</Project>

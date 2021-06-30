@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Toci.Berserk.Bll.Interfaces\Toci.Berserk.Bll.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse.Interfaces\Toci.Berserk.Bll.Warehouse.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll\Toci.Berserk.Bll.csproj" />
+  </ItemGroup>
+
+</Project>
