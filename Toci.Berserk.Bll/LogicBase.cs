@@ -8,6 +8,6 @@ namespace Toci.Berserk.Bll
 {
     public class LogicBase<TModel> : ILogicBase<TModel> where TModel : class
     {
-        protected IDbHandle<TModel> DbHandle = new DbHandle<TModel>(new BerserkWpsContext());
+        protected IDbHandle<TModel> DbHandle = new DbHandle<TModel>(new BerserkWmsContext());
     }
 }

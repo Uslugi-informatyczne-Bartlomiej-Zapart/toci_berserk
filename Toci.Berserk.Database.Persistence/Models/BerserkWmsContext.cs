@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Toci.Berserk.Database.Persistence.Models
 {
-    public partial class BerserkWpsContext : DbContext
+    public partial class BerserkWmsContext : DbContext
     {
-        public BerserkWpsContext()
+        public BerserkWmsContext()
         {
         }
 
-        public BerserkWpsContext(DbContextOptions<BerserkWpsContext> options)
+        public BerserkWmsContext(DbContextOptions<BerserkWmsContext> options)
             : base(options)
         {
         }
@@ -33,7 +33,7 @@ namespace Toci.Berserk.Database.Persistence.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=Berserk.Wps;Username=postgres;Password=2432795");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=Berserk.Wms;Username=postgres;Password=2432795");
             }
         }
 
