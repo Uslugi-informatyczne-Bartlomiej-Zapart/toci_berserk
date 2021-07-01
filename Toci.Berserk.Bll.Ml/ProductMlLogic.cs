@@ -7,15 +7,15 @@ using Toci.Berserk.Bll.Ml.Interfaces;
 
 namespace Toci.Berserk.Bll.Ml
 {
-    public class ProductMlLogic : IProductMlLogic
+    public abstract class ProductMlLogic<TDbModel> : IProductMlLogic
     {
-        protected virtual Dictionary<int, IOrderModel> GetProductsForOrder<TDbModel>(Func<TDbModel, IOrderModel> mapper, IQueryable<TDbModel> data)
+        protected virtual Dictionary<int, IOrderModel> GetProductsForOrder(IQueryable<TDbModel> data)
         {
             Dictionary<int, IOrderModel> result = new Dictionary<int, IOrderModel>();
 
             foreach (TDbModel item in data)
             {
-                IOrderModel element = mapper(item);
+                IOrderModel element = Mapper(item);
 
                 if (result.ContainsKey(element.IdProduct))
                 {
@@ -28,5 +28,7 @@ namespace Toci.Berserk.Bll.Ml
             }
             return result;
         }
+
+        protected abstract IOrderModel Mapper(TDbModel item);
     }
 }

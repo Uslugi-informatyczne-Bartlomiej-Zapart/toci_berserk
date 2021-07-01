@@ -25,9 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll.Warehouse"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll", "..\Toci.Berserk.Bll\Toci.Berserk.Bll.csproj", "{2F356772-B0F3-47BC-884E-D3BBD847093C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Bll.Ml.Interfaces", "..\Toci.Berserk.Bll.Ml.Interfaces\Toci.Berserk.Bll.Ml.Interfaces.csproj", "{9A7DF037-30B7-4943-B327-71A834B587C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll.Ml.Interfaces", "..\Toci.Berserk.Bll.Ml.Interfaces\Toci.Berserk.Bll.Ml.Interfaces.csproj", "{9A7DF037-30B7-4943-B327-71A834B587C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Bll.Ml", "..\Toci.Berserk.Bll.Ml\Toci.Berserk.Bll.Ml.csproj", "{4BB22C4F-95E4-4786-B2AA-E3219ACAEA3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll.Ml", "..\Toci.Berserk.Bll.Ml\Toci.Berserk.Bll.Ml.csproj", "{4BB22C4F-95E4-4786-B2AA-E3219ACAEA3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Tests", "..\Toci.Berserk.Tests\Toci.Berserk.Tests.csproj", "{5B532CED-E167-4ACA-BE84-C011C55B85BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{4BB22C4F-95E4-4786-B2AA-E3219ACAEA3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BB22C4F-95E4-4786-B2AA-E3219ACAEA3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BB22C4F-95E4-4786-B2AA-E3219ACAEA3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
