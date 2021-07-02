@@ -8,7 +8,7 @@ using Toci.Berserk.Database.Persistence.Models;
 
 namespace Toci.Berserk.Bll.Warehouse.Interfaces
 {
-    public interface IProductLogic : ILogicBase<Product>
+    public interface IUserLogic : ILogicBase<User>
     {
 
     }

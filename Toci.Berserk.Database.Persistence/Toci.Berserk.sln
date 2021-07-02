@@ -29,7 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll.Ml.Interfa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll.Ml", "..\Toci.Berserk.Bll.Ml\Toci.Berserk.Bll.Ml.csproj", "{4BB22C4F-95E4-4786-B2AA-E3219ACAEA3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Tests", "..\Toci.Berserk.Tests\Toci.Berserk.Tests.csproj", "{5B532CED-E167-4ACA-BE84-C011C55B85BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Tests", "..\Toci.Berserk.Tests\Toci.Berserk.Tests.csproj", "{5B532CED-E167-4ACA-BE84-C011C55B85BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Microservices.Interfaces", "..\Toci.Berserk.Microservices.Interfaces\Toci.Berserk.Microservices.Interfaces.csproj", "{0C1DD2D6-66DE-484B-9472-DB429796CF46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Microservices", "..\Toci.Berserk.Microservices\Toci.Berserk.Microservices.csproj", "{B994B5B5-FC55-41B6-B64D-184FF65A018B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,14 @@ Global
 		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B532CED-E167-4ACA-BE84-C011C55B85BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1DD2D6-66DE-484B-9472-DB429796CF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1DD2D6-66DE-484B-9472-DB429796CF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1DD2D6-66DE-484B-9472-DB429796CF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1DD2D6-66DE-484B-9472-DB429796CF46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +104,8 @@ Global
 		{8F82B387-0F99-464B-8390-F4A2C1CDEAE7} = {560E35CD-F5B7-46E4-BE58-96472D15A01D}
 		{503D9D69-58C1-41B1-B90C-F97533A46832} = {06122C7A-9316-4F4D-A5CC-1C43A443F92D}
 		{9A7DF037-30B7-4943-B327-71A834B587C3} = {06122C7A-9316-4F4D-A5CC-1C43A443F92D}
+		{0C1DD2D6-66DE-484B-9472-DB429796CF46} = {B0E3E411-B0E2-4EAC-812F-E2EAD039BDAE}
+		{B994B5B5-FC55-41B6-B64D-184FF65A018B} = {560E35CD-F5B7-46E4-BE58-96472D15A01D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EED8BB3D-7A19-4DD4-9278-CF8B0674B76E}

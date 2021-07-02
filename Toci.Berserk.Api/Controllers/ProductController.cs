@@ -22,7 +22,7 @@ namespace Toci.Berserk.Api.Controllers
         [HttpPost]
         public int SetProduct(Product prod)
         {
-            return ProductLogic.SetProduct(prod);
+            return ProductLogic.Insert(prod).Id;
         }
     }
 }

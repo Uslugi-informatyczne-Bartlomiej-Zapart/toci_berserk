@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 
 namespace Toci.Berserk.Database.Interfaces
 {
-    public interface IDbHandle
+    public interface IDbHandle<TModel>
     {
-        public interface IDbHandle<TModel>
-        {
-            IQueryable<TModel> Select();
+        IQueryable<TModel> Select();
 
-            TModel Insert(TModel model);
+        TModel Insert(TModel model);
 
-            bool Update(TModel model);
+        bool Update(TModel model);
 
-            int Delete(TModel model);
-        }
+        int Delete(TModel model);
     }
 }

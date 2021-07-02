@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Linq;
-using static Toci.Berserk.Database.Interfaces.IDbHandle;
+using Toci.Berserk.Database.Interfaces;
 
 namespace Toci.Berserk.Database
 {
@@ -34,7 +34,6 @@ namespace Toci.Berserk.Database
         public IQueryable<TModel> Select()
         {
             return DatabaseHandle.Set<TModel>();
-
         }
 
         public bool Update(TModel model)
