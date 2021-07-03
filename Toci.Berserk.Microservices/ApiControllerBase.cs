@@ -14,21 +14,25 @@ namespace Toci.Berserk.Microservices
             Logic = logic;
         }
 
+        [HttpPost]
         public virtual TModel Create(TModel model)
         {
             return Logic.Insert(model);
         }
 
+        [HttpGet]
         public virtual IQueryable<TModel> Get(Func<TModel, bool> filter)
         {
             return Logic.Select(filter);
         }
 
+        [HttpPut]
         public virtual bool Update(TModel model)
         {
             return Logic.Update(model);
         }
 
+        [HttpDelete]
         public virtual int Delete(TModel model)
         {
             return Logic.Delete(model);

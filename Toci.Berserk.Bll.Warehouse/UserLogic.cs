@@ -11,9 +11,6 @@ namespace Toci.Berserk.Bll.Warehouse
 {
     public class UserLogic : LogicBase<User>, IUserLogic
     {
-        public int SetUser(User user)
-        {
-            return DbHandle.Insert(user).Id;
-        }
+        
     }
 }

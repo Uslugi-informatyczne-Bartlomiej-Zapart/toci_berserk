@@ -10,6 +10,6 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
 {
     public interface IUserLogic : ILogicBase<User>
     {
-
+        
     }
 }

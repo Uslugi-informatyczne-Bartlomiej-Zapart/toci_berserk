@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Toci.Berserk.Database.Interfaces\Toci.Berserk.Database.Interfaces.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Database.Persistence\Toci.Berserk.Database.Persistence.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Database\Toci.Berserk.Database.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Microservices\Toci.Berserk.Microservices.csproj" />
   </ItemGroup>
 
 </Project>
