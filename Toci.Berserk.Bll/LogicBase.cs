@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Toci.Berserk.Bll.Interfaces;
 using Toci.Berserk.Database;
 using Toci.Berserk.Database.Interfaces;
@@ -16,9 +17,9 @@ namespace Toci.Berserk.Bll
             return DbHandle.Insert(model);
         }
 
-        public virtual IQueryable<TModel> Select(Func<TModel, bool> filter)
+        public virtual IQueryable<TModel> Select(Expression<Func<TModel, bool>> filter)
         {
-            return DbHandle.Select().Where(x => filter(x));
+            return DbHandle.Select().Where(filter);
         }
 
         public virtual bool Update(TModel model)

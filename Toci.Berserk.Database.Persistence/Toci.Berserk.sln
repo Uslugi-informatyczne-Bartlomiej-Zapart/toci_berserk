@@ -31,9 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Bll.Ml", "..\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Tests", "..\Toci.Berserk.Tests\Toci.Berserk.Tests.csproj", "{5B532CED-E167-4ACA-BE84-C011C55B85BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Microservices.Interfaces", "..\Toci.Berserk.Microservices.Interfaces\Toci.Berserk.Microservices.Interfaces.csproj", "{0C1DD2D6-66DE-484B-9472-DB429796CF46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Microservices.Interfaces", "..\Toci.Berserk.Microservices.Interfaces\Toci.Berserk.Microservices.Interfaces.csproj", "{0C1DD2D6-66DE-484B-9472-DB429796CF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Microservices", "..\Toci.Berserk.Microservices\Toci.Berserk.Microservices.csproj", "{B994B5B5-FC55-41B6-B64D-184FF65A018B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toci.Berserk.Microservices", "..\Toci.Berserk.Microservices\Toci.Berserk.Microservices.csproj", "{B994B5B5-FC55-41B6-B64D-184FF65A018B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Berserk.Bll.Models", "..\Toci.Berserk.Bll.Models\Toci.Berserk.Bll.Models.csproj", "{5FAB96EE-A7F1-40F4-808D-452DE1FCEF6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B994B5B5-FC55-41B6-B64D-184FF65A018B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FAB96EE-A7F1-40F4-808D-452DE1FCEF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FAB96EE-A7F1-40F4-808D-452DE1FCEF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FAB96EE-A7F1-40F4-808D-452DE1FCEF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FAB96EE-A7F1-40F4-808D-452DE1FCEF6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

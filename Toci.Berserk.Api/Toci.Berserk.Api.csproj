@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Toci.Berserk.Bll.Interfaces\Toci.Berserk.Bll.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Models\Toci.Berserk.Bll.Models.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse.Interfaces\Toci.Berserk.Bll.Warehouse.Interfaces.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse\Toci.Berserk.Bll.Warehouse.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Bll\Toci.Berserk.Bll.csproj" />

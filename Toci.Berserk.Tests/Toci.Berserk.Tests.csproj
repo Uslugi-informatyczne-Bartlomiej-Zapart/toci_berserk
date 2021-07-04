@@ -13,4 +13,20 @@
     <PackageReference Include="coverlet.collector" Version="3.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Toci.Berserk.Api\Toci.Berserk.Api.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Interfaces\Toci.Berserk.Bll.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Ml.Interfaces\Toci.Berserk.Bll.Ml.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Ml\Toci.Berserk.Bll.Ml.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Models\Toci.Berserk.Bll.Models.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse.Interfaces\Toci.Berserk.Bll.Warehouse.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse\Toci.Berserk.Bll.Warehouse.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll\Toci.Berserk.Bll.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Database.Interfaces\Toci.Berserk.Database.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Database.Persistence\Toci.Berserk.Database.Persistence.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Database\Toci.Berserk.Database.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Microservices.Interfaces\Toci.Berserk.Microservices.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Microservices\Toci.Berserk.Microservices.csproj" />
+  </ItemGroup>
+
 </Project>

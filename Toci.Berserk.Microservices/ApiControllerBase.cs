@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Toci.Berserk.Bll.Interfaces;
 using Toci.Berserk.Microservices.Interfaces;
 
@@ -21,7 +22,7 @@ namespace Toci.Berserk.Microservices
         }
 
         [HttpGet]
-        public virtual IQueryable<TModel> Get(Func<TModel, bool> filter)
+        public virtual IQueryable<TModel> Get(Expression<Func<TModel, bool>> filter)
         {
             return Logic.Select(filter);
         }

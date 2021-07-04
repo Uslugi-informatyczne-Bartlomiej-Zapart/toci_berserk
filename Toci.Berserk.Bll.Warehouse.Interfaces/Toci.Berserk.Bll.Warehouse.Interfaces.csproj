@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Toci.Berserk.Bll.Interfaces\Toci.Berserk.Bll.Interfaces.csproj" />
+    <ProjectReference Include="..\Toci.Berserk.Bll.Models\Toci.Berserk.Bll.Models.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Database.Persistence\Toci.Berserk.Database.Persistence.csproj" />
   </ItemGroup>
 
