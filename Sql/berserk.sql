@@ -4,11 +4,11 @@ drop table chemistrypop;
 drop table orderproducts;
 drop table orders;
 drop table chemistry;
+drop table productshistory;
 drop table productscodes;
 drop table products;
 drop table categories;
 drop table users;
-
 
 create table users
 (
@@ -36,6 +36,18 @@ create table productscodes
     id serial primary key,
     idproducts int references products (id),
     code int
+);
+
+create table productshistory
+(
+    id serial primary key,
+	iddeletedproduct int references products (id),
+    name text,
+    manufacturer text,
+    reference int,
+	iddeletedproductscodes int references productscodes (id),
+	code int,
+	dateofdeletion timestamp default now()
 );
 
 create table chemistry(
