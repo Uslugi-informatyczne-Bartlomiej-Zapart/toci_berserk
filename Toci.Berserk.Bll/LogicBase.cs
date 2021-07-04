@@ -19,7 +19,7 @@ namespace Toci.Berserk.Bll
 
         public virtual IQueryable<TModel> Select(Expression<Func<TModel, bool>> filter)
         {
-            return DbHandle.Select().Where(filter);
+            return DbHandle.Select().Where(filter).AsQueryable();
         }
 
         public virtual bool Update(TModel model)

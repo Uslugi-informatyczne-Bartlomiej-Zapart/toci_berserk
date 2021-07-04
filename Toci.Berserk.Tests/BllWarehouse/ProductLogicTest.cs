@@ -12,11 +12,11 @@ namespace Toci.Berserk.Tests.BllWarehouse
         public void AddUniqueProductWithCode()
         {
             ProductLogic productLogic = new ProductLogic();
-            productLogic.Update(new Product()
+            /*productLogic.Update(new Product()
             {
                 Id = 1,
                 Name = "XXX"
-            });
+            });*/
             Product newOne = productLogic.Insert(new Product()
             {
                 Name = "Farba do drewna",

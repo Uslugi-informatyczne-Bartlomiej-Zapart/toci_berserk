@@ -33,7 +33,7 @@ namespace Toci.Berserk.Database
 
         public IQueryable<TModel> Select()
         {
-            return DatabaseHandle.Set<TModel>();
+            return DatabaseHandle.Set<TModel>().AsQueryable();
         }
 
         public bool Update(TModel model)

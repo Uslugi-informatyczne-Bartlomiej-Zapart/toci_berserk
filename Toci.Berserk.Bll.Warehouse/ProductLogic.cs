@@ -12,9 +12,9 @@ namespace Toci.Berserk.Bll.Warehouse
         protected LogicBase<Productscode> ProductsCodeLogic = new ProductsCodeLogic();
         public int SetProduct(ProductDto uniqueProduct)
         {
-            Productscode item = ProductsCodeLogic.Select(model => model.Code == uniqueProduct.Code).AsNoTracking().FirstOrDefault();
+            Productscode item = ProductsCodeLogic.Select(model => model.Code == uniqueProduct.Code).FirstOrDefault();
 
-            if (item != null)
+            if (item != null) 
             {
                 uniqueProduct.Product.Id = item.Idproducts.Value;
                 Update(uniqueProduct.Product);
