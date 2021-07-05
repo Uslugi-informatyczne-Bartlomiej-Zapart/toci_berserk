@@ -18,10 +18,12 @@ namespace Toci.Berserk.Database.Persistence.Models
         }
 
         public int Id { get; set; }
+        public int? Idcategories { get; set; }
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public int? Reference { get; set; }
 
+        public virtual Category IdcategoriesNavigation { get; set; }
         public virtual ICollection<Chemistry> Chemistries { get; set; }
         public virtual ICollection<Chemistrypop> Chemistrypops { get; set; }
         public virtual ICollection<Orderproduct> Orderproducts { get; set; }

@@ -8,11 +8,9 @@ namespace Toci.Berserk.Database.Persistence.Models
     public partial class Chemistry
     {
         public int Id { get; set; }
-        public int? Idcategories { get; set; }
         public int? Quantity { get; set; }
         public int? Idproducts { get; set; }
 
-        public virtual Category IdcategoriesNavigation { get; set; }
         public virtual Product IdproductsNavigation { get; set; }
     }
 }

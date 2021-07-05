@@ -20,19 +20,16 @@ namespace Toci.Berserk.Tests.BllMl
             ChemistryLogic chemistry = new ChemistryLogic();
             chemistry.ReceiveOrder(new Chemistry()
             {
-                Idcategories = 1,
                 Idproducts = 1,
                 Quantity = 3
             });
             chemistry.ReceiveOrder(new Chemistry()
             {
-                Idcategories = 1,
                 Idproducts = 1,
                 Quantity = 5
             });
             chemistry.ReceiveOrder(new Chemistry()
             {
-                Idcategories = 1,
                 Idproducts = 1,
                 Quantity = 8
             });

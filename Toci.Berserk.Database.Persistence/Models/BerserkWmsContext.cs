@@ -66,16 +66,9 @@ namespace Toci.Berserk.Database.Persistence.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Idcategories).HasColumnName("idcategories");
-
                 entity.Property(e => e.Idproducts).HasColumnName("idproducts");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
-
-                entity.HasOne(d => d.IdcategoriesNavigation)
-                    .WithMany(p => p.Chemistries)
-                    .HasForeignKey(d => d.Idcategories)
-                    .HasConstraintName("chemistry_idcategories_fkey");
 
                 entity.HasOne(d => d.IdproductsNavigation)
                     .WithMany(p => p.Chemistries)
@@ -158,8 +151,6 @@ namespace Toci.Berserk.Database.Persistence.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Idcategories).HasColumnName("idcategories");
-
                 entity.Property(e => e.Idorder).HasColumnName("idorder");
 
                 entity.Property(e => e.Idproducts).HasColumnName("idproducts");
@@ -167,11 +158,6 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.IdcategoriesNavigation)
-                    .WithMany(p => p.Orderproducts)
-                    .HasForeignKey(d => d.Idcategories)
-                    .HasConstraintName("orderproducts_idcategories_fkey");
 
                 entity.HasOne(d => d.IdorderNavigation)
                     .WithMany(p => p.Orderproducts)
@@ -234,11 +220,18 @@ namespace Toci.Berserk.Database.Persistence.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Idcategories).HasColumnName("idcategories");
+
                 entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
 
                 entity.Property(e => e.Name).HasColumnName("name");
 
                 entity.Property(e => e.Reference).HasColumnName("reference");
+
+                entity.HasOne(d => d.IdcategoriesNavigation)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.Idcategories)
+                    .HasConstraintName("products_idcategories_fkey");
             });
 
             modelBuilder.Entity<Productscode>(entity =>
