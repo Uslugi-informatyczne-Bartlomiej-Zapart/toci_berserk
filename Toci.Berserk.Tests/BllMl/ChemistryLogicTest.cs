@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Ml;
+using Toci.Berserk.Bll.Warehouse;
 using Toci.Berserk.Database.Persistence.Models;
 
 namespace Toci.Berserk.Tests.BllMl
