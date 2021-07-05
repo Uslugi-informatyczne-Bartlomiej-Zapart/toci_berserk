@@ -24,9 +24,9 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Metrichistory> Metrichistories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Orderproduct> Orderproducts { get; set; }
-        public virtual DbSet<Produckhistory> Produckhistories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Productscode> Productscodes { get; set; }
+        public virtual DbSet<Productshistory> Productshistories { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -34,7 +34,7 @@ namespace Toci.Berserk.Database.Persistence.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=Berserk.Wms;Username=postgres;Password=2432795");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=Berserk.Wms;Username=postgres;Password=beatka");
             }
         }
 
@@ -189,39 +189,6 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .HasConstraintName("orderproducts_idproducts_fkey");
             });
 
-            modelBuilder.Entity<Produckhistory>(entity =>
-            {
-                entity.ToTable("produckhistory");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Code).HasColumnName("code");
-
-                entity.Property(e => e.Dateofdeletion)
-                    .HasColumnName("dateofdeletion")
-                    .HasDefaultValueSql("now()");
-
-                entity.Property(e => e.Iddeleteproductscodes).HasColumnName("iddeleteproductscodes");
-
-                entity.Property(e => e.Idproducts).HasColumnName("idproducts");
-
-                entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
-
-                entity.Property(e => e.Name).HasColumnName("name");
-
-                entity.Property(e => e.Reference).HasColumnName("reference");
-
-                entity.HasOne(d => d.IddeleteproductscodesNavigation)
-                    .WithMany(p => p.Produckhistories)
-                    .HasForeignKey(d => d.Iddeleteproductscodes)
-                    .HasConstraintName("produckhistory_iddeleteproductscodes_fkey");
-
-                entity.HasOne(d => d.IdproductsNavigation)
-                    .WithMany(p => p.Produckhistories)
-                    .HasForeignKey(d => d.Idproducts)
-                    .HasConstraintName("produckhistory_idproducts_fkey");
-            });
-
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("products");
@@ -249,6 +216,39 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .WithMany(p => p.Productscodes)
                     .HasForeignKey(d => d.Idproducts)
                     .HasConstraintName("productscodes_idproducts_fkey");
+            });
+
+            modelBuilder.Entity<Productshistory>(entity =>
+            {
+                entity.ToTable("productshistory");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Code).HasColumnName("code");
+
+                entity.Property(e => e.Dateofdeletion)
+                    .HasColumnName("dateofdeletion")
+                    .HasDefaultValueSql("now()");
+
+                entity.Property(e => e.Iddeletedproduct).HasColumnName("iddeletedproduct");
+
+                entity.Property(e => e.Iddeletedproductscodes).HasColumnName("iddeletedproductscodes");
+
+                entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Reference).HasColumnName("reference");
+
+                entity.HasOne(d => d.IddeletedproductNavigation)
+                    .WithMany(p => p.Productshistories)
+                    .HasForeignKey(d => d.Iddeletedproduct)
+                    .HasConstraintName("productshistory_iddeletedproduct_fkey");
+
+                entity.HasOne(d => d.IddeletedproductscodesNavigation)
+                    .WithMany(p => p.Productshistories)
+                    .HasForeignKey(d => d.Iddeletedproductscodes)
+                    .HasConstraintName("productshistory_iddeletedproductscodes_fkey");
             });
 
             modelBuilder.Entity<User>(entity =>

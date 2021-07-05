@@ -9,7 +9,7 @@ namespace Toci.Berserk.Database.Persistence.Models
     {
         public Productscode()
         {
-            Produckhistories = new HashSet<Produckhistory>();
+            Productshistories = new HashSet<Productshistory>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace Toci.Berserk.Database.Persistence.Models
         public int? Code { get; set; }
 
         public virtual Product IdproductsNavigation { get; set; }
-        public virtual ICollection<Produckhistory> Produckhistories { get; set; }
+        public virtual ICollection<Productshistory> Productshistories { get; set; }
     }
 }
