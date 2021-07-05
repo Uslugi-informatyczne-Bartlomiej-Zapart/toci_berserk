@@ -9,14 +9,14 @@ namespace Toci.Berserk.Tests.BllWarehouse
     public class ProductLogicTest
     {
         [TestMethod]
-        public void AddUniqueProductWithCode()
+        public void AddProductToTestHistory()
         {
             ProductLogic productLogic = new ProductLogic();
-            productLogic.Update(new Product()
-            {
-                Id = 1,
-                Name = "XXX"
-            });
+            //productLogic.Update(new Product()
+            //{
+            //    Id = 1,
+            //    Name = "XXX"
+            //});
             Product newOne = productLogic.Insert(new Product()
             {
                 Name = "Farba",
@@ -40,8 +40,22 @@ namespace Toci.Berserk.Tests.BllWarehouse
                 },
                 Code = 111111
             });
+        }
 
-
+        [TestMethod]
+        public void AddProductWithCode()
+        {
+            ProductLogic productLogic = new ProductLogic();
+            int newOne = productLogic.SetProduct(new ProductDto()
+            {
+                Code = 123456,
+                Product = new Product()
+                {
+                    Name = "Olej do silnika",
+                    Reference = 1000,
+                    Manufacturer = "engine"
+                }
+            });
         }
     }
 }

@@ -10,21 +10,41 @@ namespace Toci.Berserk.Bll.Warehouse
     public class ProductLogic : LogicBase<Product>, IProductLogic
     {
         protected LogicBase<Productscode> ProductsCodeLogic = new ProductsCodeLogic();
-        public int SetProduct(ProductDto uniqueProduct)
+        protected LogicBase<Productshistory> ProductsHistoryLogic = new ProductHistoryLogic();
+
+        public int SetProduct(ProductDto product)
         {
-            Productscode item = ProductsCodeLogic.Select(model => model.Code == uniqueProduct.Code).FirstOrDefault();
+            Productscode item = ProductsCodeLogic.Select(model => model.Code == product.Code).FirstOrDefault();
 
-            if (item != null) 
+            if (item != null)
             {
-                uniqueProduct.Product.Id = item.Idproducts.Value;
-                Update(uniqueProduct.Product);
-            }
-            else
-            {
+                Product productToUpdate = Select(model => model.Id == item.Idproducts).AsNoTracking().First();
+
+                ProductsHistoryLogic.Insert(new Productshistory()
+                {
+                    Iddeletedproduct = productToUpdate.Id,
+                    Name = productToUpdate.Name,
+                    Manufacturer = productToUpdate.Manufacturer,
+                    Reference = productToUpdate.Reference,
+                    Iddeletedproductscodes = item.Id,
+                    Code = item.Code
+                });
+
+                product.Product.Id = item.Idproducts.Value;
                 
+                Update(product.Product);
+
+                return product.Product.Id;
             }
 
-            return 0;
+            Product Pld = Insert(product.Product);
+            ProductsCodeLogic.Insert(new Productscode()
+            {
+                Code = product.Code,
+                Idproducts = Pld.Id
+            });
+
+            return Pld.Id;
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Metrichistory> Metrichistories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Orderproduct> Orderproducts { get; set; }
+        public virtual DbSet<Predictedorder> Predictedorders { get; set; }
+        public virtual DbSet<Predictedorderquantity> Predictedorderquantities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Productscode> Productscodes { get; set; }
         public virtual DbSet<Productshistory> Productshistories { get; set; }
@@ -131,19 +133,12 @@ namespace Toci.Berserk.Database.Persistence.Models
 
                 entity.Property(e => e.Idmetrics).HasColumnName("idmetrics");
 
-                entity.Property(e => e.Idorders).HasColumnName("idorders");
-
                 entity.Property(e => e.Metric).HasColumnName("metric");
 
                 entity.HasOne(d => d.IdmetricsNavigation)
                     .WithMany(p => p.Metrichistories)
                     .HasForeignKey(d => d.Idmetrics)
                     .HasConstraintName("metrichistory_idmetrics_fkey");
-
-                entity.HasOne(d => d.IdordersNavigation)
-                    .WithMany(p => p.Metrichistories)
-                    .HasForeignKey(d => d.Idorders)
-                    .HasConstraintName("metrichistory_idorders_fkey");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -187,6 +182,50 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .WithMany(p => p.Orderproducts)
                     .HasForeignKey(d => d.Idproducts)
                     .HasConstraintName("orderproducts_idproducts_fkey");
+            });
+
+            modelBuilder.Entity<Predictedorder>(entity =>
+            {
+                entity.ToTable("predictedorder");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Idorder).HasColumnName("idorder");
+
+                entity.Property(e => e.Idproducts).HasColumnName("idproducts");
+
+                entity.HasOne(d => d.IdorderNavigation)
+                    .WithMany(p => p.Predictedorders)
+                    .HasForeignKey(d => d.Idorder)
+                    .HasConstraintName("predictedorder_idorder_fkey");
+
+                entity.HasOne(d => d.IdproductsNavigation)
+                    .WithMany(p => p.Predictedorders)
+                    .HasForeignKey(d => d.Idproducts)
+                    .HasConstraintName("predictedorder_idproducts_fkey");
+            });
+
+            modelBuilder.Entity<Predictedorderquantity>(entity =>
+            {
+                entity.ToTable("predictedorderquantity");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Idmetric).HasColumnName("idmetric");
+
+                entity.Property(e => e.Idpredictedorder).HasColumnName("idpredictedorder");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.HasOne(d => d.IdmetricNavigation)
+                    .WithMany(p => p.Predictedorderquantities)
+                    .HasForeignKey(d => d.Idmetric)
+                    .HasConstraintName("predictedorderquantity_idmetric_fkey");
+
+                entity.HasOne(d => d.IdpredictedorderNavigation)
+                    .WithMany(p => p.Predictedorderquantities)
+                    .HasForeignKey(d => d.Idpredictedorder)
+                    .HasConstraintName("predictedorderquantity_idpredictedorder_fkey");
             });
 
             modelBuilder.Entity<Product>(entity =>

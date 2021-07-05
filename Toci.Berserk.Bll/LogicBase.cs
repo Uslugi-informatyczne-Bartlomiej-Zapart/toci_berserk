@@ -8,7 +8,7 @@ using Toci.Berserk.Database.Persistence.Models;
 
 namespace Toci.Berserk.Bll
 {
-    public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : class
+    public class LogicBase<TModel> : ILogicBase<TModel> where TModel : class
     {
         protected IDbHandle<TModel> DbHandle = new DbHandle<TModel>(new BerserkWmsContext());
 

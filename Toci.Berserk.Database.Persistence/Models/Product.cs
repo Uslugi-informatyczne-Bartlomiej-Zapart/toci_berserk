@@ -12,6 +12,7 @@ namespace Toci.Berserk.Database.Persistence.Models
             Chemistries = new HashSet<Chemistry>();
             Chemistrypops = new HashSet<Chemistrypop>();
             Orderproducts = new HashSet<Orderproduct>();
+            Predictedorders = new HashSet<Predictedorder>();
             Productscodes = new HashSet<Productscode>();
             Productshistories = new HashSet<Productshistory>();
         }
@@ -24,6 +25,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual ICollection<Chemistry> Chemistries { get; set; }
         public virtual ICollection<Chemistrypop> Chemistrypops { get; set; }
         public virtual ICollection<Orderproduct> Orderproducts { get; set; }
+        public virtual ICollection<Predictedorder> Predictedorders { get; set; }
         public virtual ICollection<Productscode> Productscodes { get; set; }
         public virtual ICollection<Productshistory> Productshistories { get; set; }
     }
