@@ -143,6 +143,8 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.Property(e => e.Date)
                     .HasColumnName("date")
                     .HasDefaultValueSql("now()");
+
+                entity.Property(e => e.Status).HasColumnName("status");
             });
 
             modelBuilder.Entity<Orderproduct>(entity =>

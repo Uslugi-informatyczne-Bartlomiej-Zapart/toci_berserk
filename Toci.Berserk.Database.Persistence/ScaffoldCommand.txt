@@ -1,1 +1,1 @@
-﻿dotnet ef dbcontext scaffold "Host=localhost;Database=Berserk.Wms;Username=postgres;Password=beatka" Npgsql.EntityFrameworkCore.PostgreSQL -o Models --project Toci.Berserk.Database.Persistence.csproj
+﻿dotnet ef dbcontext scaffold "Host=localhost;Database=Berserk.Wms;Username=postgres;Password=beatka" Npgsql.EntityFrameworkCore.PostgreSQL -o Models --project Toci.Berserk.Database.Persistence.csproj -f
