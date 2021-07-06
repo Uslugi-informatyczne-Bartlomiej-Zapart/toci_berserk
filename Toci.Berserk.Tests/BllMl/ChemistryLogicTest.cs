@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Ml;
 using Toci.Berserk.Bll.Warehouse;
@@ -10,54 +11,58 @@ namespace Toci.Berserk.Tests.BllMl
     public class ChemistryLogicTest
     {
         [TestMethod]
-        public void AddChemistry()
+        public void AddChemistryHistory()
         {
             LogicBase<Category> category = new LogicBase<Category>();
-            category.Insert(new Category()
+            for (int i = 0; i < 100; i++)
             {
-                Name = "Smary"
-            });
+                AddChemistry();
+            }
+            
+        }
+
+        [TestMethod]
+        public void AddChemistry()
+        {
+            Random r = new Random();
 
             ChemistryLogic chemistry = new ChemistryLogic();
-            chemistry.ReceiveOrder(new Chemistry()
+            for (int i = 1; i < 50000; i++)
             {
-                Idproducts = 1,
-                Quantity = 3
-            });
-            chemistry.ReceiveOrder(new Chemistry()
-            {
-                Idproducts = 1,
-                Quantity = 5
-            });
-            chemistry.ReceiveOrder(new Chemistry()
-            {
-                Idproducts = 1,
-                Quantity = 8
-            });
+                chemistry.ReceiveOrder(new Chemistry()
+                {
+                    Idproducts = i,
+                    Quantity = r.Next(100, 200)
+                });
+            }
+            
         }
 
         [TestMethod]
         public void ReduceChemistry()
         {
-            LogicBase<User> user = new LogicBase<User>();
-            user.Insert(new User()
-            {
-                Login = "maniek33",
-                Name = "Stachu",
-                Password = "123456"
-            });
-            ChemistryLogic chemistry = new ChemistryLogic();
-            chemistry.Reduce(new Chemistry()
-            {
-                Idproducts = 1,
-                Quantity = 2
-            }, 1);
+            //LogicBase<User> user = new LogicBase<User>();
+            //user.Insert(new User()
+            //{
+            //    Login = "wladek",
+            //    Name = "wladyslaw",
+            //    Password = "123456"
+            //});
 
-            chemistry.Reduce(new Chemistry()
+            ChemistryLogic chemistry = new ChemistryLogic();
+            Random r = new Random();
+            for (int j = 1; j < 6; j++)
             {
-                Idproducts = 1,
-                Quantity = 4
-            }, 1);
+                for (int i = 1; i < 1000; i++)
+                {
+                    chemistry.Reduce(new Chemistry()
+                    {
+                        Idproducts = i,
+                        Quantity = r.Next(1, 10)
+                    }, j);
+                }
+            }
+            
         }
     }
 }

@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Toci.Berserk.Database.Interfaces;
+using Toci.Berserk.Database.Persistence.Models;
 
 namespace Toci.Berserk.Database
 {
@@ -10,16 +12,18 @@ namespace Toci.Berserk.Database
     {
         protected DbContext DatabaseHandle;
 
-        public DbHandle(DbContext databaseHandle)
+        public DbHandle(Func<DbContext> databaseHandle)
         {
-            DatabaseHandle = databaseHandle;
+            DatabaseHandle = databaseHandle();
         }
 
         public int Delete(TModel model)
         {
             DatabaseHandle.Remove(model);
 
-            return DatabaseHandle.SaveChanges();
+            DatabaseHandle.SaveChangesAsync();
+
+            return 1;
         }
 
         public TModel Insert(TModel model)
@@ -40,7 +44,14 @@ namespace Toci.Berserk.Database
         {
             DatabaseHandle.Update(model);
 
-            return DatabaseHandle.SaveChanges() > 0;
+            DatabaseHandle.SaveChangesAsync();
+
+            return true;
+        }
+
+        public void Dispose()
+        {
+            DatabaseHandle?.Dispose();
         }
     }
 }

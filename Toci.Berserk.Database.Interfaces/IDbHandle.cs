@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Toci.Berserk.Database.Interfaces
 {
-    public interface IDbHandle<TModel>
+    public interface IDbHandle<TModel> : IDisposable
     {
         IQueryable<TModel> Select();
 

@@ -9,6 +9,6 @@ namespace Toci.Berserk.Bll.Ml
 {
     public class ProductOrderMlLogic : IProductOrderMlLogic
     {
-
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Models;
@@ -17,19 +18,20 @@ namespace Toci.Berserk.Tests.BllWarehouse
             List<Orderproduct> orderProduct = new List<Orderproduct>();
             List<int> listProduct = new List<int>();
 
-            listProduct.Add(1);
-            listProduct.Add(2);
-            listProduct.Add(3);
-            listProduct.Add(4);
+            for (int i = 1; i < 100; i++)
+            {
+                listProduct.Add(i);
+            }
 
-            int quantity = 5;
+            Random r = new Random();
 
             foreach (int productId in listProduct)
             {
                 Orderproduct orderPr = new Orderproduct()
                 {
-                    Quantity = quantity++,
-                    Idproducts = productId
+                    Quantity = r.Next(1,10),
+                    Idproducts = productId,
+                    Status = 1
                 };
                 orderProduct.Add(orderPr);
             }
@@ -41,7 +43,7 @@ namespace Toci.Berserk.Tests.BllWarehouse
         public void ManipulateOrderTest()
         {
             ProductOrderLogic productOrderLogic = new ProductOrderLogic();
-            productOrderLogic.ManipulateOrder(9);
+            productOrderLogic.ManipulateOrder(7);
             
         }
     }
