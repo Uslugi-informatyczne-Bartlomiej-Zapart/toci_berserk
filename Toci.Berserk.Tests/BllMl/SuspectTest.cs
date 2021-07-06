@@ -45,10 +45,17 @@ namespace Toci.Berserk.Tests.BllMl
             Dictionary<int, List<Chemistrypop>> orderHistory = new Dictionary<int, List<Chemistrypop>>();
             int depth = 5;
 
-            order = suspectOrderLogic.LastAccomplishedOrderDate();
+            order = new Order()
+            {
+                Date = DateTime.Now.AddDays(-4)
+            };
+                //suspectOrderLogic.LastAccomplishedOrderDate();
 
             orderHistory = suspectOrderLogic.GetOrdersHistory(order, depth);
 
+            ArithmeticAverageProductOrderLogic arithmeticAverage = new ArithmeticAverageProductOrderLogic();
+
+            arithmeticAverage.CalculateAverages(orderHistory);
         }
     }
 }

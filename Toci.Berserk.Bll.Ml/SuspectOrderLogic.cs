@@ -26,7 +26,7 @@ namespace Toci.Berserk.Bll.Ml
             
             for (int i = 0, j = 0; i < totalDaysFromLastOrder * depth; i+= totalDaysFromLastOrder)
             {
-                IQueryable<Chemistrypop> elements = Select(model => model.Date > interval && model.Date < current);
+                IQueryable<Chemistrypop> elements = Select(model => model.Date < interval && model.Date > current);
                 result.Add(j++, elements.ToList());
 
                 current.AddDays(-totalDaysFromLastOrder);
