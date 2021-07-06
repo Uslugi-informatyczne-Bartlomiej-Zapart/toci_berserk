@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
@@ -34,6 +35,20 @@ namespace Toci.Berserk.Tests.BllMl
                     chemistry.Update(el);
                 }
             }
+        }
+
+        [TestMethod]
+        public void GenerateOrderHistory()
+        {
+            Order order = new Order();
+            SuspectOrderLogic suspectOrderLogic = new SuspectOrderLogic();
+            Dictionary<int, List<Chemistrypop>> orderHistory = new Dictionary<int, List<Chemistrypop>>();
+            int depth = 5;
+
+            order = suspectOrderLogic.LastAccomplishedOrderDate();
+
+            orderHistory = suspectOrderLogic.GetOrdersHistory(order, depth);
+
         }
     }
 }
