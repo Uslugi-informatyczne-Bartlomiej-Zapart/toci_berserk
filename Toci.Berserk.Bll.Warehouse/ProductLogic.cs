@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Toci.Berserk.Bll.Models;
@@ -11,9 +12,19 @@ namespace Toci.Berserk.Bll.Warehouse
     {
         protected LogicBase<Productscode> ProductsCodeLogic = new ProductsCodeLogic();
         protected LogicBase<Productshistory> ProductsHistoryLogic = new ProductHistoryLogic();
+        protected LogicBase<Deliverycompany> DeliveryCompany = new LogicBase<Deliverycompany>();
+        protected LogicBase<Delivery> DeliveryList = new LogicBase<Delivery>();
 
-        public int SetProduct(ProductDto product, string deliveryCompany)
+        protected List<int?> IDsOfProductsFromCurrentDeliveryCompany = new List<int?>();
+        protected string deliveryCompanyName = null;
+        protected bool flagOfHistoryDeliveryList = false;
+        protected int idOfDeliverCompany;
+
+        public int SetProduct(ProductDto product)
         {
+            if (!flagOfHistoryDeliveryList)
+                ObtainDeliverCompanyId(product.DeliveryCompany);
+
             Productscode item = ProductsCodeLogic.Select(model => model.Code == product.Code).FirstOrDefault();
 
             if (item != null)
@@ -34,7 +45,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 
                 Update(product.Product);
 
-                UpdateDeliveryTable(product.Product.Id, deliveryCompany);
+                UpdateDeliveryTable(product.Product.Id);
 
                 return product.Product.Id;
             }
@@ -46,14 +57,55 @@ namespace Toci.Berserk.Bll.Warehouse
                 Idproducts = Pld.Id
             });
 
-            UpdateDeliveryTable(Pld.Id, deliveryCompany);
+            UpdateDeliveryTable(Pld.Id);
 
             return Pld.Id;
         }
 
-        private bool UpdateDeliveryTable(int productId, string deliveryCompany)
+        private void ObtainDeliverCompanyId(string deliveryCompany)
         {
-            return true;
+            if (string.IsNullOrEmpty(deliveryCompanyName) || !deliveryCompanyName.Equals(deliveryCompany))
+            {
+                deliveryCompanyName = deliveryCompany;
+                Deliverycompany company = DeliveryCompany.Select(model => model.Name.Equals(deliveryCompany)).FirstOrDefault();
+
+                if (company == null)
+                {
+                    idOfDeliverCompany = DeliveryCompany.Insert(new Deliverycompany()
+                    {
+                        Name = deliveryCompany
+                    }).Id;
+                }
+                else
+                    idOfDeliverCompany = company.Id;
+
+                flagOfHistoryDeliveryList = true;
+                //If error than possibly by null list
+                IDsOfProductsFromCurrentDeliveryCompany = DeliveryList.Select(model =>
+                    model.Iddeliverycompany == idOfDeliverCompany).ToList().Select(x => x.Idproducts).ToList();
+            }
+        }
+
+        private void UpdateDeliveryTable(int productId)
+        {
+            if (!IDsOfProductsFromCurrentDeliveryCompany.Contains(productId))
+            {
+                IDsOfProductsFromCurrentDeliveryCompany.Add(productId);
+                DeliveryList.Insert(new Delivery()
+                {
+                    Idproducts = productId,
+                    Iddeliverycompany = idOfDeliverCompany
+                });
+            }
         }
     }
 }
+/*
+ *  It is the general rule about entering the records process into the delivery table.
+ *  Obtain the delivery company ID
+    Check the delivery name variable.
+    Empty delivery history list if the delivery name has been updated.
+    Fulfil delivery history list if empty.
+    Check if the current product exists in the history list.
+    If a current product doesn't exist in the delivery history list, insert a new record into the delivery table and delivery history list.
+ */

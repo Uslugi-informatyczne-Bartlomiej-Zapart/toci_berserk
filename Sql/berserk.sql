@@ -10,7 +10,7 @@ drop table productshistory;
 drop table productscodes;
 drop table products;
 drop table categories;
-drop table users;
+drop table users; 
 drop table deliverycompanies;
 drop table metrics;
 
