@@ -16,7 +16,7 @@ namespace Toci.Berserk.Api.Controllers
     {
         public UserController(IUserLogic userLogic) : base(userLogic)
         {
-            
+
         }
     }
 }

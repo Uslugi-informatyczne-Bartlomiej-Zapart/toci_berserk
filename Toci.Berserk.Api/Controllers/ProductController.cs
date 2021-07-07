@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Routing;
 using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Bll.Warehouse;
 using Toci.Berserk.Bll.Warehouse.Interfaces;
@@ -16,11 +17,12 @@ namespace Toci.Berserk.Api.Controllers
     [Route("[controller]")]
     public class ProductController : ApiControllerBase<IProductLogic, Product>
     {
-        public ProductController(IProductLogic productLogic) : base(productLogic)
+        public ProductController(IProductLogic productlogic) : base(productlogic)
         {
 
         }
-
+        [HttpPost]
+        [Route("SetUniqueProduct")]
         public void SetUniqueProduct(ProductDto product)
         {
 
