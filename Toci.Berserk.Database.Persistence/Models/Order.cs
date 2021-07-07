@@ -9,6 +9,7 @@ namespace Toci.Berserk.Database.Persistence.Models
     {
         public Order()
         {
+            Metrichistories = new HashSet<Metrichistory>();
             Orderproducts = new HashSet<Orderproduct>();
             Predictedorders = new HashSet<Predictedorder>();
         }
@@ -17,6 +18,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public DateTime? Date { get; set; }
         public int? Status { get; set; }
 
+        public virtual ICollection<Metrichistory> Metrichistories { get; set; }
         public virtual ICollection<Orderproduct> Orderproducts { get; set; }
         public virtual ICollection<Predictedorder> Predictedorders { get; set; }
     }

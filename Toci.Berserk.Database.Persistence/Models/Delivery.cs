@@ -5,14 +5,13 @@ using System.Collections.Generic;
 
 namespace Toci.Berserk.Database.Persistence.Models
 {
-    public partial class Chemistry
+    public partial class Delivery
     {
         public int Id { get; set; }
-        public int? Idcategories { get; set; }
-        public int? Quantity { get; set; }
         public int? Idproducts { get; set; }
+        public int? Iddeliverycompany { get; set; }
 
-        public virtual Category IdcategoriesNavigation { get; set; }
+        public virtual Deliverycompany IddeliverycompanyNavigation { get; set; }
         public virtual Product IdproductsNavigation { get; set; }
     }
 }

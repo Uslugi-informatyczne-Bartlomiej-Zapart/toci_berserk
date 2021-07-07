@@ -1,5 +1,7 @@
+drop table delivery;
 drop table metricHistory;
-drop table metrics;
+drop table predictedorderquantity;
+drop table predictedorder;
 drop table chemistrypop;
 drop table orderproducts;
 drop table orders;
@@ -9,6 +11,14 @@ drop table productscodes;
 drop table products;
 drop table categories;
 drop table users;
+drop table deliverycompanies;
+drop table metrics;
+
+select * from deliverycompanies;
+select * from delivery;
+select * from users;
+select * from products;
+select * from chemistrypop;
 
 create table users
 (
@@ -18,17 +28,32 @@ create table users
     password text
 );
 
-create table categories(
+create table categories
+(
     id serial primary key,
     idparent int references categories (id),
     name text
 );
 
-create table products(
+create table deliverycompanies
+(
+	id serial primary key,
+	name text
+);
+
+create table products
+(
     id serial primary key,
     name text,
     manufacturer text,
     reference int
+);
+
+create table delivery
+(
+	id serial primary key,
+	idproducts int references products (id),
+	iddeliverycompany int references deliverycompanies (id)
 );
 
 create table productscodes
@@ -50,7 +75,8 @@ create table productshistory
 	dateofdeletion timestamp default now()
 );
 
-create table chemistry(
+create table chemistry
+(
     id serial primary key,
     idcategories int references categories (id),
     quantity int,
@@ -60,16 +86,40 @@ create table chemistry(
 create table orders
 (
 	id serial primary key,
-	date timestamp default now()
+	date timestamp default now(),
+	status int
 );
 
-create table orderproducts(
+create table orderproducts
+(
     id serial primary key,
     idorder int references orders (id),
 	status int,
     idcategories int references categories (id),
     quantity int,
     idproducts int references products (id)
+);
+
+create table metrics
+(
+	id serial primary key,
+	metric int,
+	algorithm int
+);
+
+create table predictedorder
+(
+	id serial primary key,
+	idproducts int references products (id),
+	idorder int references orders (id)
+);
+
+create table predictedorderquantity
+(
+	id serial primary key,
+	idmetric int references metrics (id),
+	quantity int,
+	idpredictedorder int references predictedorder (id)
 );
 
 create table chemistrypop
@@ -81,12 +131,7 @@ create table chemistrypop
     idusers int references users(id) -- info o zalogowanym pracowniku / firmie
 );
 
-create table metrics
-(
-	id serial primary key,
-	metric int,
-	algorithm int
-);
+
 
 create table metricHistory
 (

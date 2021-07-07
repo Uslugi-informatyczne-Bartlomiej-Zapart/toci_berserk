@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Toci.Berserk.Bll;
+using Toci.Berserk.Bll.Ml;
 using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Bll.Warehouse;
 using Toci.Berserk.Database.Persistence.Models;
@@ -52,6 +54,98 @@ namespace Toci.Berserk.Tests.BllWarehouse
             watch.Stop();
 
             TimeSpan time = watch.Elapsed;
+        }
+
+        [TestMethod]
+        public void AddDeliveryCompanies()
+        {
+            LogicBase<Deliverycompany> delco = new LogicBase<Deliverycompany>();
+            delco.Insert(new Deliverycompany()
+            {
+                Name = "FirmaDostawczaZdzicho"
+            });
+            delco.Insert(new Deliverycompany()
+            {
+                Name = "FirmaDostawczaChemicalBrothers"
+            });
+            delco.Insert(new Deliverycompany()
+            {
+                Name = "FirmaDostawczaUCiociNaImieninach"
+            });
+        }
+
+        [TestMethod]
+        public void AddUsers()
+        {
+            LogicBase<User> user = new LogicBase<User>();
+            user.Insert(new User()
+            {
+                Name = "Enrike",
+                Login = "z dupy",
+                Password = "mega z dupy"
+            });
+            user.Insert(new User()
+            {
+                Name = "Eustachy",
+                Login = "z pipy",
+                Password = "pipa renifer"
+            });
+            user.Insert(new User()
+            {
+                Name = "Franio",
+                Login = "zawiercie rulez",
+                Password = "jprdle"
+            });
+        }
+
+        [TestMethod]
+        public void AddChemistryPop()
+        {
+            Random random = new Random();
+            LogicBase<Chemistrypop> warehousePop = new LogicBase<Chemistrypop>();
+            int user = 3; 
+            DateTime datka = new DateTime(2021, 07, 06);
+            for (int i = 1; i < 20; i++)
+            {
+                warehousePop.Insert(new Chemistrypop()
+                {
+                    Idproducts = random.Next(1, 40),
+                    Quantity = random.Next(1, 15),
+                    Idusers = user,
+                    Date = datka
+                });
+            }
+        }
+
+        [TestMethod]
+        public void AddProducts()
+        {
+            LogicBase<Product> product = new LogicBase<Product>();
+            string nameOfProduct = "Farba 00";
+            string manufact = "Wazowski Farby";
+            for (int i = 1; i < 41; i++)
+            {
+                product.Insert(new Product()
+                {
+                    Name = nameOfProduct + i,
+                    Manufacturer = manufact
+                });
+            }
+        }
+
+        [TestMethod]
+        public void AddDelivery()
+        {
+            LogicBase<Delivery> delivery = new LogicBase<Delivery>();
+            int company = 2; //FirmaDostawczaChemicalBrothers
+            for (int i = 1; i < 20; i++)
+            {
+                delivery.Insert(new Delivery()
+                {
+                    Idproducts = i,
+                    Iddeliverycompany = company
+                });
+            }
         }
 
         [TestMethod]
