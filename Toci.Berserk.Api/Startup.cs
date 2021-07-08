@@ -35,6 +35,7 @@ namespace Toci.Berserk.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Toci.Berserk.Api", Version = "v1" });
             });
 
+            services.AddScoped<IUserLogic, UserLogic>();
             services.AddScoped<IProductLogic, ProductLogic>();
         }
 

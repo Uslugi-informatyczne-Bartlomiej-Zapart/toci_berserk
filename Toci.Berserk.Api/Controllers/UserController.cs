@@ -20,18 +20,18 @@ namespace Toci.Berserk.Api.Controllers
 
         }
 
-        [HttpGet]
-        [Route("Register")]
-        public void Register()
-        {
-
-        }
-
         [HttpPost]
         [Route("Register")]
-        public void RegisterUser(UserDto User)
+        public int CreateAccount(UserDto user)
         {
+            return Logic.CreateAccount(user);
+        }
 
+        [HttpGet]
+        [Route("Users")]
+        public void RegisterUser()
+        {
+            Logic.GetAllUserLogins();
         }
 
 

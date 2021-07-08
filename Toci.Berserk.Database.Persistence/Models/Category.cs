@@ -9,9 +9,8 @@ namespace Toci.Berserk.Database.Persistence.Models
     {
         public Category()
         {
-            Chemistries = new HashSet<Chemistry>();
             InverseIdparentNavigation = new HashSet<Category>();
-            Orderproducts = new HashSet<Orderproduct>();
+            Products = new HashSet<Product>();
         }
 
         public int Id { get; set; }
@@ -19,8 +18,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public string Name { get; set; }
 
         public virtual Category IdparentNavigation { get; set; }
-        public virtual ICollection<Chemistry> Chemistries { get; set; }
         public virtual ICollection<Category> InverseIdparentNavigation { get; set; }
-        public virtual ICollection<Orderproduct> Orderproducts { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

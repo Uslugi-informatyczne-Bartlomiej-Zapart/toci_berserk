@@ -42,7 +42,6 @@ namespace Toci.Berserk.Tests.BllWarehouse
                 Code = kodzikKreskowy,
                 DeliveryCompany = "FirmaDostawczaChemicalBrothers"
             });
-
         }
     }
 }
