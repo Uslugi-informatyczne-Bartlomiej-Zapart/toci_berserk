@@ -10,6 +10,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public int Id { get; set; }
         public int? Idproducts { get; set; }
         public int? Iddeliverycompany { get; set; }
+        public float? Price { get; set; }
 
         public virtual Deliverycompany IddeliverycompanyNavigation { get; set; }
         public virtual Product IdproductsNavigation { get; set; }

@@ -9,9 +9,18 @@ namespace Toci.Berserk.Bll.Warehouse
     public class ChemistryLogic : LogicBase<Chemistry>, IChemistryLogic
     {
         protected LogicBase<Chemistrypop> ChemistryPop = new LogicBase<Chemistrypop>();
-        public int ReceiveOrder(Chemistry chemistry)
+        protected IDeliveryLogic DeliveryLogic = new DeliveryLogic();
+        public int ReceiveOrder(Chemistry chemistry, float? price, int? idOfDeliveryCompany)
         {
+            /*Ta metoda odpowiada za przyjecie poszczegolnych produktow z zamowienia na stan
+             dliverylogic musi za kazdym razem zrobic update ceny tak by przyszle zamownienie
+            mialo na czym bazowa tzn wybrac zamowienie tego samego produktu ale do firmy oferujocej
+            dany produkt taniej
+            logika decyzji o wyboru firmy na podstawie ceny musi bazowac na cenie oraz ostatniej
+            dacie dostarczenia danego produktu*/
             Chemistry item = Select(model => model.Idproducts == chemistry.Idproducts).FirstOrDefaultAsync().Result;
+
+            DeliveryLogic.UpdateDeliveryPrice(chemistry.Idproducts, price, idOfDeliveryCompany);
 
             if (item == null)
             {
