@@ -14,11 +14,7 @@ drop table users;
 drop table deliverycompanies;
 drop table metrics;
 
-select * from deliverycompanies;
-select * from delivery;
-select * from users;
-select * from products;
-select * from chemistrypop;
+
 
 create table users
 (
@@ -141,3 +137,21 @@ create table metricHistory
 	idmetrics int references metrics (id),
 	metric int
 );
+
+select * from deliverycompanies;
+select * from delivery;
+select * from users;
+select * from products;
+select * from productscodes;
+select * from chemistrypop;
+select * from orderproducts;
+select * from orders;
+
+ALTER TABLE orders ADD COLUMN iddeliverycompany INTEGER;
+
+ALTER TABLE orders
+	ADD CONSTRAINT fk_dodelivery
+	FOREIGN KEY (iddeliverycompany)
+	REFERENCES deliverycompanies (id);
+	
+update orders set iddeliverycompany = 2 where id > 0

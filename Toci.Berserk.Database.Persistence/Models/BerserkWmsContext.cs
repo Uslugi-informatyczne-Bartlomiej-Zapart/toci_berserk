@@ -122,6 +122,8 @@ namespace Toci.Berserk.Database.Persistence.Models
 
                 entity.Property(e => e.Idproducts).HasColumnName("idproducts");
 
+                entity.Property(e => e.Price).HasColumnName("price");
+
                 entity.HasOne(d => d.IddeliverycompanyNavigation)
                     .WithMany(p => p.Deliveries)
                     .HasForeignKey(d => d.Iddeliverycompany)
@@ -190,7 +192,14 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .HasColumnName("date")
                     .HasDefaultValueSql("now()");
 
+                entity.Property(e => e.Iddeliverycompany).HasColumnName("iddeliverycompany");
+
                 entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.IddeliverycompanyNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.Iddeliverycompany)
+                    .HasConstraintName("fk_dodelivery");
             });
 
             modelBuilder.Entity<Orderproduct>(entity =>

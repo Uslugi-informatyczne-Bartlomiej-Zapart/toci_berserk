@@ -18,25 +18,29 @@ namespace Toci.Berserk.Tests.BllWarehouse
             List<Orderproduct> orderProduct = new List<Orderproduct>();
             List<int> listProduct = new List<int>();
 
-            for (int i = 1; i < 100; i++)
+
+            Random r = new Random();
+
+            for (int i = 100; i < 117; i++)
             {
                 listProduct.Add(i);
             }
 
-            Random r = new Random();
+        
 
             foreach (int productId in listProduct)
             {
                 Orderproduct orderPr = new Orderproduct()
                 {
-                    Quantity = r.Next(1,10),
+                    Quantity = r.Next(10,20),
                     Idproducts = productId,
-                    Status = 1
+                    Status = 2
+                   //id order wrzucamy w AddOrders
                 };
                 orderProduct.Add(orderPr);
             }
 
-            productOrderLogic.AddOrders(orderProduct);
+            productOrderLogic.AddOrders(orderProduct, 1);
         }
 
         [TestMethod]

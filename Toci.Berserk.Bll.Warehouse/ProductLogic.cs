@@ -45,7 +45,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 
                 Update(product.Product);
 
-                UpdateDeliveryTable(product.Product.Id);
+                UpdateDeliveryTable(product.Product.Id, product.Price);
 
                 return product.Product.Id;
             }
@@ -57,10 +57,12 @@ namespace Toci.Berserk.Bll.Warehouse
                 Idproducts = Pld.Id
             });
 
-            UpdateDeliveryTable(Pld.Id);
+            UpdateDeliveryTable(Pld.Id, product.Price);
 
             return Pld.Id;
         }
+
+      
 
         private void ObtainDeliverCompanyId(string deliveryCompany)
         {
@@ -86,7 +88,7 @@ namespace Toci.Berserk.Bll.Warehouse
             }
         }
 
-        private void UpdateDeliveryTable(int productId)
+        private void UpdateDeliveryTable(int productId, float price)
         {
             if (!IDsOfProductsFromCurrentDeliveryCompany.Contains(productId))
             {
@@ -94,8 +96,16 @@ namespace Toci.Berserk.Bll.Warehouse
                 DeliveryList.Insert(new Delivery()
                 {
                     Idproducts = productId,
-                    Iddeliverycompany = idOfDeliverCompany
+                    Iddeliverycompany = idOfDeliverCompany,
+                    Price = price
                 });
+            }
+            else
+            {
+                var ele = DeliveryList
+                    .Select(model => model.Idproducts == productId && model.Iddeliverycompany == idOfDeliverCompany).First();
+                ele.Price = price;
+                DeliveryList.Update(ele);
             }
         }
     }

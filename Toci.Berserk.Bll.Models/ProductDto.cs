@@ -8,5 +8,6 @@ namespace Toci.Berserk.Bll.Models
         public Product Product { get; set; }
         public int Code { get; set; }
         public string DeliveryCompany { get; set; }
+        public float Price { get; set; }
     }
 }

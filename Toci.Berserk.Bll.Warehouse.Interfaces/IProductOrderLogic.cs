@@ -5,6 +5,6 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
 {
     public interface IProductOrderLogic
     {
-        int AddOrders(List<Orderproduct> products);
+        int AddOrders(List<Orderproduct> products, int deliveryCompanyID);
     }
 }

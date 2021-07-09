@@ -12,37 +12,39 @@ using Toci.Berserk.Database.Persistence.Models;
 namespace Toci.Berserk.Tests.BllWarehouse
 {
     [TestClass]
-    public class ProductLogicUpdateDeliveryTest
+    public class TestyWladek
     {
         protected ProductLogic productLogic = new ProductLogic();
         protected LogicBase<Productscode> ProductsCode = new LogicBase<Productscode>();
+        protected LogicBase<Delivery> Delivery = new LogicBase<Delivery>();
 
         [TestMethod]
-        public void updateDeliveryTest()
+        public void seedowanieBazy()
         {
-            int kodzikKreskowy = 1;
-            List<int?> kodziki = ProductsCode.Select(model => model.Code > 0).ToList().Select(x => x.Code).ToList();
+            int kodzikKreskowy = 4345;
 
-            while (true)
-            {
-                if (kodziki.Contains(kodzikKreskowy))
-                    kodzikKreskowy++;
 
-                else
-                    break;
-            }
+            for(int i = 1; i < 30; i++)
 
             productLogic.SetProduct(new ProductDto()
             {
                 Product = new Product()
                 {
-                    Name = "dtoTest " + kodzikKreskowy,
-                    Manufacturer = "Szprychy"
+                    Name = "Owsiana Dupka " + kodzikKreskowy,
+                    Manufacturer = "ROW Rybnik"
                 },
-                Code = kodzikKreskowy,
-                DeliveryCompany = "FirmaDostawczaChemicalBrothers"
+                Code = kodzikKreskowy++,
+                DeliveryCompany = "FirmaDostawczaZdzicho"
             });
 
         }
+
+        //[TestMethod]
+        //public void updateCenyDelivery()
+        //{
+        //    productLogic.idOfDeliverCompany = 4;
+        //    productLogic.IDsOfProductsFromCurrentDeliveryCompany.Add(1);
+        //    productLogic.UpdateDeliveryTable(1, 9.99f);
+        //}
     }
 }

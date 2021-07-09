@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿ using System;
+ using System.Collections.Generic;
 using System.Linq;
 using Toci.Berserk.Bll.Warehouse.Interfaces;
 using Toci.Berserk.Database.Persistence.Models;
@@ -13,9 +14,13 @@ namespace Toci.Berserk.Bll.Warehouse
         protected LogicBase<Order> orderLogic = new LogicBase<Order>();
         protected IChemistryLogic chemistryLogic = new ChemistryLogic();
 
-        public int AddOrders(List<Orderproduct> products)
+        public int AddOrders(List<Orderproduct> products, int deliveryCompanyID)
         {
-            int id = orderLogic.Insert(new Order()).Id;
+            int id = orderLogic.Insert(new Order()
+            {
+                Date = new DateTime(2021, 06, 20),
+                Iddeliverycompany = deliveryCompanyID
+            }).Id;
 
             foreach (Orderproduct product in products)
             {
