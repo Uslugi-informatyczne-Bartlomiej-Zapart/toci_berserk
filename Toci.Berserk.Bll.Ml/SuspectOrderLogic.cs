@@ -58,7 +58,7 @@ namespace Toci.Berserk.Bll.Ml
             result.Add(1, listOfChemistrypops);
 
             return result;
-
+            
             /*
              * Wnioski
              * delivery table musi uaktualniać rekordy w trakcie przyjęcia ordersa

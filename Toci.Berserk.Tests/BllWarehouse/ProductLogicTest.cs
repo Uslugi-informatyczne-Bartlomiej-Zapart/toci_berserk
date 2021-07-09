@@ -14,6 +14,7 @@ namespace Toci.Berserk.Tests.BllWarehouse
     [TestClass]
     public class ProductLogicTest
     {
+        [TestMethod]
         protected int learningTPL()
         {
             ProductLogic productLogic = new ProductLogic();
