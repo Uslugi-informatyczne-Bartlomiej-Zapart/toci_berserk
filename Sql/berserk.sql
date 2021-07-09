@@ -148,6 +148,7 @@ select * from orderproducts;
 select * from orders;
 
 ALTER TABLE orders ADD COLUMN iddeliverycompany INTEGER;
+ALTER TABLE orderproducts ADD COLUMN price REAL;
 
 ALTER TABLE orders
 	ADD CONSTRAINT fk_dodelivery
@@ -155,3 +156,4 @@ ALTER TABLE orders
 	REFERENCES deliverycompanies (id);
 	
 update orders set iddeliverycompany = 2 where id > 0
+update orderproducts set price = 2.1 where id > 0

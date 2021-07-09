@@ -33,7 +33,7 @@ namespace Toci.Berserk.Tests.BllMl
                 {
                     Idproducts = i,
                     Quantity = r.Next(100, 200)
-                });
+                },10f, 1);
             }
             
         }

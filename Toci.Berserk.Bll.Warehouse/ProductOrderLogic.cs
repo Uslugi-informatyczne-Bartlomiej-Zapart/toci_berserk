@@ -35,7 +35,7 @@ namespace Toci.Berserk.Bll.Warehouse
         public virtual bool ManipulateOrder(int orderId)
         {
             IQueryable<Orderproduct> orderProducts = Select(model => model.Idorder == orderId && model.Status == OrderSent);
-
+            int? deliveryCompanyId = orderLogic.Select(model => model.Id == orderId).FirstOrDefault().Iddeliverycompany;
             if (orderProducts.Any())
             {
                 foreach (Orderproduct order in orderProducts)
@@ -44,7 +44,7 @@ namespace Toci.Berserk.Bll.Warehouse
                     {
                         Idproducts = order.Idproducts,
                         Quantity = order.Quantity
-                    });
+                    },order.Price, deliveryCompanyId);
 
                     order.Status = OrderAccomplished;
 

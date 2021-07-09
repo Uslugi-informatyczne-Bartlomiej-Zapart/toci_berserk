@@ -13,7 +13,7 @@ namespace Toci.Berserk.Bll.Warehouse
         protected LogicBase<Productscode> ProductsCodeLogic = new ProductsCodeLogic();
         protected LogicBase<Productshistory> ProductsHistoryLogic = new ProductHistoryLogic();
         protected LogicBase<Deliverycompany> DeliveryCompany = new LogicBase<Deliverycompany>();
-        protected LogicBase<Delivery> DeliveryList = new LogicBase<Delivery>();
+        protected IDeliveryLogic DeliveryLogic = new DeliveryLogic();
 
         protected List<int?> IDsOfProductsFromCurrentDeliveryCompany = new List<int?>();
         protected string deliveryCompanyName = null;
@@ -62,29 +62,16 @@ namespace Toci.Berserk.Bll.Warehouse
             return Pld.Id;
         }
 
-      
-
+        
         private void ObtainDeliverCompanyId(string deliveryCompany)
         {
             if (string.IsNullOrEmpty(deliveryCompanyName) || !deliveryCompanyName.Equals(deliveryCompany))
             {
                 deliveryCompanyName = deliveryCompany;
-                Deliverycompany company = DeliveryCompany.Select(model => model.Name.Equals(deliveryCompany)).FirstOrDefault();
-
-                if (company == null)
-                {
-                    idOfDeliverCompany = DeliveryCompany.Insert(new Deliverycompany()
-                    {
-                        Name = deliveryCompany
-                    }).Id;
-                }
-                else
-                    idOfDeliverCompany = company.Id;
-
+                idOfDeliverCompany = DeliveryLogic.SetNewDeliveryCompany(deliveryCompanyName);
                 flagOfHistoryDeliveryList = true;
                 //If error than possibly by null list
-                IDsOfProductsFromCurrentDeliveryCompany = DeliveryList.Select(model =>
-                    model.Iddeliverycompany == idOfDeliverCompany).ToList().Select(x => x.Idproducts).ToList();
+                DeliveryLogic.AllProductsFromDeliveryCompany(IDsOfProductsFromCurrentDeliveryCompany, idOfDeliverCompany); 
             }
         }
 
@@ -93,20 +80,10 @@ namespace Toci.Berserk.Bll.Warehouse
             if (!IDsOfProductsFromCurrentDeliveryCompany.Contains(productId))
             {
                 IDsOfProductsFromCurrentDeliveryCompany.Add(productId);
-                DeliveryList.Insert(new Delivery()
-                {
-                    Idproducts = productId,
-                    Iddeliverycompany = idOfDeliverCompany,
-                    Price = price
-                });
+                DeliveryLogic.SetNewDelivery(productId, price, idOfDeliverCompany);
             }
             else
-            {
-                var ele = DeliveryList
-                    .Select(model => model.Idproducts == productId && model.Iddeliverycompany == idOfDeliverCompany).First();
-                ele.Price = price;
-                DeliveryList.Update(ele);
-            }
+                DeliveryLogic.UpdateDeliveryPrice(productId, price, idOfDeliverCompany);
         }
     }
 }
