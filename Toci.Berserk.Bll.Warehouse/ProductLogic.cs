@@ -20,6 +20,11 @@ namespace Toci.Berserk.Bll.Warehouse
         protected bool flagOfHistoryDeliveryList = false;
         protected int idOfDeliverCompany;
 
+        public List<Product> AllProducts()
+        {
+            return Select(x => x.Id > 0).ToList();
+        }
+
         public int SetProduct(ProductDto product)
         {
             if (!flagOfHistoryDeliveryList)

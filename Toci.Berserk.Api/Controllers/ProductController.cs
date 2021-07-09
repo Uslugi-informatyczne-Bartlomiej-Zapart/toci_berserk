@@ -28,5 +28,12 @@ namespace Toci.Berserk.Api.Controllers
         {
 
         }
+
+        [HttpGet]
+        [Route("Products")]
+        public void GetAll()
+        {
+            Logic.AllProducts();
+        }
     }
 }

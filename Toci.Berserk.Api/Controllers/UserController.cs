@@ -29,24 +29,17 @@ namespace Toci.Berserk.Api.Controllers
 
         [HttpGet]
         [Route("Users")]
-        public void RegisterUser()
+        public IEnumerable<User> GetAll()
         {
-            Logic.GetAllUserLogins();
+             return Logic.AllLogins();
         }
 
-
-        [HttpGet]
-        [Route("Login")]
-        public void Login()
-        {
-
-        }
 
         [HttpPost]
         [Route("Login")]
-        public void LoginUser(UserDto User)
+        public void LoginUser(UserDto user)
         {
-
+            Logic.Login(user);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
 {
     public interface IProductLogic : ILogicBase<Product>
     {
+        public List<Product> AllProducts();
         public int SetProduct(ProductDto product);
 
     }

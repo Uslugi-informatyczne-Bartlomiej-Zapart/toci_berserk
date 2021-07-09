@@ -12,6 +12,7 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
     public interface IUserLogic : ILogicBase<User>
     {
         public int CreateAccount(UserDto user);
-        public IEnumerable<User> GetAllUserLogins();
+        public IEnumerable<User> AllLogins();
+        public bool Login(UserDto user);
     }
 }
