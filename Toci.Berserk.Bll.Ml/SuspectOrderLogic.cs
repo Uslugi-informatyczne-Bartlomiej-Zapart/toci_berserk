@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Toci.Berserk.Bll.Ml.Interfaces;
-using Toci.Berserk.Bll.Warehouse;
+using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Database.Persistence.Models;
 
 namespace Toci.Berserk.Bll.Ml
 {
     public class SuspectOrderLogic : LogicBase<Chemistrypop>, ISuspectOrderLogic
     {
-        protected LogicBase<Order> orders = new LogicBase<Order>();
+        protected LogicBase<Order> Orders = new LogicBase<Order>();
 
-        public Order LastAccomplishedOrderDate() => orders
-            .Select(model => model.Status == ProductOrderLogic.OrderAccomplished)
-            .OrderByDescending(model => model.Date).First();
+        //public Order LastAccomplishedOrderDate() => Orders
+        //    .Select(model => model.Status == ProductOrderLogic.OrderAccomplished)
+        //    .OrderByDescending(model => model.Date).First();
 
         protected int DaysDifferenceToToday(DateTime lastOrderData) => (int) (DateTime.Now - lastOrderData).TotalDays;
 
@@ -38,7 +38,7 @@ namespace Toci.Berserk.Bll.Ml
             return result;
         }
 
-        public virtual Dictionary<int, List<Chemistrypop>> GetOrdersHistory(int deliveryCompanyId, DateTime dateScope)
+        public virtual Dictionary<int, List<Chemistrypop>> GetOrdersHistory(OrderDto order)
         {
             //The prediction will base upon the name of the company and the scope of the date. 
             LogicBase<Delivery> delivery = new LogicBase<Delivery>();
@@ -46,12 +46,14 @@ namespace Toci.Berserk.Bll.Ml
             Dictionary<int, List<Chemistrypop>> result = new Dictionary<int, List<Chemistrypop>>();
             List<List<Chemistrypop>> listsOfChemistrypops = new List<List<Chemistrypop>>();
             List<Chemistrypop> listOfChemistrypops = new List<Chemistrypop>();
+            int deliveryCompanyId;
 
+            deliveryCompanyId = order.deliveryCompanyId;
             //It is a collection of all goods ordered by the delivery company ever.
             idOfProducts = delivery.Select(model => model.Iddeliverycompany == deliveryCompanyId).Select(x => x.Idproducts).ToList();
 
             //The traverse process over the history of products pops which purpose is to collect pops based on product and date scope.
-            listsOfChemistrypops = idOfProducts.Select(x => Select(model => model.Idproducts == x && model.Date >= dateScope).ToList()).ToList();
+            listsOfChemistrypops = idOfProducts.Select(x => Select(model => model.Idproducts == x && model.Date >= order.dateScope).ToList()).ToList();
 
             listOfChemistrypops = listsOfChemistrypops.SelectMany(x => x.Select(y => y)).ToList();
 

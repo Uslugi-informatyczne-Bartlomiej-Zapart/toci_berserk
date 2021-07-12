@@ -19,7 +19,25 @@ namespace Toci.Berserk.Tests.BllWarehouse
         protected LogicBase<Delivery> Delivery = new LogicBase<Delivery>();
         protected LogicBase<Order> Orders = new LogicBase<Order>();
         protected LogicBase<Orderproduct> OrderProducts = new LogicBase<Orderproduct>();
+        protected LogicBase<Chemistry> Chemistry = new LogicBase<Chemistry>();
+        protected ChemistryLogic ChemistryLogic = new ChemistryLogic();
+        protected LogicBase<Chemistrypop> ChemistryPop = new LogicBase<Chemistrypop>();
 
+        [TestMethod]
+        public void seedowanieChemistry()
+        {
+            Random random = new Random();
+            for (int i = 1; i < 117; i++)
+            {
+                Chemistry wsad = Chemistry.Insert(new Chemistry()
+                {
+                    Quantity = random.Next(10, 50),
+                    Idproducts = i
+                });
+                ChemistryLogic.Reduce(wsad, 1);
+            }
+        }
+        
         [TestMethod]
         public void seedowanieBazy()
         {

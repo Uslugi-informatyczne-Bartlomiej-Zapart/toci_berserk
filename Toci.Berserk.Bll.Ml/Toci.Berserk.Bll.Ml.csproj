@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Toci.Berserk.Bll.Ml.Interfaces\Toci.Berserk.Bll.Ml.Interfaces.csproj" />
-    <ProjectReference Include="..\Toci.Berserk.Bll.Warehouse\Toci.Berserk.Bll.Warehouse.csproj" />
     <ProjectReference Include="..\Toci.Berserk.Bll\Toci.Berserk.Bll.csproj" />
   </ItemGroup>
 

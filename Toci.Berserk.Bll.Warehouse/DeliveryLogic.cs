@@ -38,7 +38,7 @@ namespace Toci.Berserk.Bll.Warehouse
             return idOfDeliverCompany;
         }
 
-        public void AllProductsFromDeliveryCompany(List<int?> listOfIDs, int idOfDeliverCompany) => Select(model =>
+        public List<int?> AllProductsFromDeliveryCompany(List<int?> listOfIDs, int idOfDeliverCompany) => Select(model =>
                 model.Iddeliverycompany == idOfDeliverCompany).ToList().Select(x => x.Idproducts).ToList();
 
         public void SetNewDelivery(int productId, float price, int idOfDeliverCompany)

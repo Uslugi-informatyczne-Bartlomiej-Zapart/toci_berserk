@@ -11,19 +11,6 @@ namespace Toci.Berserk.Tests.BllMl
     [TestClass]
     public class SuspectTest
     {
-        [TestMethod]
-        public void SuspectLastOrderTest()
-        {
-            SuspectOrderLogic suspectOrderLogic = new SuspectOrderLogic();
-            Order lastOrder = suspectOrderLogic.LastAccomplishedOrderDate();
-        }
-
-        [TestMethod]
-        public void SuspectOrderByDeliveryCompany()
-        {
-            SuspectOrderLogic suspectOrderLogic = new SuspectOrderLogic();
-            var result = suspectOrderLogic.GetOrdersHistory(2, new DateTime(2021, 06, 01));
-        }
 
         [TestMethod]
         public void UpdateDatesRandom()
@@ -57,6 +44,7 @@ namespace Toci.Berserk.Tests.BllMl
                 Date = DateTime.Now.AddDays(-4)
             };
                 //suspectOrderLogic.LastAccomplishedOrderDate();
+                
 
             orderHistory = suspectOrderLogic.GetOrdersHistory(order, depth);
 
