@@ -10,7 +10,7 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
     {
         public void UpdateDeliveryPrice(int? productId, float? price, int? idOfDeliverCompany);
         public int SetNewDeliveryCompany(string deliveryCompany);
-        public List<int?> AllProductsFromDeliveryCompany(List<int?> listOfIDs, int idOfDeliverCompany);
+        public void AllProductsFromDeliveryCompany(List<int?> listOfIDs, int idOfDeliverCompany);
         public void SetNewDelivery(int productId, float price, int idOfDeliverCompany);
     }
 }
