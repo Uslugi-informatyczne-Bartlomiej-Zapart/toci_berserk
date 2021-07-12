@@ -26,7 +26,7 @@ namespace Toci.Berserk.Api.Controllers
         [Route("SetUniqueProduct")]
         public void SetUniqueProduct(ProductDto product)
         {
-
+            Logic.SetProduct(product);
         }
 
         [HttpGet]

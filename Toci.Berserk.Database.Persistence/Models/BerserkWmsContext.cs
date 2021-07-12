@@ -44,7 +44,7 @@ namespace Toci.Berserk.Database.Persistence.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "English_United Kingdom.1252");
+            modelBuilder.HasAnnotation("Relational:Collation", "Polish_Poland.1250");
 
             modelBuilder.Entity<Category>(entity =>
             {
@@ -199,7 +199,7 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.HasOne(d => d.IddeliverycompanyNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Iddeliverycompany)
-                    .HasConstraintName("fk_dodelivery");
+                    .HasConstraintName("orders_iddeliverycompany_fkey");
             });
 
             modelBuilder.Entity<Orderproduct>(entity =>

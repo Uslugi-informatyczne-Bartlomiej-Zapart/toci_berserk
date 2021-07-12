@@ -37,9 +37,9 @@ namespace Toci.Berserk.Api.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public void LoginUser(UserDto user)
+        public bool LoginUser(UserDto user)
         {
-            Logic.Login(user);
+            return Logic.Login(user);
         }
     }
 }

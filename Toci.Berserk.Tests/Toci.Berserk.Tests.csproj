@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Toci.Berserk.Microservices\Toci.Berserk.Microservices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SeedDb\" />
+  </ItemGroup>
+
 </Project>

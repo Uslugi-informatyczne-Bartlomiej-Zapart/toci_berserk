@@ -1,0 +1,210 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Toci.Berserk.Bll;
+using Toci.Berserk.Bll.Models;
+using Toci.Berserk.Bll.Warehouse;
+using Toci.Berserk.Database.Persistence.Models;
+
+namespace Toci.Berserk.Tests.SeedDb
+{
+    [TestClass]
+    public class SeedDb
+    {
+        protected LogicBase<User> User = new LogicBase<User>();
+        protected LogicBase<Category> Category = new LogicBase<Category>();
+        protected LogicBase<Deliverycompany> DeliveryCompany = new LogicBase<Deliverycompany>();
+        protected LogicBase<Product> Product = new LogicBase<Product>();
+        protected LogicBase<Delivery> Delivery = new LogicBase<Delivery>();
+        protected LogicBase<Productscode> ProductsCode = new LogicBase<Productscode>();
+        protected LogicBase<Productshistory> ProductsHistory = new LogicBase<Productshistory>();
+        protected LogicBase<Chemistry> Chemistry = new LogicBase<Chemistry>();
+        protected LogicBase<Order> Order = new LogicBase<Order>();
+        protected LogicBase<Orderproduct> OrderProduct = new LogicBase<Orderproduct>();
+        protected LogicBase<Metric> Metric = new LogicBase<Metric>();
+        protected LogicBase<Predictedorder> PredictedOrder = new LogicBase<Predictedorder>();
+        protected LogicBase<Predictedorderquantity> PredictedOrderQuantity = new LogicBase<Predictedorderquantity>();
+        protected LogicBase<Chemistrypop> ChemistryPop = new LogicBase<Chemistrypop>();
+        protected LogicBase<Metrichistory> MetricHistory = new LogicBase<Metrichistory>();
+
+        [TestMethod]
+        public void Users()
+        {
+            User.Insert(new User()
+            {
+                Name = "Jan",
+                Login = "Janko",
+                Password = "Password"
+            });
+        }
+
+        [TestMethod]
+        public void Categories()
+        {
+            string[] categories = { "Farby", "Oleje", "Smary", "Filtry" };
+
+            foreach (var category in categories)
+            {
+                Category.Insert(new Category()
+                {
+                    Name = category,
+                });
+            }
+        }
+
+        [TestMethod]
+        public void DeliveryCompanies()
+        {
+            string[] companies = { "Śnieżka", "Cekol", "Dekoral", "Dulux", "Magnat" };
+
+            foreach (var company in companies)
+            {
+                DeliveryCompany.Insert(new Deliverycompany()
+                {
+                    Name = company
+                });
+            }
+        }
+
+        [TestMethod]
+        public void Products()
+        {
+            ProductLogic productLogic = new ProductLogic();
+
+            ProductDto product = new ProductDto()
+            {
+                Product = new Product()
+                {
+                    Name = "Farba",
+                    Manufacturer = "Dekol"
+                },
+                Code = 1000,
+                Price = 10,
+                DeliveryCompany = "DPD"
+            };
+
+            productLogic.SetProduct(product);
+        }
+
+        //[TestMethod]
+        //public void ProductsCodes()
+        //{
+        //    ProductsCode.Insert(new Productscode()
+        //    {
+        //        Idproducts = 1,
+        //        Code = 1000
+        //    });
+
+        //    ProductsCode.Insert(new Productscode()
+        //    {
+        //        Idproducts = 2,
+        //        Code = 1001
+        //    });
+        //}
+        
+        [TestMethod]
+        public void Chemistries()
+        {
+            Chemistry.Insert(new Chemistry()
+            {
+                Idcategories = 1,
+                Quantity = 10,
+                Idproducts = 1
+            });
+        }
+
+        [TestMethod]
+        public void Orders()
+        {
+            Order.Insert(new Order()
+            {
+                Status = 1,
+                Iddeliverycompany = 1
+            });
+        }
+
+        [TestMethod]
+        public void ProductsHistories()
+        {
+            
+        }
+
+        //[TestMethod]
+        //public void Deliveries()
+        //{
+        //    Delivery.Insert(new Delivery()
+        //    {
+        //        Idproducts = 1,
+        //        Iddeliverycompany = 1,
+        //        Price = 30
+        //    });
+        //}
+
+
+
+        //[TestMethod]
+        //public void OrderProducts()
+        //{
+        //    OrderProduct.Insert(new Orderproduct()
+        //    {
+        //        Idorder = 1,
+        //        Status = 1,
+        //        Idcategories = 1,
+        //        Quantity = 3,
+        //        Idproducts = 1,
+        //        Price = 30
+        //    });
+        //}
+
+        //[TestMethod]
+        //public void Metrics()
+        //{
+        //    Metric.Insert(new Metric()
+        //    {
+        //        Metric1 = 1,
+        //        Algorithm = 1
+        //    });
+        //}
+
+        //    [TestMethod]
+        //    public void PredictedOrders()
+        //    {
+        //        PredictedOrder.Insert(new Predictedorder()
+        //        {
+        //            Idproducts = 1,
+        //            Idorder = 1
+        //        });
+        //    }
+
+        //    [TestMethod]
+        //    public void PredictedOrderQuantities()
+        //    {
+        //        PredictedOrderQuantity.Insert(new Predictedorderquantity()
+        //        {
+        //            Idmetric = 1,
+        //            Quantity = 5,
+        //            Idpredictedorder = 1
+        //        });
+        //    }
+
+        //    [TestMethod]
+        //    public void ChemistryPops()
+        //    {
+        //        ChemistryPop.Insert(new Chemistrypop()
+        //        {
+        //            Idproducts = 1,
+        //            Quantity = 3,
+        //            Idusers = 1
+        //        });
+        //    }
+
+        //    [TestMethod]
+        //    public void MetricHistories()
+        //    {
+        //        MetricHistory.Insert(new Metrichistory()
+        //        {
+        //            Idorders = 1,
+        //            Idmetrics = 1,
+        //            Metric = 1
+        //        });
+        //    }
+    }
+}
