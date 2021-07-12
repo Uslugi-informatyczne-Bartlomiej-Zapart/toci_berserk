@@ -17,6 +17,8 @@ namespace Toci.Berserk.Tests.BllWarehouse
         protected ProductLogic productLogic = new ProductLogic();
         protected LogicBase<Productscode> ProductsCode = new LogicBase<Productscode>();
         protected LogicBase<Delivery> Delivery = new LogicBase<Delivery>();
+        protected LogicBase<Order> Orders = new LogicBase<Order>();
+        protected LogicBase<Orderproduct> OrderProducts = new LogicBase<Orderproduct>();
 
         [TestMethod]
         public void seedowanieBazy()
@@ -36,6 +38,26 @@ namespace Toci.Berserk.Tests.BllWarehouse
                 Code = kodzikKreskowy++,
                 DeliveryCompany = "FirmaDostawczaZdzicho"
             });
+        }
+
+        [TestMethod]
+        public void SeedowanieDelivery()
+        {
+            IQueryable orders = Orders.Select(model => model.Id > 0);
+            foreach (Order order in orders)
+            {
+                IQueryable orderProducts = OrderProducts.Select(model => model.Idorder == order.Id);
+                foreach (Orderproduct produkt in orderProducts )
+                {
+                    Delivery.Insert(new Delivery()
+                        {
+                            Idproducts = produkt.Idproducts,
+                            Iddeliverycompany = order.Iddeliverycompany,
+                            Price = produkt.Price
+                        }
+                    );
+                }
+            }
         }
 
         //[TestMethod]

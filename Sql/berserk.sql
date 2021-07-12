@@ -49,7 +49,8 @@ create table delivery
 (
 	id serial primary key,
 	idproducts int references products (id),
-	iddeliverycompany int references deliverycompanies (id)
+	iddeliverycompany int references deliverycompanies (id),
+	price real
 );
 
 create table productscodes
@@ -83,7 +84,8 @@ create table orders
 (
 	id serial primary key,
 	date timestamp default now(),
-	status int
+	status int,
+	iddeliverycompany int references deliverycompanies (id)
 );
 
 create table orderproducts
@@ -93,7 +95,8 @@ create table orderproducts
 	status int,
     idcategories int references categories (id),
     quantity int,
-    idproducts int references products (id)
+    idproducts int references products (id),
+	price real
 );
 
 create table metrics
@@ -146,14 +149,3 @@ select * from productscodes;
 select * from chemistrypop;
 select * from orderproducts;
 select * from orders;
-
-ALTER TABLE orders ADD COLUMN iddeliverycompany INTEGER;
-ALTER TABLE orderproducts ADD COLUMN price REAL;
-
-ALTER TABLE orders
-	ADD CONSTRAINT fk_dodelivery
-	FOREIGN KEY (iddeliverycompany)
-	REFERENCES deliverycompanies (id);
-	
-update orders set iddeliverycompany = 2 where id > 0
-update orderproducts set price = 2.1 where id > 0

@@ -13,7 +13,7 @@ namespace Toci.Berserk.Bll.Warehouse
         public int ReceiveOrder(Chemistry chemistry, float? price, int? idOfDeliveryCompany)
         {
             /*Ta metoda odpowiada za przyjecie poszczegolnych produktow z zamowienia na stan
-             dliverylogic musi za kazdym razem zrobic update ceny tak by przyszle zamownienie
+             deliverylogic musi za kazdym razem zrobic update ceny tak by przyszle zamownienie
             mialo na czym bazowa tzn wybrac zamowienie tego samego produktu ale do firmy oferujocej
             dany produkt taniej
             logika decyzji o wyboru firmy na podstawie ceny musi bazowac na cenie oraz ostatniej
