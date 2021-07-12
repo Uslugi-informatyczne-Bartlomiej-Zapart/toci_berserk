@@ -3,8 +3,8 @@ using Toci.Berserk.Database.Persistence.Models;
 
 namespace Toci.Berserk.Bll.Warehouse
 {
-    public class OrdersCodeLogic : LogicBase<Orderproduct>, IOrdersCodeLogic
+    public class OrderLogic : LogicBase<Orderproduct>, IOrderLogic
     {
-        
+        //public Order CreateOrderByDeliveryCompany
     }
 }
