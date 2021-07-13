@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~11.2.11",
     "@angular/platform-browser-dynamic": "~11.2.11",
     "@angular/router": "~11.2.11",
+    "@material/form-field": "^11.0.0",
     "bar": "^0.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

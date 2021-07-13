@@ -15,26 +15,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NewProjectComponent } from './projects/new-project/new-project.component';
-import { DetailsComponent } from './projects/details/details.component';
-import { TaskListComponent } from './projects/details/task-list/task-list.component';
-import { ListComponent } from './projects/list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
     SidenavComponent,
-    RegisterComponent,
-    NewProjectComponent,
-    DetailsComponent,
-    TaskListComponent,
-    ListComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -61,4 +51,3 @@ import { ListComponent } from './projects/list/list.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
- 
