@@ -1,3 +1,7 @@
+import { GuardService } from './../Auth/guard.service';
+import { Router } from '@angular/router';
+import { RegisterService } from './register.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  form!: FormGroup;
+
+  constructor(private fb: FormBuilder,
+    private guardService: GuardService,
+    private RegisterService: RegisterService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      name: '',
+      password: ''
+    });
+  }
+
+  onSubmit(data:any) {
+    this.RegisterService.register(data.name, data.password).subscribe(() => {
+      this.guardService.getUser().subscribe(x => {
+        localStorage.setItem('user', x.name);
+        this.router.navigate(['/login']);
+        });
+
+    });
   }
 
 }
