@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{project?.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <textarea matInput placeholder="Opis" disabled >{{project?.description}}</textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Deadline" disabled [value]="project?.deadline"/>
+    </mat-form-field>
+    <h3>Zadania</h3>
+    <app-task-list #taskList></app-task-list>
+    <h3>Nowe zadanie</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <mat-form-field>
+        <input matInput placeholder="Tytuł" formControlName="title" type="text" />
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Opis" formControlName="description" ></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Data" formControlName="date" type="text" />
+      </mat-form-field>
+      <button mat-raised-button color="primary">Dodaj</button>
+    </form>
+  </mat-card-content>
+</mat-card>

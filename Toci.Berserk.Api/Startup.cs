@@ -30,6 +30,10 @@ namespace Toci.Berserk.Api
         {
 
             services.AddControllers();
+
+            services.AddCors(x =>
+                x.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())); //na localhoscie
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Toci.Berserk.Api", Version = "v1" });
@@ -51,6 +55,8 @@ namespace Toci.Berserk.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Toci.Berserk.Api v1"));
 
             }
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); // localhost
 
             app.UseHttpsRedirection();
 
