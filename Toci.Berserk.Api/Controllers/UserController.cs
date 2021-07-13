@@ -34,7 +34,6 @@ namespace Toci.Berserk.Api.Controllers
              return Logic.AllLogins();
         }
 
-
         [HttpPost]
         [Route("Login")]
         public bool LoginUser(UserDto user)

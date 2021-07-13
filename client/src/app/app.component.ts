@@ -9,12 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   constructor(private guardService: GuardService) {
     guardService.getUser().subscribe(x => {
-      if( x!= null) {
+      if( x != null) {
         localStorage.setItem('user', x.name);
       } else {
         localStorage.setItem('user', '');
       }
-
     });
   }
   title = 'client';

@@ -20,9 +20,32 @@ namespace Toci.Berserk.Bll.Warehouse
         protected bool flagOfHistoryDeliveryList = false;
         protected int idOfDeliverCompany;
 
-        public List<Product> AllProducts()
+        public List<ProductDto> AllProducts()
         {
-            return Select(x => x.Id > 0).ToList();
+            List<Product> products = Select(x => x.Id > 0).Include(prod => prod.Productscodes).ToList();
+            List<ProductDto> result = new List<ProductDto>();
+
+            foreach (Product product in products)
+            {
+                result.Add(new ProductDto()
+                {
+                    Product = copyProduct(product),
+                    Code = product.Productscodes.First().Code.Value
+                });
+            }
+
+            return result;
+        }
+
+        private Product copyProduct(Product product)
+        {
+            return new Product()
+            {
+                Name = product.Name,
+                Id = product.Id,
+                Manufacturer = product.Manufacturer,
+                Reference = product.Reference
+            };
         }
 
         public int SetProduct(ProductDto product)

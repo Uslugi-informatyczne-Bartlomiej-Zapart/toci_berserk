@@ -18,13 +18,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidenavComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     MatGridListModule,
-    MatTableModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,

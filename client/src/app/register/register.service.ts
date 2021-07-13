@@ -9,7 +9,7 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  register(name: string, password: string): Observable<any> {
-      return this.http.post('http://localhost:44391/User/Register', {name: name, password: password});
+  register(name: string, login: string, password: string): Observable<any> {
+      return this.http.post('https://localhost:44391/User/Register', {name: name, login: login, password: password});
   }
 }

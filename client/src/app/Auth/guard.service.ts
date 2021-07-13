@@ -10,7 +10,6 @@ export class GuardService {
   constructor(private http: HttpClient) { }
 
   getUser(): Observable<any> {
-    console.log(this.http.get<any>("https://localhost:44391/User/Users"));
     return this.http.get<any>("https://localhost:44391/User/Users");
   }
 }
