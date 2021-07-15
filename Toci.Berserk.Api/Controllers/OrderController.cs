@@ -31,5 +31,12 @@ namespace Toci.Berserk.Api.Controllers
         {
             return Logic.CreateOrderByDeliveryCompany(order);
         }
+
+        [HttpGet]
+        [Route("HistoryOrders")]
+        public IQueryable<Order> GetHistoryOrders(DateTime dateFrom, DateTime dateTo)
+        {
+            return Logic.GetCompletedOrders(dateFrom, dateTo);
+        }
     }
 }

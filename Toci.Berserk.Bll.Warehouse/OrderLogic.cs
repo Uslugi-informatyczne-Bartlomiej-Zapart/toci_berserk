@@ -28,5 +28,10 @@ namespace Toci.Berserk.Bll.Warehouse
             var respond = SuspectOrderLogic.GetOrdersHistory(order);
             return respond;
         }
+
+        public IQueryable<Order> GetCompletedOrders(DateTime dateFrom, DateTime dateTo)
+        {
+            return Select(m => m.Date >= dateFrom && m.Date <= dateTo);
+        }
     }
 }
