@@ -29,9 +29,7 @@ namespace Toci.Berserk.Api.Controllers
         [Route("OrderByDeliveryCompany")]
         public Dictionary<int, List<Chemistrypop>> OrderByDeliveryCompany(OrderDto order)
         {
-
-            Dictionary<int, List<Chemistrypop>> respond = Logic.CreateOrderByDeliveryCompany(order);
-            return respond;
+            return Logic.CreateOrderByDeliveryCompany(order);
         }
     }
 }
