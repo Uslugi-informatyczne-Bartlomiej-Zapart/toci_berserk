@@ -1,6 +1,5 @@
-import { ProductsListItem } from './products-list-item';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ProductsListService } from './products-list-service';
 
 @Component({
   selector: 'app-products',
@@ -8,19 +7,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  products = [];
+  displayedColumns = ['idproduct', 'name', 'manufacturer', 'code', 'price', 'deliveryCompany'];
 
-  displayedColumns = ['number', 'title', 'date'];
-  products!: ProductsListItem[];
-
-  constructor(private route: ActivatedRoute) { }
+  constructor(private listService: ProductsListService) { }
 
   ngOnInit(): void {
-    this.update();
+    this.listService.getAllProjects().subscribe(x => {
+      console.log(x);
+      this.products = x;
+    })
   }
-
-  update() {
-    let id = this.route.snapshot.params['id'];
-
-  }
-
 }

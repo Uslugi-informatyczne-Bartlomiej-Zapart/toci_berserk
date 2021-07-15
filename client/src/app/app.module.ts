@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ProductsComponent } from './products/products.component';
     LoginComponent,
     SidenavComponent,
     RegisterComponent,
+    OrdersComponent,
     ProductsComponent
   ],
   imports: [

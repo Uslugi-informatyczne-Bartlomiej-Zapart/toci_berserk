@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Bll.Warehouse;
@@ -68,20 +69,27 @@ namespace Toci.Berserk.Tests.SeedDb
         public void Products()
         {
             ProductLogic productLogic = new ProductLogic();
+            string[] names = { "Farba", "Olej", "Smar" };
+            string[] manufacturers = { "Dekol", "Dekoral", "Delux" };
+            int[] codes = { 1000, 1001, 1002 };
+            int[] prices = {10, 20, 30};
+            string[] deliverys = {"DPD", "GLS", "ABC"};
 
-            ProductDto product = new ProductDto()
+            for (int i = 0; i < names.Length; i++)
             {
-                Product = new Product()
+                productLogic.SetProduct(new ProductDto()
                 {
-                    Name = "Farba",
-                    Manufacturer = "Dekol"
-                },
-                Code = 1000,
-                Price = 10,
-                DeliveryCompany = "DPD"
-            };
-
-            productLogic.SetProduct(product);
+                    Product = new Product()
+                    {
+                        Name = names[i],
+                        Manufacturer = manufacturers[i]
+                    },
+                    Code = codes[i],
+                    Price = prices[i],
+                    DeliveryCompany = deliverys[i]
+                });
+            }
+            
         }
 
         //[TestMethod]
@@ -114,6 +122,8 @@ namespace Toci.Berserk.Tests.SeedDb
         [TestMethod]
         public void Orders()
         {
+            OrderLogic orderLogic = new OrderLogic();
+            //orderLogic.CreateOrderByDeliveryCompany();
             Order.Insert(new Order()
             {
                 Status = 1,
