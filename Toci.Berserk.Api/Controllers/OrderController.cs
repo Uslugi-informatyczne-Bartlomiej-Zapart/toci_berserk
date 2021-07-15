@@ -33,5 +33,12 @@ namespace Toci.Berserk.Api.Controllers
             Dictionary<int, List<Chemistrypop>> respond = Logic.CreateOrderByDeliveryCompany(order);
             return respond;
         }
+
+        [HttpGet]
+        [Route("HistoryOrders")]
+        public IQueryable<Order> GetHistoryOrders(DateTime dateFrom, DateTime dateTo)
+        {
+            return Logic.GetCompletedOrders(dateFrom, dateTo);
+        }
     }
 }
