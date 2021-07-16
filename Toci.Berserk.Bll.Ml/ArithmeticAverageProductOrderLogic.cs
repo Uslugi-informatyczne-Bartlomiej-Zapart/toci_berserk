@@ -9,15 +9,17 @@ namespace Toci.Berserk.Bll.Ml
 {
     public class ArithmeticAverageProductOrderLogic : IArithmeticAverageProductOrderLogic
     {
-        public void CalculateAverages(Dictionary<int, List<Chemistrypop>> history)
+        public List<List<Tuple<int?, decimal>>> CalculateAverages(Dictionary<int, List<Chemistrypop>> history)
         {
+            List<List<Tuple<int?, decimal>>> result = new List<List<Tuple<int?, decimal>>>();
+
             foreach (KeyValuePair<int, List<Chemistrypop>> element in history)
             {
-                IEnumerable<Tuple<int?, decimal>> products = element.Value.GroupBy(model => model.Idproducts)
-                    .Select(m => new Tuple<int?, decimal>(m.Key, m.Average(x => (decimal)x.Quantity)));
-
+                result.Add(element.Value.GroupBy(model => model.Idproducts)
+                    .Select(m => new Tuple<int?, decimal>(m.Key, m.Average(x => (decimal)x.Quantity))).ToList());
             }
 
+            return result;
         }
     }
 }
