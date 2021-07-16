@@ -4,13 +4,20 @@
     <mat-list>
       <mat-list-item><a routerLink="/" mat-button>Menu</a></mat-list-item>
       <mat-list-item><a routerLink="/products" mat-button>Produkty</a></mat-list-item>
-      <mat-list-item><a routerLink="/orders" mat-button>Historyczne Zamówienia</a></mat-list-item>
-      <mat-list-item><a routerLink="/new-order" mat-button>Nowe zamówienie</a></mat-list-item>
 
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Zamówienia</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-option routerLink="/orders" >Wszystkie Zamówienia</mat-option>
+        <mat-option routerLink="/orders-history" >Historyczne Zamówienia</mat-option>
+        <mat-option routerLink="/new-order">Nowe zamówienie</mat-option>
+      </mat-expansion-panel>
     </mat-list>
-    <mat-divider></mat-divider>
+
     <mat-list>
-      <mat-list-item><a mat-raised-button color="primary" routerLink='/login'>Wyloguj</a></mat-list-item>
+      <mat-list-item>
+        <a mat-raised-button color="primary" routerLink="/login">Wyloguj</a></mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>

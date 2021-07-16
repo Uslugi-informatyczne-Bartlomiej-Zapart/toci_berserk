@@ -1,4 +1,4 @@
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent } from './order/orders/orders.component';
 //import { ProductsListService } from './products/products-list-service';
 
 import { RegisterGuardGuard } from './Auth/register-guard.guard';
@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
+import { OrderHistoryComponent } from './order/order-history/order-history.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
     path: '', component: SidenavComponent,
     children: [
       { path: 'products', component: ProductsComponent },
-      { path: 'orders', component: OrdersComponent }
+      { path: 'orders', component: OrdersComponent },
+      { path: 'orders-history', component: OrderHistoryComponent }
     ]
   },
 

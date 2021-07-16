@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Models;
@@ -92,6 +93,22 @@ namespace Toci.Berserk.Tests.SeedDb
             
         }
 
+        [TestMethod]
+        public void OrdersHistory()
+        {
+            OrderLogic orderLogic = new OrderLogic();
+            //orderLogic.GetCompletedOrders()
+            for (int i=0;i<10;i++)
+            {
+                orderLogic.CreateOrder(new OrderDto()
+                {
+                    dateScope = DateTime.Now.AddDays(-i * 3),
+                    deliveryCompanyId = 2,
+                    deliveryCompanyName = "DPD",
+                    Status = 1
+                });
+            }
+        }
         //[TestMethod]
         //public void ProductsCodes()
         //{

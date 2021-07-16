@@ -18,8 +18,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent } from './order/orders/orders.component';
 import { ProductsComponent } from './products/products.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { OrderHistoryComponent } from './order/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ProductsComponent } from './products/products.component';
     SidenavComponent,
     RegisterComponent,
     OrdersComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import { ProductsComponent } from './products/products.component';
     MatSidenavModule,
     MatListModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
