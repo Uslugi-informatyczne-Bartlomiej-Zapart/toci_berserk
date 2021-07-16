@@ -4,6 +4,7 @@ using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Bll.Warehouse;
 using Toci.Berserk.Database.Persistence.Models;
+using Toci.Common.Utils;
 
 namespace Toci.Berserk.Tests.SeedDb
 {
@@ -25,6 +26,20 @@ namespace Toci.Berserk.Tests.SeedDb
         protected LogicBase<Predictedorderquantity> PredictedOrderQuantity = new LogicBase<Predictedorderquantity>();
         protected LogicBase<Chemistrypop> ChemistryPop = new LogicBase<Chemistrypop>();
         protected LogicBase<Metrichistory> MetricHistory = new LogicBase<Metrichistory>();
+        protected ProductLogic productLogic = new ProductLogic();
+        protected RandomTextUtil TextUtil = new RandomTextUtil();
+
+        [TestMethod]
+        public void SeedEntireDatabase()
+        {
+            Users();
+            Categories();
+            DeliveryCompanies();
+            Products();
+            SeedRandomProducts();
+            Orders();
+            Chemistries();
+        }
 
         [TestMethod]
         public void Users()
@@ -68,7 +83,7 @@ namespace Toci.Berserk.Tests.SeedDb
         [TestMethod]
         public void Products()
         {
-            ProductLogic productLogic = new ProductLogic();
+            
             string[] names = { "Farba", "Olej", "Smar" };
             string[] manufacturers = { "Dekol", "Dekoral", "Delux" };
             int[] codes = { 1000, 1001, 1002 };
@@ -89,34 +104,25 @@ namespace Toci.Berserk.Tests.SeedDb
                     DeliveryCompany = deliverys[i]
                 });
             }
-            
         }
 
-        //[TestMethod]
-        //public void ProductsCodes()
-        //{
-        //    ProductsCode.Insert(new Productscode()
-        //    {
-        //        Idproducts = 1,
-        //        Code = 1000
-        //    });
-
-        //    ProductsCode.Insert(new Productscode()
-        //    {
-        //        Idproducts = 2,
-        //        Code = 1001
-        //    });
-        //}
-        
         [TestMethod]
-        public void Chemistries()
+        public void SeedRandomProducts()
         {
-            Chemistry.Insert(new Chemistry()
+            for (int i = 0; i < 50; i++)
             {
-                Idcategories = 1,
-                Quantity = 10,
-                Idproducts = 1
-            });
+                productLogic.SetProduct(new ProductDto()
+                {
+                    Product = new Product()
+                    {
+                        Name = TextUtil.GenerateRandomText(4, 25),
+                        Manufacturer = TextUtil.GenerateRandomText(5, 40),
+                    },
+                    Code = 1003+i,
+                    Price = i,
+                    DeliveryCompany = "GLS"
+                });
+            }
         }
 
         [TestMethod]
@@ -128,6 +134,16 @@ namespace Toci.Berserk.Tests.SeedDb
             {
                 Status = 1,
                 Iddeliverycompany = 1
+            });
+        }
+
+        public void Chemistries()
+        {
+            Chemistry.Insert(new Chemistry()
+            {
+                Idcategories = 1,
+                Quantity = 10,
+                Idproducts = 1
             });
         }
 

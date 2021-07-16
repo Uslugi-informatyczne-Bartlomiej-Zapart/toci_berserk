@@ -58,6 +58,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client", "..\client\", "{3F
 		SlnRelativePath = "..\client\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toci.Common.Utils", "..\Toci.Common.Utils\Toci.Common.Utils.csproj", "{5C609035-7710-4465-A71E-644A25367DD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,10 @@ Global
 		{3F4F3F04-8344-4FE1-8E97-C671EB6DC200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F4F3F04-8344-4FE1-8E97-C671EB6DC200}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F4F3F04-8344-4FE1-8E97-C671EB6DC200}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5C609035-7710-4465-A71E-644A25367DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C609035-7710-4465-A71E-644A25367DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C609035-7710-4465-A71E-644A25367DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C609035-7710-4465-A71E-644A25367DD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
