@@ -4,13 +4,12 @@
           <mat-card-title>Logowanie</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-          <h2 *ngIf="name !== undefined">Witaj, {{name}}</h2>
-              <mat-form-field>
-                <input matInput placeholder="Login" formControlName="login" type="text">
-              </mat-form-field>
-              <mat-form-field>
-                  <input matInput placeholder="Hasło" formControlName="password" type="password">
-              </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Login" formControlName="login" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Hasło" formControlName="password" type="password">
+        </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
           <button type="submit" mat-raised-button color="primary">Zaloguj</button>

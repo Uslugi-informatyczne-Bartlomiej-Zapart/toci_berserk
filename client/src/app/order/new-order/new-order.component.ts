@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { OrderHistoryService } from '../order-history/order-history.service';
+import { NewOrdersService } from './new-order.service';
 
 @Component({
   selector: 'app-new-order',
@@ -8,24 +7,14 @@ import { OrderHistoryService } from '../order-history/order-history.service';
   styleUrls: ['./new-order.component.scss']
 })
 export class NewOrderComponent implements OnInit {
-  formOrder!: FormGroup;
   orders = [];
-  displayedColumns = ['id', 'date', 'iddeliverycompany'];
+  displayedColumns = ['productId', 'productName', 'currentQuantity', 'expectedOrderQuantity', 'deliveryCompany', 'price'];
 
-  constructor(private listService: OrderHistoryService, private fb: FormBuilder) { }
+  constructor(private listService: NewOrdersService) { }
 
   ngOnInit(): void {
-    this.formOrder = this.fb.group({
-      dateFrom: '',
-      dateTo: ''
-    });
-
-  }
-
-  onSubmit() {
-    let value = this.formOrder.value;
-
-    this.listService.getAllHistoryOrders(value.dateFrom, value.dateTo).subscribe(x => {
+    this.listService.getNewProductsOrder().subscribe(x => {
+      console.log(x);
       this.orders = x;
     })
   }

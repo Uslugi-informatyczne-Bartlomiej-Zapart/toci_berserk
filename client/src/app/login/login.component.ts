@@ -9,7 +9,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  name!: string;
   form!: FormGroup;
 
   constructor(private fb: FormBuilder, private LoginService: LoginService, private router: Router) { }
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
       login: '',
       password: ''
     });
-    this.name = localStorage.getItem('user')!;
   }
 
   onSubmit() {
