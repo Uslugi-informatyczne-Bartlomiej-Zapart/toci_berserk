@@ -18,8 +18,7 @@ namespace Toci.Berserk.Bll.Warehouse
         protected DeliveryLogic DeliveryLogic = new DeliveryLogic();
         public IQueryable<Order> AllOrders()
         {
-            IQueryable<Order> orders = Select(model => model.Id > 0);
-            return orders;
+            return Select(model => model.Id > 0);
         }
 
         public Dictionary<int, List<Chemistrypop>> CreateOrderByDeliveryCompany(OrderDto order)
@@ -32,6 +31,18 @@ namespace Toci.Berserk.Bll.Warehouse
         public IQueryable<Order> GetCompletedOrders(DateTime dateFrom, DateTime dateTo)
         {
             return Select(m => m.Date >= dateFrom && m.Date <= dateTo);
+        }
+
+        public int CreateOrder(OrderDto order)
+        {
+            order.deliveryCompanyId = DeliveryLogic.SetNewDeliveryCompany(order.deliveryCompanyName);
+
+            return Insert(new Order()
+            {
+                Date = order.dateScope,
+                Iddeliverycompany = order.deliveryCompanyId,
+                Status = order.Status
+            }).Id;
         }
     }
 }

@@ -1,0 +1,11 @@
+mat-card {
+  width: 1000px;
+  position: absolute;
+  top: 100%;
+  left: calc(50% - 500px);
+}
+
+mat-card-content * {
+  margin-right: 50px;
+}
+

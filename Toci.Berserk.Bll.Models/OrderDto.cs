@@ -11,5 +11,6 @@ namespace Toci.Berserk.Bll.Models
         public string deliveryCompanyName { get; set; }
         public DateTime dateScope { get; set; }
         public int deliveryCompanyId { get; set; }
+        public int Status { get; set; }
     }
 }

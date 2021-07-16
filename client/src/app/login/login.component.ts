@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     let value = this.form.value;
-    console.log(value);
     this.LoginService.login(value).subscribe(x => {
       console.log(x);
       if(x === true) {

@@ -3,7 +3,7 @@
     <mat-card-title>Produkty</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <table mat-table [dataSource]="products" class="mat-elevation-z8 demo-table">
+    <table mat-table [dataSource]="products" class="mat-elevation-z8">
       <ng-container matColumnDef="idproduct">
         <th mat-header-cell *matHeaderCellDef>Id produktu</th>
         <td mat-cell *matCellDef="let element">{{element.product.id}}</td>

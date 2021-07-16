@@ -8,12 +8,13 @@ import { OrdersListService } from './orders-list-service';
 })
 export class OrdersComponent implements OnInit {
   orders = [];
-  displayedColumns = ['number', 'name', 'date'];
+  displayedColumns = ['id', 'date', 'status'];
 
   constructor(private listService: OrdersListService) { }
 
   ngOnInit(): void {
-    this.listService.getAllProjects().subscribe(x => {
+    this.listService.getAllOrders().subscribe(x => {
+      console.log(x);
       this.orders = x;
     })
   }

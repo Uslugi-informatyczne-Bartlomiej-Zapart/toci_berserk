@@ -11,6 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(password: string): Observable<boolean> {
+    console.log(password);
     return this.http.post<boolean>(config.EndpointUrl + 'User/Login', password);
   }
 }

@@ -6,3 +6,23 @@ body {
     background-color: mat-color($mat-indigo, 900); /*  */
 }
 html, body { height: 100%; }
+
+table.mat-table {
+  width: 100%;
+  font-size: 20px;
+}
+
+.mat-card-content {
+  width: 100%;
+  font-size: 20px;
+}
+
+th, td {
+  min-width: 25px;
+  margin-right: 50px;
+}
+
+ng-container {
+  width: 1px;
+}
+

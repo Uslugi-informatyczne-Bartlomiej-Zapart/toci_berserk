@@ -13,5 +13,6 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
         public Dictionary<int, List<Chemistrypop>> CreateOrderByDeliveryCompany(OrderDto order);
 
         public IQueryable<Order> GetCompletedOrders(DateTime dateFrom, DateTime dateTo);
+        public int CreateOrder(OrderDto order);
     }
 }
