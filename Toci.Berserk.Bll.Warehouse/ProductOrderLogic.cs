@@ -12,12 +12,9 @@ namespace Toci.Berserk.Bll.Warehouse
 {
     public class ProductOrderLogic : LogicBase<Orderproduct>, IProductOrderLogic
     {
-        public const int OrderSent = 1;
-        public const int OrderAccomplished = 2;
-
         protected LogicBase<Order> orderLogic = new LogicBase<Order>();
         protected IChemistryLogic chemistryLogic = new ChemistryLogic();
-        protected ISuspectOrderLogic SuspectOrderLogic = new SuspectOrderLogic();
+        protected ISuspectOrderLogic suspectOrderLogic = new SuspectOrderLogic();
         protected IArithmeticAverageProductOrderLogic MlAvg = new ArithmeticAverageProductOrderLogic();
         protected IProductLogic ProductLogic = new ProductLogic();
 
@@ -41,7 +38,7 @@ namespace Toci.Berserk.Bll.Warehouse
 
         public virtual bool ManipulateOrder(int orderId)
         {
-            IQueryable<Orderproduct> orderProducts = Select(model => model.Idorder == orderId && model.Status == OrderSent);
+            IQueryable<Orderproduct> orderProducts = Select(model => model.Idorder == orderId && model.Status == SuspectOrderLogic.OrderSent);
             int? deliveryCompanyId = orderLogic.Select(model => model.Id == orderId).FirstOrDefault().Iddeliverycompany;
             if (orderProducts.Any())
             {
@@ -53,7 +50,7 @@ namespace Toci.Berserk.Bll.Warehouse
                         Quantity = order.Quantity
                     },order.Price, deliveryCompanyId);
 
-                    order.Status = OrderAccomplished;
+                    order.Status = SuspectOrderLogic.OrderAccomplished;
 
                     Update(order);
                 }
@@ -73,7 +70,7 @@ namespace Toci.Berserk.Bll.Warehouse
         {
             List<OrderProductDto> result = new List<OrderProductDto>();
 
-            Dictionary<int, List<Chemistrypop>> orderHistory = SuspectOrderLogic.GetOrdersHistory(new Order() { Date = DateTime.Now }, 4);
+            Dictionary<int, List<Chemistrypop>> orderHistory = suspectOrderLogic.GetOrdersHistory(new Order() { Date = DateTime.Now }, 4);
 
             List<List<Tuple<int?, decimal>>> averages = MlAvg.CalculateAverages(orderHistory);
 

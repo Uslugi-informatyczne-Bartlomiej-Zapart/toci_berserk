@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Toci.Berserk.Bll.Ml.Interfaces;
 using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Database.Persistence.Models;
@@ -10,11 +9,14 @@ namespace Toci.Berserk.Bll.Ml
 {
     public class SuspectOrderLogic : LogicBase<Chemistrypop>, ISuspectOrderLogic
     {
+        public const int OrderSent = 1;
+        public const int OrderAccomplished = 2;
+
         protected LogicBase<Order> Orders = new LogicBase<Order>();
 
-        //public Order LastAccomplishedOrderDate() => Orders
-        //    .Select(model => model.Status == ProductOrderLogic.OrderAccomplished)
-        //    .OrderByDescending(model => model.Date).First();
+        public Order LastAccomplishedOrderDate() => Orders
+            .Select(model => model.Status == OrderAccomplished)
+            .OrderByDescending(model => model.Date).First();
 
         protected int DaysDifferenceToToday(DateTime lastOrderData) => (int) (DateTime.Now - lastOrderData).TotalDays;
 
@@ -22,17 +24,18 @@ namespace Toci.Berserk.Bll.Ml
         {
             Dictionary<int, List<Chemistrypop>> result = new Dictionary<int, List<Chemistrypop>>();
 
-            int totalDaysFromLastOrder = DaysDifferenceToToday(order.Date.Value);
-            DateTime current = order.Date.Value;
-            DateTime interval = DateTime.Now;
+            DateTime pastOrderDate = LastAccomplishedOrderDate().Date.Value;
+            int totalDaysFromLastOrder = DaysDifferenceToToday(pastOrderDate);
+            
+            DateTime current = DateTime.Now;
 
             for (int i = 0, j = 0; i < totalDaysFromLastOrder * depth; i += totalDaysFromLastOrder)
             {
-                IQueryable<Chemistrypop> elements = Select(model => model.Date < interval && model.Date > current);
+                IQueryable<Chemistrypop> elements = Select(model => model.Date > pastOrderDate && model.Date < current);
                 result.Add(j++, elements.ToList());
 
                 current.AddDays(-totalDaysFromLastOrder);
-                interval.AddDays(-totalDaysFromLastOrder);
+                pastOrderDate.AddDays(-totalDaysFromLastOrder);
             }
 
             return result;

@@ -28,6 +28,7 @@ namespace Toci.Berserk.Tests.SeedDb
         protected LogicBase<Chemistrypop> ChemistryPop = new LogicBase<Chemistrypop>();
         protected LogicBase<Metrichistory> MetricHistory = new LogicBase<Metrichistory>();
         protected ProductLogic productLogic = new ProductLogic();
+        protected ChemistryLogic chemLogic = new ChemistryLogic();
         protected RandomTextUtil TextUtil = new RandomTextUtil();
 
         [TestMethod]
@@ -173,12 +174,19 @@ namespace Toci.Berserk.Tests.SeedDb
 
         public void Chemistries()
         {
-            Chemistry.Insert(new Chemistry()
+            Random rn = new Random();
+            for (int i = 0; i < 500; i++)
             {
-                Idcategories = 1,
-                Quantity = 10,
-                Idproducts = 1
-            });
+                Chemistry chem = new Chemistry()
+                {
+                    Idcategories = 1,
+                    Quantity = rn.Next(1, 10),
+                    Idproducts = rn.Next(1, 52)
+                };
+                Chemistry.Insert(chem);
+
+                chemLogic.Reduce(chem, 1);
+            }
         }
 
         [TestMethod]
