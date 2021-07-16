@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Toci.Berserk.Bll.Warehouse;
 using Toci.Berserk.Bll.Warehouse.Interfaces;
+using Toci.Common.Utils;
 
 namespace Toci.Berserk.Api
 {
@@ -69,7 +70,7 @@ namespace Toci.Berserk.Api
                 endpoints.MapControllers();
             });
 
-
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(ErrorHandler.ExceptionHandler);
         }
     }
 }
