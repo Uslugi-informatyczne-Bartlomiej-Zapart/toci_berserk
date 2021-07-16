@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { OrderHistoryService } from './order-history.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { OrderHistoryService } from '../order-history/order-history.service';
 
 @Component({
-  selector: 'app-order-history',
-  templateUrl: './order-history.component.html',
-  styleUrls: ['./order-history.component.scss']
+  selector: 'app-new-order',
+  templateUrl: './new-order.component.html',
+  styleUrls: ['./new-order.component.scss']
 })
-
-export class OrderHistoryComponent implements OnInit {
+export class NewOrderComponent implements OnInit {
   formOrder!: FormGroup;
   orders = [];
   displayedColumns = ['id', 'date', 'iddeliverycompany'];

@@ -23,6 +23,7 @@ import { ProductsComponent } from './products/products.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
+import { NewOrderComponent } from './order/new-order/new-order.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OrderHistoryComponent } from './order/order-history/order-history.compo
     RegisterComponent,
     OrdersComponent,
     ProductsComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    NewOrderComponent
   ],
   imports: [
     BrowserModule,
