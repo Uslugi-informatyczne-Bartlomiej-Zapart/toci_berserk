@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Toci.Berserk.Bll;
 using Toci.Berserk.Bll.Models;
 using Toci.Berserk.Bll.Warehouse;
+using Toci.Berserk.Bll.Warehouse.Interfaces;
 using Toci.Berserk.Database.Persistence.Models;
 using Toci.Common.Utils;
 
@@ -29,6 +31,7 @@ namespace Toci.Berserk.Tests.SeedDb
         protected LogicBase<Metrichistory> MetricHistory = new LogicBase<Metrichistory>();
         protected ProductLogic productLogic = new ProductLogic();
         protected ChemistryLogic chemLogic = new ChemistryLogic();
+        protected IProductOrderLogic productOrderLogic = new ProductOrderLogic();
         protected RandomTextUtil TextUtil = new RandomTextUtil();
 
         [TestMethod]
@@ -39,9 +42,9 @@ namespace Toci.Berserk.Tests.SeedDb
             DeliveryCompanies();
             Products();
             SeedRandomProducts();
-            Orders();
             Chemistries();
             OrdersHistory();
+            OrdersSetNewApproved();
         }
 
         [TestMethod]
@@ -121,10 +124,33 @@ namespace Toci.Berserk.Tests.SeedDb
                     dateScope = DateTime.Now.AddDays(-i * 3),
                     deliveryCompanyId = 2,
                     deliveryCompanyName = "DPD",
-                    Status = 1
+                    Status = 2
                 });
             }
         }
+
+        [TestMethod]
+        public void OrdersSetNewApproved()
+        {
+            List<OrderProductDto> elements = new List<OrderProductDto>();
+            Random rn = new Random();
+
+            for (int i = 0; i < 15; i++)
+            {
+                OrderProductDto opd = new OrderProductDto()
+                {
+                    CurrentQuantity = 8,
+                    ExpectedOrderQuantity = rn.Next(1, 20),
+                    Price = 25,
+                    ProductId = i+1
+                };
+
+                elements.Add(opd);
+            }
+
+            productOrderLogic.SetSuspectedOrder(elements);
+        }
+
         //[TestMethod]
         //public void ProductsCodes()
         //{
@@ -158,18 +184,6 @@ namespace Toci.Berserk.Tests.SeedDb
                     DeliveryCompany = "GLS"
                 });
             }
-        }
-
-        [TestMethod]
-        public void Orders()
-        {
-            OrderLogic orderLogic = new OrderLogic();
-            //orderLogic.CreateOrderByDeliveryCompany();
-            Order.Insert(new Order()
-            {
-                Status = 1,
-                Iddeliverycompany = 1
-            });
         }
 
         public void Chemistries()

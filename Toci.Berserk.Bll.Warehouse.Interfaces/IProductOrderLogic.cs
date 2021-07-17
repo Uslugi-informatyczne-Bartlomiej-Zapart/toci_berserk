@@ -10,5 +10,7 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
         int AddOrders(List<Orderproduct> products, int deliveryCompanyID);
 
         List<OrderProductDto> GetSuspectedOrder();
+
+        int SetSuspectedOrder(List<OrderProductDto> products);
     }
 }

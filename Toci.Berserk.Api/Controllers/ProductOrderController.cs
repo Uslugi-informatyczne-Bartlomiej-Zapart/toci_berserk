@@ -26,5 +26,12 @@ namespace Toci.Berserk.Api.Controllers
         {
             return Logic.GetSuspectedOrder();
         }
+
+        [HttpPost]
+        [Route("SetNewProductsOrder")]
+        public int SetNewProductsOrder(List<OrderProductDto> products)
+        {
+            return Logic.SetSuspectedOrder(products);
+        }
     }
 }

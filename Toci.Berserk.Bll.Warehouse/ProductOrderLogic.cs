@@ -12,7 +12,7 @@ namespace Toci.Berserk.Bll.Warehouse
 {
     public class ProductOrderLogic : LogicBase<Orderproduct>, IProductOrderLogic
     {
-        protected LogicBase<Order> orderLogic = new LogicBase<Order>();
+        protected IOrderLogic orderLogic = new OrderLogic();
         protected IChemistryLogic chemistryLogic = new ChemistryLogic();
         protected ISuspectOrderLogic suspectOrderLogic = new SuspectOrderLogic();
         protected IArithmeticAverageProductOrderLogic MlAvg = new ArithmeticAverageProductOrderLogic();
@@ -121,6 +121,31 @@ namespace Toci.Berserk.Bll.Warehouse
             }
 
             return result;
+        }
+
+        public virtual int SetSuspectedOrder(List<OrderProductDto> products)
+        {
+            int newOrderId = orderLogic.CreateOrder(new OrderDto()
+            {
+                dateScope = DateTime.Now,
+                Status = SuspectOrderLogic.OrderSent
+            });
+
+            foreach (OrderProductDto orderProduct in products)
+            {
+                Orderproduct op = new Orderproduct() 
+                {
+                    Idorder = newOrderId,
+                    Idproducts = orderProduct.ProductId,
+                    Price = (float)orderProduct.Price,
+                    Quantity = orderProduct.ExpectedOrderQuantity,
+                    Status = SuspectOrderLogic.OrderSent
+                };
+
+                Insert(op);
+            }
+
+            return newOrderId;
         }
     }
 }
