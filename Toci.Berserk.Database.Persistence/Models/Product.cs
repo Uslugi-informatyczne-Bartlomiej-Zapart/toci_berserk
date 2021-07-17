@@ -14,6 +14,7 @@ namespace Toci.Berserk.Database.Persistence.Models
             Deliveries = new HashSet<Delivery>();
             Orderproducts = new HashSet<Orderproduct>();
             Predictedorders = new HashSet<Predictedorder>();
+            Productcompanies = new HashSet<Productcompany>();
             Productscodes = new HashSet<Productscode>();
             Productshistories = new HashSet<Productshistory>();
         }
@@ -28,6 +29,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Orderproduct> Orderproducts { get; set; }
         public virtual ICollection<Predictedorder> Predictedorders { get; set; }
+        public virtual ICollection<Productcompany> Productcompanies { get; set; }
         public virtual ICollection<Productscode> Productscodes { get; set; }
         public virtual ICollection<Productshistory> Productshistories { get; set; }
     }

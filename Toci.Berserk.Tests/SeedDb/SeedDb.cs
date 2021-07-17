@@ -15,6 +15,7 @@ namespace Toci.Berserk.Tests.SeedDb
     public class SeedDb
     {
         protected LogicBase<User> User = new LogicBase<User>();
+        protected LogicBase<Productcompany> ProductcompanyLogic  = new LogicBase<Productcompany>();
         protected LogicBase<Category> Category = new LogicBase<Category>();
         protected LogicBase<Deliverycompany> DeliveryCompany = new LogicBase<Deliverycompany>();
         protected LogicBase<Product> Product = new LogicBase<Product>();
@@ -45,6 +46,7 @@ namespace Toci.Berserk.Tests.SeedDb
             Chemistries();
             OrdersHistory();
             OrdersSetNewApproved();
+
         }
 
         [TestMethod]
@@ -204,9 +206,17 @@ namespace Toci.Berserk.Tests.SeedDb
         }
 
         [TestMethod]
-        public void ProductsHistories()
+        public void ProductsCompanies()
         {
-            
+            //for 7x
+            //for 50 x
+
+            Productcompany pc = new Productcompany();
+
+            // ?????
+
+            ProductcompanyLogic.Insert(pc);
+
         }
 
         //[TestMethod]

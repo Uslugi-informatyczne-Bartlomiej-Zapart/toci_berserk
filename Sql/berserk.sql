@@ -8,6 +8,7 @@ drop table orders;
 drop table chemistry;
 drop table productshistory;
 drop table productscodes;
+drop table ProductCompany;
 drop table products;
 drop table categories;
 drop table users; 
@@ -51,6 +52,13 @@ create table delivery
 	idproducts int references products (id),
 	iddeliverycompany int references deliverycompanies (id),
 	price real
+);
+
+create table ProductCompany
+(
+	id serial primary key,
+	iddeliverycompany int references deliverycompanies (id),
+	idproducts int references products (id)
 );
 
 create table productscodes
@@ -130,6 +138,8 @@ create table chemistrypop
     idusers int references users(id) -- info o zalogowanym pracowniku / firmie
 );
 
+
+
 create table metricHistory
 (
 	id serial primary key,
@@ -138,7 +148,7 @@ create table metricHistory
 	idmetrics int references metrics (id),
 	metric int
 );
-
+update orders set status = 2 where date < '2021-07-05';
 select * from deliverycompanies;
 select * from delivery;
 select * from users;
