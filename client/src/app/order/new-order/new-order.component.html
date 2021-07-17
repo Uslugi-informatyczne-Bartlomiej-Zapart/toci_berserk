@@ -21,7 +21,7 @@
           <th mat-header-cell *matHeaderCellDef>Spodziewana ilość</th>
           <td mat-cell *matCellDef="let element">
             <mat-form-field>
-              <input [formGroup]="formOrder" matInput type="text" value="{{element.expectedOrderQuantity}}" name="expectedQuantity{{element.productId}}">
+              <input matInput type="text" value="{{element.expectedOrderQuantity}}" formControlName="expectedQuantity{{element.productId}}">
             </mat-form-field>
           </td>
         </ng-container>

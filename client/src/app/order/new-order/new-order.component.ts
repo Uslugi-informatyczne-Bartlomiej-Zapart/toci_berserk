@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NewOrdersService } from './new-order.service';
+
+interface LooseObject {
+  [key: string]: any
+}
 
 @Component({
   selector: 'app-new-order',
@@ -8,34 +12,43 @@ import { NewOrdersService } from './new-order.service';
   styleUrls: ['./new-order.component.scss']
 })
 export class NewOrderComponent implements OnInit {
+  
+  arr: any = [];
+  dict = [];
   formOrder!: FormGroup;
   orders = [];
   displayedColumns = ['productId', 'productName', 'currentQuantity', 'expectedOrderQuantity', 'deliveryCompany', 'price'];
-
+  json: LooseObject = {};
   constructor(private listService: NewOrdersService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.listService.getNewProductsOrder().subscribe(x => {
-      //console.log(x);
-      this.orders = x;
-    });
 
-    this.formOrder = this.fb.group({});
-    //   productId: '',
-    //   productName: '',
-    //   currentQuantity: '',
-    //   expectedOrderQuantity: '',
-    //   deliveryCompany: ''
-    // });
+      this.orders = x;
+
+      for (let i = 0; i < this.orders.length; i++)
+      {
+        this.dict.push(this.orders[i]['productId']);
+        this.json['expectedQuantity' + this.orders[i]['productId']] = new FormControl(this.orders[i]['expectedOrderQuantity']);
+      }
+
+      this.formOrder = this.fb.group(this.json);
+    });
   }
 
   onSubmit() {
-    console.log("asd");
-    let value = this.formOrder.controls;
-    console.log(value);
-    // this.listService.getAllValuesFromOrderForm(value).subscribe(x => {
-    //   this.orders = x;
-    // });
+    let controls = this.formOrder.value;
+
+    for (let key in this.dict) {
+      let value = this.dict[key];
+
+      let q = {productId: value, expectedOrderQuantity: controls['expectedQuantity'+value]};
+      this.arr.push(q);
+    }
+
+    this.listService.getAllValuesFromOrderForm(this.arr).subscribe(x => {
+      this.orders = x;
+    });
 
   }
 }

@@ -15,6 +15,6 @@ export class NewOrdersService {
   }
 
   getAllValuesFromOrderForm(json: string): Observable<any> {
-    return this.http.post(config.EndpointUrl + 'ProductOrder/SetNewProductsOrder', {json});
-}
+    return this.http.post(config.EndpointUrl + 'ProductOrder/SetNewProductsOrder', json);
+  }
 }
