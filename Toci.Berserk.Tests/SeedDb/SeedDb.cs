@@ -46,7 +46,7 @@ namespace Toci.Berserk.Tests.SeedDb
             Chemistries();
             OrdersHistory();
             OrdersSetNewApproved();
-
+            ProductsCompanies();
         }
 
         [TestMethod]
@@ -210,13 +210,19 @@ namespace Toci.Berserk.Tests.SeedDb
         {
             //for 7x
             //for 50 x
-
             Productcompany pc = new Productcompany();
 
             // ?????
-
-            ProductcompanyLogic.Insert(pc);
-
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 50; j++)
+                {
+                    Productcompany prodCompany = new Productcompany();
+                    prodCompany.Idproducts = j + 1;
+                    prodCompany.Iddeliverycompany = i + 1;
+                    ProductcompanyLogic.Insert(prodCompany);
+                }
+            }
         }
 
         //[TestMethod]
