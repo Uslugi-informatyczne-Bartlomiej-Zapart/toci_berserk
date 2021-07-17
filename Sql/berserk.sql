@@ -130,8 +130,6 @@ create table chemistrypop
     idusers int references users(id) -- info o zalogowanym pracowniku / firmie
 );
 
-
-
 create table metricHistory
 (
 	id serial primary key,
