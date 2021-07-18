@@ -141,10 +141,10 @@ namespace Toci.Berserk.Tests.SeedDb
             {
                 OrderProductDto opd = new OrderProductDto()
                 {
-                    CurrentQuantity = 8,
+                    Currentquantity = 8,
                     ExpectedOrderQuantity = rn.Next(1, 20),
                     Price = 25,
-                    ProductId = i+1
+                    Productid = i+1
                 };
 
                 elements.Add(opd);

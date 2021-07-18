@@ -149,6 +149,13 @@ create table metricHistory
 	metric int
 );
 
+create or replace view ProductCompanyOrder as
+select products.id as ProductId, products.name as ProductName, chemistry.quantity as CurrentQuantity, deliverycompanies.name as DeliveryCompany, delivery.price
+from products 
+join chemistry on products.id = chemistry.idproducts
+join delivery on products.id = delivery.idproducts
+join deliverycompanies on delivery.iddeliverycompany = deliverycompanies.id;
+
 
 create or replace view ProductCompanySearch as
 select productcompany.idproducts, productcompany.iddeliverycompany, products.name, products.manufacturer, products.reference, 

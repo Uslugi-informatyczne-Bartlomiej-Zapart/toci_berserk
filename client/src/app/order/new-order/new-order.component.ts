@@ -28,8 +28,8 @@ export class NewOrderComponent implements OnInit {
 
       for (let i = 0; i < this.orders.length; i++)
       {
-        this.dict.push(this.orders[i]['productId']);
-        this.json['expectedQuantity' + this.orders[i]['productId']] = new FormControl(this.orders[i]['expectedOrderQuantity']);
+        this.dict.push(this.orders[i]['productid']);
+        this.json['expectedQuantity' + this.orders[i]['productid']] = new FormControl(this.orders[i]['expectedOrderQuantity']);
       }
 
       this.formOrder = this.fb.group(this.json);

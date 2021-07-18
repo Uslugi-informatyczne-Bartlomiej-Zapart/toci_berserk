@@ -7,27 +7,27 @@
       <table mat-table [dataSource]="orders" class="mat-elevation-z8">
         <ng-container matColumnDef="productId">
           <th mat-header-cell *matHeaderCellDef>Id produktu</th>
-          <td mat-cell *matCellDef="let element">{{element.productId}}</td>
+          <td mat-cell *matCellDef="let element">{{element.productid}}</td>
         </ng-container>
         <ng-container matColumnDef="productName">
           <th mat-header-cell *matHeaderCellDef>Nazwa produktu</th>
-          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.productname}} </td>
         </ng-container>
         <ng-container matColumnDef="currentQuantity">
           <th mat-header-cell *matHeaderCellDef>Ilość</th>
-          <td mat-cell *matCellDef="let element"> {{element.currentQuantity}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.currentquantity}} </td>
         </ng-container>
         <ng-container matColumnDef="expectedOrderQuantity">
           <th mat-header-cell *matHeaderCellDef>Spodziewana ilość</th>
           <td mat-cell *matCellDef="let element">
             <mat-form-field>
-              <input matInput type="text" value="{{element.expectedOrderQuantity}}" formControlName="expectedQuantity{{element.productId}}">
+              <input matInput type="text" value="{{element.expectedorderquantity}}" formControlName="expectedQuantity{{element.productid}}">
             </mat-form-field>
           </td>
         </ng-container>
         <ng-container matColumnDef="deliveryCompany">
           <th mat-header-cell *matHeaderCellDef>Firma dowożąca</th>
-          <td mat-cell *matCellDef="let element"> {{element.deliveryCompany}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.deliverycompany}} </td>
         </ng-container>
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef>Cena</th>

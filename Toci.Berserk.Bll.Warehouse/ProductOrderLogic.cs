@@ -68,56 +68,23 @@ namespace Toci.Berserk.Bll.Warehouse
 
         public virtual List<OrderProductDto> GetSuspectedOrder()
         {
+            LogicBase<Productcompanyorder> pcoLogic = new LogicBase<Productcompanyorder>();
+
             List<OrderProductDto> result = new List<OrderProductDto>();
 
             Dictionary<int, List<Chemistrypop>> orderHistory = suspectOrderLogic.GetOrdersHistory(new Order() { Date = DateTime.Now }, 4);
 
-            List<List<Tuple<int?, decimal>>> averages = MlAvg.CalculateAverages(orderHistory);
-
-            Dictionary<int, decimal> finalAverages = GetOneAvgForProduct(averages);
+            Dictionary<int, decimal> finalAverages = MlAvg.CalculateAverages(orderHistory);
 
             foreach (KeyValuePair<int, decimal> item in finalAverages)
             {
-                OrderProductDto element = new OrderProductDto() { ProductId = item.Key };
+                Productcompanyorder pco = pcoLogic.Select(p => p.Productid == item.Key).First();
 
-                Product pr = ProductLogic.Select(m => m.Id == item.Key).Include(p => p.Chemistries).Include(p => p.Deliveries).First();
+                OrderProductDto element = new OrderProductDto(pco);
 
-                element.ProductName = pr.Name;
                 element.ExpectedOrderQuantity = (int)item.Value;
-                element.CurrentQuantity = pr.Chemistries.First().Quantity.Value;
-                element.DeliveryCompany = pr.Deliveries.First().Iddeliverycompany.ToString(); // TODO
-                element.Price = pr.Deliveries.First().Price.Value;
 
                 result.Add(element);
-            }
-
-            return result;
-        }
-
-        protected virtual Dictionary<int, decimal> GetOneAvgForProduct(List<List<Tuple<int?, decimal>>> averages)
-        {
-            Dictionary<int, List<decimal>> temp = new Dictionary<int, List<decimal>>();
-
-            foreach (List<Tuple<int?, decimal>> avg in averages)
-            {
-                foreach (Tuple<int?, decimal> item in avg)
-                {
-                    if (temp.ContainsKey(item.Item1.Value))
-                    {
-                        temp[item.Item1.Value].Add(item.Item2);
-                    }
-                    else
-                    {
-                        temp.Add(item.Item1.Value, new List<decimal>() { item.Item2 });
-                    }
-                }
-            }
-
-            Dictionary<int, decimal> result = new Dictionary<int, decimal>();
-
-            foreach (KeyValuePair<int, List<decimal>> item in temp)
-            {
-                result.Add(item.Key, item.Value.Average());
             }
 
             return result;
@@ -136,8 +103,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 Orderproduct op = new Orderproduct() 
                 {
                     Idorder = newOrderId,
-                    Idproducts = orderProduct.ProductId,
-                    Price = (float)orderProduct.Price,
+                    Idproducts = orderProduct.Productid,
                     Quantity = orderProduct.ExpectedOrderQuantity,
                     Status = SuspectOrderLogic.OrderSent
                 };

@@ -6,6 +6,6 @@ namespace Toci.Berserk.Bll.Ml.Interfaces
 {
     public interface IArithmeticAverageProductOrderLogic
     {
-        List<List<Tuple<int?, decimal>>> CalculateAverages(Dictionary<int, List<Chemistrypop>> history);
+        Dictionary<int, decimal> CalculateAverages(Dictionary<int, List<Chemistrypop>> history);
     }
 }
