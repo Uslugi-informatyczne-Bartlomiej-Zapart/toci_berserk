@@ -21,7 +21,7 @@ namespace Toci.Berserk.Bll.Warehouse
 
             if (codeOrRef > 0)
             {
-                return Select(m => m.Code == codeOrRef || m.Reference == codeOrRef).ToList();
+                return Select(m => m.Code == codeOrRef || m.Reference.ToString().StartsWith(codeOrRef.ToString())).ToList();
             }
 
             return Select(m => m.Name.StartsWith(query) || m.Companyname.StartsWith(query) || m.Manufacturer.StartsWith(query)).ToList();
