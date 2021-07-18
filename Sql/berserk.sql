@@ -148,6 +148,18 @@ create table metricHistory
 	idmetrics int references metrics (id),
 	metric int
 );
+
+
+create or replace view ProductCompanySearch as
+select productcompany.idproducts, productcompany.iddeliverycompany, products.name, products.manufacturer, products.reference, 
+productscodes.code, deliverycompanies.name as companyname
+from productcompany 
+join products on products.id = productcompany.idproducts
+join productscodes on products.id = productscodes.idproducts
+join deliverycompanies on productcompany.iddeliverycompany = deliverycompanies.id;
+
+
+select * from ProductCompanySearch;
 update orders set status = 2 where date < '2021-07-05';
 select * from deliverycompanies;
 select * from delivery;

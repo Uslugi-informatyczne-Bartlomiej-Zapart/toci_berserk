@@ -208,11 +208,6 @@ namespace Toci.Berserk.Tests.SeedDb
         [TestMethod]
         public void ProductsCompanies()
         {
-            //for 7x
-            //for 50 x
-            Productcompany pc = new Productcompany();
-
-            // ?????
             for (int i = 0; i < 7; i++)
             {
                 for (int j = 0; j < 50; j++)
