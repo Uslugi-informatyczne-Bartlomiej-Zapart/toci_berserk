@@ -30,6 +30,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Predictedorderquantity> Predictedorderquantities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Productcompany> Productcompanies { get; set; }
+        public virtual DbSet<Productcompanysearch> Productcompanysearches { get; set; }
         public virtual DbSet<Productscode> Productscodes { get; set; }
         public virtual DbSet<Productshistory> Productshistories { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -313,6 +314,27 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .WithMany(p => p.Productcompanies)
                     .HasForeignKey(d => d.Idproducts)
                     .HasConstraintName("productcompany_idproducts_fkey");
+            });
+
+            modelBuilder.Entity<Productcompanysearch>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("productcompanysearch");
+
+                entity.Property(e => e.Code).HasColumnName("code");
+
+                entity.Property(e => e.Companyname).HasColumnName("companyname");
+
+                entity.Property(e => e.Iddeliverycompany).HasColumnName("iddeliverycompany");
+
+                entity.Property(e => e.Idproducts).HasColumnName("idproducts");
+
+                entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Reference).HasColumnName("reference");
             });
 
             modelBuilder.Entity<Productscode>(entity =>
