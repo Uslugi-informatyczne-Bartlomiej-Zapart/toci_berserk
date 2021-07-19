@@ -22,5 +22,6 @@ namespace Toci.Berserk.Bll.Models
 
         public int ExpectedOrderQuantity { get; set; }
 
+        public List<DeliveryDto> CompaniesPerProduct { get; set; }
     }
 }

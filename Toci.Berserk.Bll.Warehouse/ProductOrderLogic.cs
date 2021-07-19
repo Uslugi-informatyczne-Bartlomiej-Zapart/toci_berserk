@@ -18,6 +18,8 @@ namespace Toci.Berserk.Bll.Warehouse
         protected IArithmeticAverageProductOrderLogic MlAvg = new ArithmeticAverageProductOrderLogic();
         protected IProductLogic ProductLogic = new ProductLogic();
 
+        protected LogicBase<Delivery> deliveryLogic = new LogicBase<Delivery>();
+
         public int AddOrders(List<Orderproduct> products, int deliveryCompanyID)
         {
             int id = orderLogic.Insert(new Order()
@@ -83,8 +85,29 @@ namespace Toci.Berserk.Bll.Warehouse
                 OrderProductDto element = new OrderProductDto(pco);
 
                 element.ExpectedOrderQuantity = (int)item.Value;
+                element.CompaniesPerProduct = GetDeliveryCompanies(element.Productid.Value);
 
                 result.Add(element);
+            }
+
+            return result;
+        }
+
+        protected virtual List<DeliveryDto> GetDeliveryCompanies(int productId)
+        {
+            List<Delivery> del = deliveryLogic.Select(m => m.Idproducts == productId).Include(m=>m.IddeliverycompanyNavigation).ToList();
+
+            List<DeliveryDto> result = new List<DeliveryDto>();
+
+            foreach (Delivery el in del)
+            {
+                result.Add(new DeliveryDto()
+                {
+                    CompanyName = el.IddeliverycompanyNavigation.Name,
+                    Idproducts = el.Idproducts,
+                    Iddeliverycompany = el.Iddeliverycompany,
+                    Price = el.Price
+                });
             }
 
             return result;

@@ -12,13 +12,17 @@ interface LooseObject {
   styleUrls: ['./new-order.component.scss']
 })
 export class NewOrderComponent implements OnInit {
-  
+
   arr: any = [];
   dict = [];
   formOrder!: FormGroup;
+  formSearch!: FormGroup;
   orders = [];
-  displayedColumns = ['productId', 'productName', 'currentQuantity', 'expectedOrderQuantity', 'deliveryCompany', 'price'];
+  products = [];
+  displayedOrderColumns = ['productId', 'productName', 'currentQuantity', 'expectedOrderQuantity', 'deliveryCompany', 'price'];
+  displayedProductColumns = ['canAdd', 'code', 'companyName', 'idDeliveryCompany', 'idProducts', 'manufacturer', 'name'];
   json: LooseObject = {};
+
   constructor(private listService: NewOrdersService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -33,6 +37,16 @@ export class NewOrderComponent implements OnInit {
       }
 
       this.formOrder = this.fb.group(this.json);
+    });
+
+    this.formSearch = this.fb.group({searchQuery: new FormControl()});
+  }
+
+  onSubmitSearch() {
+    let controls = this.formSearch.value;
+
+    this.listService.searchProduct(controls.searchQuery).subscribe(x => {
+      this.products = x;
     });
   }
 
@@ -49,6 +63,9 @@ export class NewOrderComponent implements OnInit {
     this.listService.getAllValuesFromOrderForm(this.arr).subscribe(x => {
       this.orders = x;
     });
+  }
 
+  change() {
+    console.log("asd");
   }
 }
