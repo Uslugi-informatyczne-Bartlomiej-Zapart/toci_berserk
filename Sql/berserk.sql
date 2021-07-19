@@ -42,7 +42,7 @@ create table products
     id serial primary key,
     name text,
     manufacturer text,
-    reference int
+    reference text
 );
 
 create table delivery
@@ -67,7 +67,7 @@ create table productshistory
 	iddeletedproduct int references products (id),
     name text,
     manufacturer text,
-    reference int,
+    reference text,
 	iddeletedproductscodes int references productscodes (id),
 	code int,
 	dateofdeletion timestamp default now()

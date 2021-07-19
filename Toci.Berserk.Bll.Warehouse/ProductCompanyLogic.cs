@@ -20,6 +20,9 @@ namespace Toci.Berserk.Bll.Warehouse
 
             IQueryable<Productcompanysearch> res;
 
+            if (string.IsNullOrEmpty(query))
+                return null;
+
             query = query.ToLower();
 
             int codeOrRef = 0;
@@ -28,11 +31,11 @@ namespace Toci.Berserk.Bll.Warehouse
 
             if (codeOrRef > 0)
             {
-                res = Select(m => m.Code == codeOrRef || m.Reference.ToString().StartsWith(codeOrRef.ToString()));
+                res = Select(m => m.Code == codeOrRef);
             }
             else
             {
-                res = Select(m => m.Name.ToLower().StartsWith(query) || m.Companyname.ToLower().StartsWith(query) || m.Manufacturer.ToLower().StartsWith(query));
+                res = Select(m => m.Name.ToLower().StartsWith(query) || m.Companyname.ToLower().StartsWith(query) || m.Manufacturer.ToLower().StartsWith(query) || m.Reference.ToLower().StartsWith(query));
             }
 
             foreach (Productcompanysearch item in res)
@@ -49,7 +52,8 @@ namespace Toci.Berserk.Bll.Warehouse
                     Manufacturer = item.Manufacturer,
                     Name = item.Name,
                     Price = item.Price,
-                    CompaniesPerProduct = opd.CompaniesPerProduct
+                    CompaniesPerProduct = opd.CompaniesPerProduct,
+                    Reference = item.Reference
                 });
             }
 

@@ -14,20 +14,21 @@ interface LooseObject {
 export class NewOrderComponent implements OnInit {
 
   arr: any = [];
-  dict = [];
+  dict:any = [];
   formOrder!: FormGroup;
   formSearch!: FormGroup;
-  orders = [];
+  orders: any = [];
   products = [];
   displayedOrderColumns = ['productId', 'productName', 'currentQuantity', 'expectedOrderQuantity', 'deliveryCompany', 'price'];
-  displayedProductColumns = ['canAdd', 'code', 'companyName', 'idDeliveryCompany', 'idProducts', 'manufacturer', 'name'];
+  displayedProductColumns = ['canAdd', 'name', 'reference', 'manufacturer', 'code', 'companyName', 'price'];
   json: LooseObject = {};
 
   constructor(private listService: NewOrdersService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.listService.getNewProductsOrder().subscribe(x => {
 
+    this.listService.getNewProductsOrder().subscribe(x => {
+      console.log(x);
       this.orders = x;
 
       for (let i = 0; i < this.orders.length; i++)
@@ -42,12 +43,14 @@ export class NewOrderComponent implements OnInit {
     this.formSearch = this.fb.group({searchQuery: new FormControl()});
   }
 
-  onSubmitSearch() {
+  onInput() {
+
     let controls = this.formSearch.value;
 
     this.listService.searchProduct(controls.searchQuery).subscribe(x => {
       this.products = x;
     });
+    console.log(this.products);
   }
 
   onSubmit() {
@@ -65,7 +68,10 @@ export class NewOrderComponent implements OnInit {
     });
   }
 
-  change() {
-    console.log("asd");
+  click(el: any) {
+    console.log(el);
+    this.orders.push(el);
+    //this.orders.refresh();
+    console.log(this.orders);
   }
 }

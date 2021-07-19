@@ -11,7 +11,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public int? Iddeliverycompany { get; set; }
         public string Name { get; set; }
         public string Manufacturer { get; set; }
-        public int? Reference { get; set; }
+        public string Reference { get; set; }
         public int? Code { get; set; }
         public string Companyname { get; set; }
         public float? Price { get; set; }
