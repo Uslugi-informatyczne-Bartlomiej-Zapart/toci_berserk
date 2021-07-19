@@ -22,6 +22,11 @@ namespace Toci.Berserk.Bll.Ml
             return GetOneAvgForProduct(result);
         }
 
+        public virtual decimal CalculateAverages(List<Chemistrypop> history)
+        {
+            return history.Average(x => (decimal)x.Quantity);   
+        }
+
         protected virtual Dictionary<int, decimal> GetOneAvgForProduct(List<List<Tuple<int?, decimal>>> averages)
         {
             Dictionary<int, List<decimal>> temp = new Dictionary<int, List<decimal>>();

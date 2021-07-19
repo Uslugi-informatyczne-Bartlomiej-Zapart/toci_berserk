@@ -9,5 +9,7 @@ namespace Toci.Berserk.Bll.Ml.Interfaces
         Dictionary<int, List<Chemistrypop>> GetOrdersHistory(Order order, int depth);
 
         Dictionary<int, List<Chemistrypop>> GetOrdersHistory(OrderDto order);
+
+        List<Chemistrypop> GetProductUsage(int productId);
     }
 }

@@ -93,6 +93,19 @@ namespace Toci.Berserk.Bll.Warehouse
             return result;
         }
 
+        public virtual OrderProductDto GetProductExpectedQuantity(int productId)
+        {
+            List<Chemistrypop> productUsage = suspectOrderLogic.GetProductUsage(productId);
+           decimal average =  MlAvg.CalculateAverages(productUsage);
+
+            OrderProductDto element = new OrderProductDto();
+
+            element.CompaniesPerProduct = GetDeliveryCompanies(productId);
+            element.ExpectedOrderQuantity = (int)average;
+
+            return element;
+        }
+
         protected virtual List<DeliveryDto> GetDeliveryCompanies(int productId)
         {
             List<Delivery> del = deliveryLogic.Select(m => m.Idproducts == productId).Include(m=>m.IddeliverycompanyNavigation).ToList();

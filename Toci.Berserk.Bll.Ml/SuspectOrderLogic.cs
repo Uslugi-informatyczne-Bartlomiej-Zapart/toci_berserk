@@ -41,6 +41,12 @@ namespace Toci.Berserk.Bll.Ml
             return result;
         }
 
+        public virtual List<Chemistrypop> GetProductUsage(int productId)
+        {
+            DateTime pastOrderDate = LastAccomplishedOrderDate().Date.Value.AddDays(-5);
+            return Select(model => model.Idproducts == productId && model.Date > pastOrderDate && model.Date < DateTime.Now).ToList();
+        }
+
         public virtual Dictionary<int, List<Chemistrypop>> GetOrdersHistory(OrderDto order)
         {
             //The prediction will base upon the name of the company and the scope of the date. 

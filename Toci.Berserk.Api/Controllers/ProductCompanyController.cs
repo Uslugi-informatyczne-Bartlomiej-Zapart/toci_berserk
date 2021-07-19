@@ -19,7 +19,7 @@ namespace Toci.Berserk.Api.Controllers
 
         [HttpGet]
         [Route("Search")]
-        public List<Productcompanysearch> Search(string query)
+        public List<ProductCompanySearchDto> Search(string query)
         {
             return Logic.GetProductsOrCompanies(query);
         }
