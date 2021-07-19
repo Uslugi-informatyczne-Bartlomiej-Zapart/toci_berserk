@@ -15,6 +15,8 @@ namespace Toci.Berserk.Bll.Warehouse
 
         public virtual List<Productcompanysearch> GetProductsOrCompanies(string query)
         {
+            query = query.ToLower();
+
             int codeOrRef = 0;
 
             int.TryParse(query, out codeOrRef);
@@ -24,7 +26,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 return Select(m => m.Code == codeOrRef || m.Reference.ToString().StartsWith(codeOrRef.ToString())).ToList();
             }
 
-            return Select(m => m.Name.StartsWith(query) || m.Companyname.StartsWith(query) || m.Manufacturer.StartsWith(query)).ToList();
+            return Select(m => m.Name.ToLower().StartsWith(query) || m.Companyname.ToLower().StartsWith(query) || m.Manufacturer.ToLower().StartsWith(query)).ToList();
         }
     }
 }

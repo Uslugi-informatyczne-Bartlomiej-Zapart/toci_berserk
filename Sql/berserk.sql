@@ -8,7 +8,6 @@ drop table orders;
 drop table chemistry;
 drop table productshistory;
 drop table productscodes;
-drop table ProductCompany;
 drop table products;
 drop table categories;
 drop table users; 
@@ -54,12 +53,6 @@ create table delivery
 	price real
 );
 
-create table ProductCompany
-(
-	id serial primary key,
-	iddeliverycompany int references deliverycompanies (id),
-	idproducts int references products (id)
-);
 
 create table productscodes
 (
@@ -149,6 +142,17 @@ create table metricHistory
 	metric int
 );
 
+
+create or replace view ProductCompanySearch as
+select delivery.idproducts, delivery.iddeliverycompany, products.name, products.manufacturer, products.reference, 
+productscodes.code, deliverycompanies.name as companyname, delivery.price
+from delivery 
+join products on products.id = delivery.idproducts
+join productscodes on products.id = productscodes.idproducts
+join deliverycompanies on delivery.iddeliverycompany = delivery.id;
+
+select * from ProductCompanyOrder;
+
 create or replace view ProductCompanyOrder as
 select products.id as ProductId, products.name as ProductName, chemistry.quantity as CurrentQuantity, deliverycompanies.name as DeliveryCompany, delivery.price
 from products 
@@ -156,15 +160,9 @@ join chemistry on products.id = chemistry.idproducts
 join delivery on products.id = delivery.idproducts
 join deliverycompanies on delivery.iddeliverycompany = deliverycompanies.id;
 
+delete from orders where id = 61;
 
-create or replace view ProductCompanySearch as
-select productcompany.idproducts, productcompany.iddeliverycompany, products.name, products.manufacturer, products.reference, 
-productscodes.code, deliverycompanies.name as companyname
-from productcompany 
-join products on products.id = productcompany.idproducts
-join productscodes on products.id = productscodes.idproducts
-join deliverycompanies on productcompany.iddeliverycompany = deliverycompanies.id;
-
+delete from orderproducts where idorder = 61;
 
 select * from ProductCompanySearch;
 update orders set status = 2 where date < '2021-07-05';
@@ -175,4 +173,4 @@ select * from products;
 select * from productscodes;
 select * from chemistrypop;
 select * from orderproducts;
-select * from orders;
+select * from orders order by date;

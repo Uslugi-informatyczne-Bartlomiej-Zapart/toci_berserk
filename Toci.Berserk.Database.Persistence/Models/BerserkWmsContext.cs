@@ -29,7 +29,6 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Predictedorder> Predictedorders { get; set; }
         public virtual DbSet<Predictedorderquantity> Predictedorderquantities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Productcompany> Productcompanies { get; set; }
         public virtual DbSet<Productcompanyorder> Productcompanyorders { get; set; }
         public virtual DbSet<Productcompanysearch> Productcompanysearches { get; set; }
         public virtual DbSet<Productscode> Productscodes { get; set; }
@@ -296,27 +295,6 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.Property(e => e.Reference).HasColumnName("reference");
             });
 
-            modelBuilder.Entity<Productcompany>(entity =>
-            {
-                entity.ToTable("productcompany");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Iddeliverycompany).HasColumnName("iddeliverycompany");
-
-                entity.Property(e => e.Idproducts).HasColumnName("idproducts");
-
-                entity.HasOne(d => d.IddeliverycompanyNavigation)
-                    .WithMany(p => p.Productcompanies)
-                    .HasForeignKey(d => d.Iddeliverycompany)
-                    .HasConstraintName("productcompany_iddeliverycompany_fkey");
-
-                entity.HasOne(d => d.IdproductsNavigation)
-                    .WithMany(p => p.Productcompanies)
-                    .HasForeignKey(d => d.Idproducts)
-                    .HasConstraintName("productcompany_idproducts_fkey");
-            });
-
             modelBuilder.Entity<Productcompanyorder>(entity =>
             {
                 entity.HasNoKey();
@@ -351,6 +329,8 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
 
                 entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.Reference).HasColumnName("reference");
             });

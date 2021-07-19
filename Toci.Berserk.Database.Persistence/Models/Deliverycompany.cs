@@ -11,7 +11,6 @@ namespace Toci.Berserk.Database.Persistence.Models
         {
             Deliveries = new HashSet<Delivery>();
             Orders = new HashSet<Order>();
-            Productcompanies = new HashSet<Productcompany>();
         }
 
         public int Id { get; set; }
@@ -19,6 +18,5 @@ namespace Toci.Berserk.Database.Persistence.Models
 
         public virtual ICollection<Delivery> Deliveries { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Productcompany> Productcompanies { get; set; }
     }
 }
