@@ -1,3 +1,6 @@
+drop view ProductCompanyOrder;
+drop view ProductCompanySearch;
+
 drop table delivery;
 drop table metricHistory;
 drop table predictedorderquantity;
@@ -151,8 +154,6 @@ join products on products.id = delivery.idproducts
 join productscodes on products.id = productscodes.idproducts
 join deliverycompanies on delivery.iddeliverycompany = delivery.id;
 
-select * from ProductCompanyOrder;
-
 create or replace view ProductCompanyOrder as
 select products.id as ProductId, products.name as ProductName, chemistry.quantity as CurrentQuantity, deliverycompanies.name as DeliveryCompany, delivery.price
 from products 
@@ -164,6 +165,7 @@ delete from orders where id = 61;
 
 delete from orderproducts where idorder = 61;
 
+select * from ProductCompanyOrder;
 select * from ProductCompanySearch;
 update orders set status = 2 where date < '2021-07-05';
 select * from deliverycompanies;
