@@ -121,7 +121,7 @@ namespace Toci.Berserk.Tests.SeedDb
             {
                 orderLogic.CreateOrder(new OrderDto()
                 {
-                    dateScope = DateTime.Now.AddDays(-i * 3),
+                    dateScope = DateTime.Now.AddDays((-i - 1) * 5),
                     deliveryCompanyId = 2,
                     deliveryCompanyName = "DPD",
                     Status = 2

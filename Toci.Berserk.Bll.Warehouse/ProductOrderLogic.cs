@@ -96,12 +96,15 @@ namespace Toci.Berserk.Bll.Warehouse
         public virtual OrderProductDto GetProductExpectedQuantity(int productId)
         {
             List<Chemistrypop> productUsage = suspectOrderLogic.GetProductUsage(productId);
-           decimal average =  MlAvg.CalculateAverages(productUsage);
+            decimal average =  MlAvg.CalculateAverages(productUsage);
+
+            Chemistry prod = chemistryLogic.Select(m => m.Idproducts == productId).First();
 
             OrderProductDto element = new OrderProductDto();
 
             element.CompaniesPerProduct = GetDeliveryCompanies(productId);
             element.ExpectedOrderQuantity = (int)average;
+            element.Currentquantity = prod.Quantity;
 
             return element;
         }
