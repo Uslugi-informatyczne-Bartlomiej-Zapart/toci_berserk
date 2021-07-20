@@ -1,34 +1,40 @@
 <mat-card>
-<form [formGroup]="formOrder" (ngSubmit)="onSubmit()">
+  <form [formGroup]="formOrder">
     <mat-card-header>
       <mat-card-title>Nowe Zamówienie</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button type="submit" mat-raised-button color="primary" (click)="deleteProduct(element)">Usuń</button>
+          </td>
+        </ng-container>
         <ng-container matColumnDef="productId">
           <th mat-header-cell *matHeaderCellDef>Id produktu</th>
-          <td mat-cell *matCellDef="let element">{{element.productid}}</td>
+          <td mat-cell *matCellDef="let element">{{element.productId}}</td>
         </ng-container>
         <ng-container matColumnDef="productName">
           <th mat-header-cell *matHeaderCellDef>Nazwa produktu</th>
-          <td mat-cell *matCellDef="let element"> {{element.productname}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
         </ng-container>
         <ng-container matColumnDef="currentQuantity">
-          <th mat-header-cell *matHeaderCellDef>Ilość</th>
-          <td mat-cell *matCellDef="let element"> {{element.currentquantity}} </td>
+          <th mat-header-cell *matHeaderCellDef>Ilość na stanie</th>
+          <td mat-cell *matCellDef="let element"> {{element.currentQuantity}} </td>
         </ng-container>
         <ng-container matColumnDef="expectedOrderQuantity">
           <th mat-header-cell *matHeaderCellDef>Spodziewana ilość</th>
           <td mat-cell *matCellDef="let element">
             <mat-form-field>
-              <input matInput type="text" value="{{element.expectedorderquantity}}" formControlName="expectedQuantity{{element.productid}}">
+              <input matInput type="number" value="{{element.expectedOrderQuantity}}" formControlName="expectedQuantity{{element.productId}}" />
             </mat-form-field>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="deliveryCompany">
           <th mat-header-cell *matHeaderCellDef>Firma dowożąca</th>
-          <td mat-cell *matCellDef="let element"> {{element.deliverycompany}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.deliveryCompany}} </td>
         </ng-container>
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef>Cena</th>
@@ -40,28 +46,26 @@
       </table>
 
       <mat-card-actions>
-        <button type="submit" mat-raised-button color="primary">Zatwierdź</button>
+        <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">Zatwierdź</button>
       </mat-card-actions>
     </mat-card-content>
   </form>
 
-  <form [formGroup]="formSearch" (ngSubmit)="onInput()">
+  <form [formGroup]="formSearch" (ngSubmit)="onSearchInput()">
     <mat-card-header>
       <mat-card-title>Znajdź produkt</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field>
-        <input matInput type="text" formControlName="searchQuery" placeholder="Podaj produkt" (input)="onInput()">
+        <input matInput type="text" formControlName="searchQuery" placeholder="Podaj produkt" (input)="onSearchInput()" />
       </mat-form-field>
-      <!-- <mat-card-actions>
-        <button type="submit" mat-raised-button color="primary">Znajdź produkty</button>
-      </mat-card-actions> -->
 
       <table mat-table [dataSource]="products" class="mat-elevation-z8">
-        <ng-container matColumnDef="canAdd">
+        <ng-container matColumnDef="add">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-            <button type="submit" mat-raised-button color="primary" (click)="click(element)">Dodaj</button>
+            <button type="submit" mat-raised-button color="primary" (click)="addProductToOrder(element)">Dodaj</button>
+            <input mdInput type="number" formControlName="expectedQuantity{{element.idproducts}}"/>
           </td>
         </ng-container>
         <ng-container matColumnDef="name">
@@ -88,10 +92,6 @@
           <th mat-header-cell *matHeaderCellDef>Cena</th>
           <td mat-cell *matCellDef="let element">{{element.price}}</td>
         </ng-container>
-        <!-- <ng-container matColumnDef="deliveryCompany">
-          <th mat-header-cell *matHeaderCellDef>Firma dowożąca <-- niepotrzebne </th>
-          <td mat-cell *matCellDef="let element">{{element.companiesPerProduct.companyName}}</td>
-        </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedProductColumns"> </tr>
         <tr mat-row *matRowDef="let row; columns: displayedProductColumns;"></tr>
