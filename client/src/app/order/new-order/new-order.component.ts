@@ -1,29 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { OrderData } from 'src/app/models/OrderData';
+import { SearchData } from 'src/app/models/SearchData';
+import { LooseObject } from 'src/app/models/LooseObject';
 import { NewOrdersService } from './new-order.service';
-
-interface LooseObject {
-  [key: string]: any
-}
-
-export interface OrderData {
-  productId: Number;
-  productName: string;
-  currentQuantity: Number;
-  expectedOrderQuantity: Number;
-  deliveryCompany: string;
-  price: Number;
-}
-
-export interface SearchData {
-  idproducts: Number;
-  productName: string;
-  currentQuantity: Number;
-  expectedOrderQuantity: Number;
-  deliveryCompany: string;
-  price: Number;
-}
 
 @Component({
   selector: 'app-new-order',
