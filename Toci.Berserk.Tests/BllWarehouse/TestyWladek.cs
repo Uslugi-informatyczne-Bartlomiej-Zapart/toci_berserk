@@ -41,7 +41,7 @@ namespace Toci.Berserk.Tests.BllWarehouse
         [TestMethod]
         public void seedowanieBazy()
         {
-            int kodzikKreskowy = 4345;
+            int kodzikKreskowy = 4403;
 
 
             for(int i = 1; i < 30; i++)
@@ -50,40 +50,55 @@ namespace Toci.Berserk.Tests.BllWarehouse
             {
                 Product = new Product()
                 {
-                    Name = "Owsiana Dupka " + kodzikKreskowy,
-                    Manufacturer = "ROW Rybnik"
+                    Name = "Smar " + kodzikKreskowy,
+                    Manufacturer = "Kardam"
                 },
                 Code = kodzikKreskowy++,
-                DeliveryCompany = "FirmaDostawczaZdzicho"
+                DeliveryCompany = "Manjak"
             });
         }
 
         [TestMethod]
-        public void SeedowanieDelivery()
+        public void SeedowanieOrders()
         {
-            IQueryable orders = Orders.Select(model => model.Id > 0);
-            foreach (Order order in orders)
+            DateTime datka = new DateTime(2021,07,10);
+            Orders.Insert(new Order
             {
-                IQueryable orderProducts = OrderProducts.Select(model => model.Idorder == order.Id);
-                foreach (Orderproduct produkt in orderProducts )
+                Iddeliverycompany = 2,
+                Date = datka,
+                Status = 2
+            });
+        }
+        [TestMethod]
+        public void SeedowanieOrderProducts()
+        {
+            Random random = new Random();
+            for(int i = 30; i < 60; i++)
+            {
+                int wsad = random.Next(10, 40);
+                float cena = (float)(Math.Round(10.0 / random.Next(1, 8), 2));
+                OrderProducts.Insert(new Orderproduct
                 {
-                    Delivery.Insert(new Delivery()
-                        {
-                            Idproducts = produkt.Idproducts,
-                            Iddeliverycompany = order.Iddeliverycompany,
-                            Price = produkt.Price
-                        }
-                    );
-                }
+                    Idorder = 2,
+                    Status = 2,
+                    Idcategories = 2,
+                    Quantity = wsad,
+                    Idproducts = i + 1,
+                    Price = cena
+                });
+                Chemistry.Insert(new Chemistry
+                {
+                    Idproducts = i + 1,
+                    Quantity = wsad,
+                    Idcategories = 2
+                });
+                Delivery.Insert(new Delivery
+                {
+                    Idproducts = i + 1,
+                    Iddeliverycompany = 2,
+                    Price = cena
+                });
             }
         }
-
-        //[TestMethod]
-        //public void updateCenyDelivery()
-        //{
-        //    productLogic.idOfDeliverCompany = 4;
-        //    productLogic.IDsOfProductsFromCurrentDeliveryCompany.Add(1);
-        //    productLogic.UpdateDeliveryTable(1, 9.99f);
-        //}
     }
 }
