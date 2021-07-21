@@ -1,0 +1,29 @@
+
+.tempJumbo {
+  padding: 1rem 2rem;
+}
+
+.formtop {
+  margin-top: 1rem;
+}
+
+.companiesToAdd {
+  margin: 0 15px;
+  width: 100%;
+
+  .groupItem {
+    font-size: 17px;
+    background-color: #d4d4d4;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #c0bcbc;
+    }
+  }
+
+}
+
+.quantitySep {
+  margin: 0 16px;
+  font-size: 17px;
+}

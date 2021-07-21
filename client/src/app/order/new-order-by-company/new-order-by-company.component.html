@@ -1,36 +1,106 @@
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron tempJumbo jumbotron-fluid">
   <div class="container">
-    <h3 class="display-4">Add Product</h3>
-    <p class="lead">By company</p>
+    <h3 class="display-4">Add Product By compan</h3>
+  </div>
+</div>
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Added Products: {{ addedProducts.length }}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+
+        <table class="table">
+
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">productCode</th>
+              <th scope="col">productName</th>
+              <th scope="col">quantity</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of addedProducts; let idx = index;">
+              <th scope="row">
+                <button type="button" class="btn btn-warning" (click)="deleteProduct(idx)">
+                  Delete
+                </button>
+              </th>
+              <td>{{ item.productCode }}</td>
+              <td>{{ item.productName }}</td>
+              <td>
+                <button type="button" class="btn btn-info" (click)="quantityUp(idx)">+</button>
+                <span class="quantitySep">{{ item.quantity }}</span>
+                <button type="button" class="btn btn-info" (click)="quantityDown(idx)">-</button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+        <div *ngIf="addedProducts.length == 0">
+          <h2>NO PRODUCTS YET</h2>
+        </div>
+
+        <div *ngIf="addedProducts.length > 0">
+          <button type="button" class="btn btn-primary btn-lg btn-block">ADD PRODUCTS</button>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
 
 <form #form="ngForm" id="contact-form" role="form">
   <div class="controls">
 
-    <div class="row">
+    <div class="row formtop">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="form_name">Company Name</label>
 
           <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter Company Name"
-            required="required" [(ngModel)]="deliveryName" data-error="Name is required."
+            required="required" [(ngModel)]="deliveryInputValue" data-error="Name is required."
             (keyup)="searchDeliveriesByCharacters(form)" />
 
         </div>
       </div>
     </div>
-    <div>
-      <div class="row alert alert-primary"
+
+    <div class="row">
+
+      <ul class="list-group companiesToAdd">
+        <li class="list-group-item groupItem"
             *ngFor="let item of foundedCompanies | keyvalue; let idx = index"
             (click)="findProductsForCompany(idx)">
 
             {{ item.value }}
 
-      </div>
+        </li>
+      </ul>
+
     </div>
-    <div>
+
+    <div *ngIf="foundedProducts.length > 0">
+      <div *ngIf="foundedProducts.length > 0">
+        <h2>FOUNDED PRODUCTS FOR COMPANY: {{ nowFoundedProductsCompanyName }} /
+          <button type="button" class="btn btn-danger" (click)="resetView()">
+            RESET
+          </button>
+        </h2>
+      </div>
+
       <div class="row alert alert-primary">
+
         <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -41,10 +111,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of foundedProducts; let i = index">
+            <tr *ngFor="let item of foundedProducts; let i = index;">
               <th scope="row">
-                <button type="button" class="btn btn-warning" (click)="addProduct(i)">
-                  Add
+                <button type="button"
+                class="btn {{ item.added ? 'btn-success' : 'btn-warning'  }}" (click)="addProduct(i)">
+                  {{ item.added ? "Added" : "Add" }}
                 </button>
               </th>
               <td>{{ item.productCode }}</td>
