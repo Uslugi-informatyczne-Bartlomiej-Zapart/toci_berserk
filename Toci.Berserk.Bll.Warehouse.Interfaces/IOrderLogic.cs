@@ -14,5 +14,8 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
 
         public IQueryable<Order> GetCompletedOrders(DateTime dateFrom, DateTime dateTo);
         public int CreateOrder(OrderDto order);
+
+        public Dictionary<int, string> AllCompanies();
+        public List<ProductCompanyDto> AllProductsFromCompany(int companyId);
     }
 }

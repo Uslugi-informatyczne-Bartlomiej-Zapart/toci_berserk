@@ -33,6 +33,20 @@ namespace Toci.Berserk.Api.Controllers
         }
 
         [HttpGet]
+        [Route("AllProductsFromCurrentCompany")]
+        public List<ProductCompanyDto> GetProducts(int companyId)
+        {
+            return Logic.AllProductsFromCompany(companyId);
+        }
+
+        [HttpGet]
+        [Route("DeliveryCompanies")]
+        public Dictionary<int, string> GetCompanies()
+        {
+            return Logic.AllCompanies();
+        }
+
+        [HttpGet]
         [Route("HistoryOrders")]
         public IQueryable<Order> GetHistoryOrders(DateTime dateFrom, DateTime dateTo)
         {
