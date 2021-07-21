@@ -40,10 +40,18 @@ namespace Toci.Berserk.Bll.Warehouse
 
         
 
-        public void AllProductsFromDeliveryCompany(List<int?> listOfIDs, int idOfDeliverCompany)
+        public Dictionary<int?, float?> AllProductsFromDeliveryCompany(int idOfDeliverCompany)
         {
-            listOfIDs = Select(model =>
-                model.Iddeliverycompany == idOfDeliverCompany).ToList().Select(x => x.Idproducts).ToList();
+            Dictionary<int?, float?> AllProductsOfCurrentCompany = new Dictionary<int?, float?>();
+            IQueryable < Delivery > deliveryProducts = Select(model =>
+                   model.Iddeliverycompany == idOfDeliverCompany);
+
+            foreach(Delivery deliveryProduct in deliveryProducts)
+            {
+                AllProductsOfCurrentCompany.Add(deliveryProduct.Idproducts, deliveryProduct.Price);
+            }
+
+            return AllProductsOfCurrentCompany;
         }
 
         public void SetNewDelivery(int productId, float price, int idOfDeliverCompany)

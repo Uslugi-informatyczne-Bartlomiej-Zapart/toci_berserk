@@ -24,7 +24,8 @@ namespace Toci.Berserk.Bll.Warehouse
         {
             int id = orderLogic.Insert(new Order()
             {
-                Date = new DateTime(2021, 06, 20), // DAFAQ ?
+              //  Date = new DateTime(2021, 06, 20), // DAFAQ ? for seeding purposes dafak£eszcionie
+                Date = DateTime.Now, 
                 Iddeliverycompany = deliveryCompanyID
             }).Id;
 

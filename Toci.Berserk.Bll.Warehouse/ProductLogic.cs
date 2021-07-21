@@ -99,7 +99,8 @@ namespace Toci.Berserk.Bll.Warehouse
                 idOfDeliverCompany = DeliveryLogic.SetNewDeliveryCompany(deliveryCompanyName);
                 flagOfHistoryDeliveryList = true;
                 //If error than possibly by null list
-                DeliveryLogic.AllProductsFromDeliveryCompany(IDsOfProductsFromCurrentDeliveryCompany, idOfDeliverCompany); 
+                IDsOfProductsFromCurrentDeliveryCompany = DeliveryLogic.AllProductsFromDeliveryCompany(idOfDeliverCompany)
+                    .Select(x => x.Key).ToList(); 
             }
         }
 

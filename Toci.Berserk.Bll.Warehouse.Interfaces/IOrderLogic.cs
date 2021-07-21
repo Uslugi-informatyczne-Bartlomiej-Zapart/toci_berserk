@@ -16,5 +16,6 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
         public int CreateOrder(OrderDto order);
 
         public Dictionary<int, string> AllCompanies();
+        public List<ProductCompanyDto> AllProductsFromCompany(int companyId);
     }
 }

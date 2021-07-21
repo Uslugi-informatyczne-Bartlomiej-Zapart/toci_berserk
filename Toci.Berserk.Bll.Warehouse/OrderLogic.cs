@@ -16,6 +16,9 @@ namespace Toci.Berserk.Bll.Warehouse
     {
         protected SuspectOrderLogic SuspectOrderLogic = new SuspectOrderLogic();
         protected DeliveryLogic DeliveryLogic = new DeliveryLogic();
+        protected ProductLogic ProductLogic = new ProductLogic();
+        protected ProductsCodeLogic ProductCodeLogic = new ProductsCodeLogic();
+        protected ChemistryLogic ChemistryLogic = new ChemistryLogic();
         public IQueryable<Order> AllOrders()
         {
             return Select(model => model.Id > 0);
@@ -48,6 +51,39 @@ namespace Toci.Berserk.Bll.Warehouse
         public Dictionary<int, string> AllCompanies()
         {
             return DeliveryLogic.GetDeliveryCompanies();
+        }
+
+        public List<ProductCompanyDto> AllProductsFromCompany(int companyId)
+        {
+            List<ProductCompanyDto> AllProductsFromCompany = new List<ProductCompanyDto>();
+            Dictionary<int?, float?> deliveryProducts = DeliveryLogic.AllProductsFromDeliveryCompany(companyId);
+            List<int?> productsId = deliveryProducts.Select(x => x.Key).ToList();
+            IQueryable<Product> products = ProductLogic.Select(model => productsId.Contains(model.Id));
+            IQueryable<Productscode> productscode = ProductCodeLogic.Select(model => productsId.Contains(model.Idproducts));
+            IQueryable<Chemistry> chemistry = ChemistryLogic.Select(model => productsId.Contains(model.Idproducts));
+            Dictionary<int, string> deliveryCompanies = DeliveryLogic.GetDeliveryCompanies();
+
+            foreach(KeyValuePair<int?, float?> ele in deliveryProducts)
+            {
+                ProductCompanyDto ProductOfCurrentCompany = new ProductCompanyDto();
+                ProductOfCurrentCompany.ProductId = ele.Key;
+                ProductOfCurrentCompany.ProductPriceBasedOnCurrentCompany = ele.Value;
+                ProductOfCurrentCompany.ProductName = products.Where(x => x.Id == ele.Key).FirstOrDefault().Name;
+                ProductOfCurrentCompany.ProductCode = productscode.Where(x => x.Idproducts == ele.Key).FirstOrDefault().Code;
+                ProductOfCurrentCompany.Quantity = chemistry.Where(x => x.Idproducts == ele.Key).First().Quantity;
+                ProductOfCurrentCompany.PredictedQuantityToOrder = 0; // to implement
+                Dictionary<string?, Tuple<int?, float?>> AllDeliveriesOfCurrentProduct = new Dictionary<string?, Tuple<int?, float?>>();
+                IQueryable<Delivery> deliveriesOfProduct = DeliveryLogic.Select(model => model.Idproducts == ele.Key);
+                foreach (Delivery entityProduct in deliveriesOfProduct)
+                {
+                    AllDeliveriesOfCurrentProduct.Add(deliveryCompanies[(int)entityProduct.Iddeliverycompany],
+                        new Tuple<int?, float?>(entityProduct.Iddeliverycompany, entityProduct.Price));
+                }
+                ProductOfCurrentCompany.ProductDeliveryCompaniesWithPrices = AllDeliveriesOfCurrentProduct;
+                AllProductsFromCompany.Add(ProductOfCurrentCompany);
+            }
+
+            return AllProductsFromCompany;
         }
     }
 }

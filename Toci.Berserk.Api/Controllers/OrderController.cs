@@ -33,6 +33,13 @@ namespace Toci.Berserk.Api.Controllers
         }
 
         [HttpGet]
+        [Route("AllProductsFromCurrentCompany")]
+        public List<ProductCompanyDto> GetProducts(int companyId)
+        {
+            return Logic.AllProductsFromCompany(companyId);
+        }
+
+        [HttpGet]
         [Route("DeliveryCompanies")]
         public Dictionary<int, string> GetCompanies()
         {
