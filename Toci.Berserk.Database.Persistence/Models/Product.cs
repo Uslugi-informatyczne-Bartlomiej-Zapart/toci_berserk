@@ -21,7 +21,7 @@ namespace Toci.Berserk.Database.Persistence.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Manufacturer { get; set; }
-        public int? Reference { get; set; }
+        public string Reference { get; set; }
 
         public virtual ICollection<Chemistry> Chemistries { get; set; }
         public virtual ICollection<Chemistrypop> Chemistrypops { get; set; }

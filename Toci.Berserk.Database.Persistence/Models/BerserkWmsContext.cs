@@ -29,6 +29,8 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Predictedorder> Predictedorders { get; set; }
         public virtual DbSet<Predictedorderquantity> Predictedorderquantities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Productcompanyorder> Productcompanyorders { get; set; }
+        public virtual DbSet<Productcompanysearch> Productcompanysearches { get; set; }
         public virtual DbSet<Productscode> Productscodes { get; set; }
         public virtual DbSet<Productshistory> Productshistories { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -44,7 +46,7 @@ namespace Toci.Berserk.Database.Persistence.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "English_United Kingdom.1252");
+            modelBuilder.HasAnnotation("Relational:Collation", "English_United States.1252");
 
             modelBuilder.Entity<Category>(entity =>
             {
@@ -199,7 +201,7 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.HasOne(d => d.IddeliverycompanyNavigation)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.Iddeliverycompany)
-                    .HasConstraintName("fk_dodelivery");
+                    .HasConstraintName("orders_iddeliverycompany_fkey");
             });
 
             modelBuilder.Entity<Orderproduct>(entity =>
@@ -289,6 +291,46 @@ namespace Toci.Berserk.Database.Persistence.Models
                 entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
 
                 entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Reference).HasColumnName("reference");
+            });
+
+            modelBuilder.Entity<Productcompanyorder>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("productcompanyorder");
+
+                entity.Property(e => e.Currentquantity).HasColumnName("currentquantity");
+
+                entity.Property(e => e.Deliverycompany).HasColumnName("deliverycompany");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+
+                entity.Property(e => e.Productid).HasColumnName("productid");
+
+                entity.Property(e => e.Productname).HasColumnName("productname");
+            });
+
+            modelBuilder.Entity<Productcompanysearch>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("productcompanysearch");
+
+                entity.Property(e => e.Code).HasColumnName("code");
+
+                entity.Property(e => e.Companyname).HasColumnName("companyname");
+
+                entity.Property(e => e.Iddeliverycompany).HasColumnName("iddeliverycompany");
+
+                entity.Property(e => e.Idproducts).HasColumnName("idproducts");
+
+                entity.Property(e => e.Manufacturer).HasColumnName("manufacturer");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.Reference).HasColumnName("reference");
             });
