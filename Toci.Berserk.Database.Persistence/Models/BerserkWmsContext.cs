@@ -46,7 +46,7 @@ namespace Toci.Berserk.Database.Persistence.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "English_United States.1252");
+            modelBuilder.HasAnnotation("Relational:Collation", "English_United Kingdom.1252");
 
             modelBuilder.Entity<Category>(entity =>
             {
