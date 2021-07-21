@@ -1,6 +1,8 @@
+import { componentFactoryName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { config } from 'rxjs';
+import { Company, MyGroupCompanies } from 'src/app/models/Company';
 import { ProductCompanySearchService } from 'src/app/services/product-company-search.service';
 
 @Component({
@@ -12,6 +14,8 @@ export class NewOrderByCompanyComponent implements OnInit {
 
   deliveryName: string = ""
 
+  allDeliveryCompanies: any = []
+
   foundedCompanies: any = []
 
   foundedProducts: any = []
@@ -19,30 +23,36 @@ export class NewOrderByCompanyComponent implements OnInit {
   constructor(private prodCompService: ProductCompanySearchService) { }
 
   ngOnInit(): void {
-
+    this.prodCompService.getDeliveryCompanies().subscribe((response: any) => {
+      console.log(response)
+      this.allDeliveryCompanies = response
+    })
   }
 
   addProduct(idx: number) {
-    this.foundedProducts[idx].added = true
-    console.log(this.foundedProducts)
+
   }
 
   searchDeliveriesByCharacters(form: NgForm) {
-      console.log(form.value)
-      if(form.value.name?.length == 0) return
 
-      this.prodCompService.getDeliveryCompanies(form.value.name).subscribe(response => {
-        console.log(response)
-        this.foundedCompanies = response
-      })
+    if(form.value.name?.length == 0) return
 
+    let searchChars = form.value.name
+
+    this.foundedCompanies = Object.values(this.allDeliveryCompanies)
+                              .filter((comp: any) => comp.includes(searchChars))
   }
 
   findProductsForCompany(idx: number) {
-    console.log(idx)
-    let companyName = this.foundedCompanies[idx].iddeliverycompany
-    console.log(companyName)
-    this.prodCompService.findProductsForCompany(companyName).subscribe(response => {
+    let foundedId;
+    for (const [key, value] of Object.entries(this.allDeliveryCompanies)) {
+      if(value == this.foundedCompanies[idx]) {
+        foundedId = key
+        break
+      }
+    }
+
+    this.prodCompService.findProductsForCompany(foundedId).subscribe( (response: any) => {
       console.log(response)
       this.foundedProducts = response
       this.deliveryName = ""

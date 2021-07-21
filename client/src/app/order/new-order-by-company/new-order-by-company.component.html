@@ -22,10 +22,10 @@
     </div>
     <div>
       <div class="row alert alert-primary"
-            *ngFor="let item of foundedCompanies; let idx = index"
+            *ngFor="let item of foundedCompanies | keyvalue; let idx = index"
             (click)="findProductsForCompany(idx)">
 
-            {{ item.companyname }}
+            {{ item.value }}
 
       </div>
     </div>

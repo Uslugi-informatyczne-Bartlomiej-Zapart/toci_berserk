@@ -7,20 +7,18 @@ import { config } from 'src/assets/config';
 })
 export class ProductCompanySearchService {
 
-  getDeliverCompaniesURL = "ProductCompany/Search"
+  getDeliverCompaniesURL = "Order/Deliverycompanies"
   getProductsFromCompanyURL = "Order/AllProductsFromCurrentCompany?companyId="
 
   constructor(private http: HttpClient) { }
 
-  getDeliveryCompanies(model: any) {
-    let x = config.EndpointUrl + "" + this.getDeliverCompaniesURL + "?query=" + model
-    console.log(x)
+  getDeliveryCompanies() {
+    let x = config.EndpointUrl + "" + this.getDeliverCompaniesURL
     return this.http.get(x)
   }
 
   findProductsForCompany(name: any) {
     let x = config.EndpointUrl + "" + this.getProductsFromCompanyURL + "" + name
-    console.log(x)
     return this.http.get(x)
   }
 
