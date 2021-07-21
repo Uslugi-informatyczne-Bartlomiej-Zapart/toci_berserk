@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { NewOrderComponent } from './order/new-order/new-order.component';
+import { NewOrderByCompanyComponent } from './order/new-order-by-company/new-order-by-company.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: 'products', component: ProductsComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'orders-history', component: OrderHistoryComponent },
-      { path: 'new-order', component: NewOrderComponent }
+      { path: 'new-order', component: NewOrderComponent },
+      { path: 'new-order-by-company', component: NewOrderByCompanyComponent }
     ]
   },
 

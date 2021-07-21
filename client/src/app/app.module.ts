@@ -25,6 +25,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { NewOrderComponent } from './order/new-order/new-order.component';
+import { NewOrderByCompanyComponent } from './order/new-order-by-company/new-order-by-company.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { NewOrderComponent } from './order/new-order/new-order.component';
     OrdersComponent,
     ProductsComponent,
     OrderHistoryComponent,
-    NewOrderComponent
+    NewOrderComponent,
+    NewOrderByCompanyComponent
   ],
   imports: [
     BrowserModule,

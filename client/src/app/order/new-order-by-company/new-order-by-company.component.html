@@ -1,0 +1,17 @@
+<form #form="ngForm" id="contact-form" role="form">
+  <div class="controls">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="form_name">Company Name</label>
+
+          <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter Company Name"
+            required="required" [(ngModel)]="deliveryName" data-error="Name is required."
+            (keyup)="searchDeliveriesByCharacters(form)" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
