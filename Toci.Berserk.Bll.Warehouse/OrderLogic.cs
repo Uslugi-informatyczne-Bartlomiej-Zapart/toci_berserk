@@ -70,7 +70,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 ProductOfCurrentCompany.ProductPriceBasedOnCurrentCompany = ele.Value;
                 ProductOfCurrentCompany.ProductName = products.Where(x => x.Id == ele.Key).FirstOrDefault().Name;
                 ProductOfCurrentCompany.ProductCode = productscode.Where(x => x.Idproducts == ele.Key).FirstOrDefault().Code;
-                ProductOfCurrentCompany.Quantity = chemistry.Where(x => x.Idproducts == ele.Key).First().Quantity;
+                ProductOfCurrentCompany.Quantity =  6; //chemistry.Where(x => x.Idproducts == ele.Key).First().Quantity;
                 ProductOfCurrentCompany.PredictedQuantityToOrder = 0; // to implement
                 Dictionary<string?, Tuple<int?, float?>> AllDeliveriesOfCurrentProduct = new Dictionary<string?, Tuple<int?, float?>>();
                 IQueryable<Delivery> deliveriesOfProduct = DeliveryLogic.Select(model => model.Idproducts == ele.Key);

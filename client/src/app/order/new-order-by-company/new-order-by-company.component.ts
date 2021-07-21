@@ -22,6 +22,11 @@ export class NewOrderByCompanyComponent implements OnInit {
 
   }
 
+  addProduct(idx: number) {
+    this.foundedProducts[idx].added = true
+    console.log(this.foundedProducts)
+  }
+
   searchDeliveriesByCharacters(form: NgForm) {
       console.log(form.value)
       if(form.value.name?.length == 0) return
