@@ -201,7 +201,6 @@ namespace Toci.Berserk.Tests.BllWarehouse
                 Product = new Product()
                 {
                     Name = "Olej do silnika",
-                    Reference = "XZ32165",
                     Manufacturer = "engine"
                 }
             });

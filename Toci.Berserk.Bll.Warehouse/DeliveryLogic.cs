@@ -38,6 +38,8 @@ namespace Toci.Berserk.Bll.Warehouse
             return idOfDeliverCompany;
         }
 
+        
+
         public void AllProductsFromDeliveryCompany(List<int?> listOfIDs, int idOfDeliverCompany)
         {
             listOfIDs = Select(model =>
@@ -52,6 +54,20 @@ namespace Toci.Berserk.Bll.Warehouse
                 Iddeliverycompany = idOfDeliverCompany,
                 Price = price
             });
+        }
+
+        public Dictionary<int, string> GetDeliveryCompanies()
+        {
+            Dictionary<int, string> AllDeliveryCompanies = new Dictionary<int, string>();
+
+            IQueryable Companies = DeliveryCompany.Select(model => model.Id > 0);
+
+            foreach(Deliverycompany company in Companies)
+            {
+                AllDeliveryCompanies.Add(company.Id, company.Name);
+            }
+
+            return AllDeliveryCompanies;
         }
     }
 }

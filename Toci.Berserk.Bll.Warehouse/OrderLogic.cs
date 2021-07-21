@@ -44,5 +44,10 @@ namespace Toci.Berserk.Bll.Warehouse
                 Status = order.Status
             }).Id;
         }
+
+        public Dictionary<int, string> AllCompanies()
+        {
+            return DeliveryLogic.GetDeliveryCompanies();
+        }
     }
 }
