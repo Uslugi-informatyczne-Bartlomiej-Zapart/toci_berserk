@@ -81,19 +81,22 @@ namespace Toci.Berserk.Tests.BllWarehouse
             LogicBase<User> user = new LogicBase<User>();
             user.Insert(new User()
             {
-                Name = "Enrike",
+                Companyname = "FIRMA",
+                Ownersurname = "hugo",
                 Login = "z dupy",
                 Password = "mega z dupy"
             });
             user.Insert(new User()
             {
-                Name = "Eustachy",
+                Companyname = "FIRMA zez",
+                Ownersurname = "martini",
                 Login = "z pipy",
                 Password = "pipa renifer"
             });
             user.Insert(new User()
             {
-                Name = "Franio",
+                Companyname = "FIRMA bez",
+                Ownersurname = "boss",
                 Login = "zawiercie rulez",
                 Password = "jprdle"
             });

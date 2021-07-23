@@ -52,7 +52,8 @@ namespace Toci.Berserk.Tests.SeedDb
         {
             User.Insert(new User()
             {
-                Name = "Jan",
+                Companyname = "Tadek firma solo",
+                Ownersurname = "Tadziu",
                 Login = "Janko",
                 Password = "Password"
             });

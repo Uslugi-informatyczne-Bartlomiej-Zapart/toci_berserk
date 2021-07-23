@@ -16,7 +16,7 @@ namespace Toci.Berserk.Bll.Ml
 
         public Order LastAccomplishedOrderDate() => Orders
             .Select(model => model.Status == OrderAccomplished)
-            .OrderByDescending(model => model.Date).First();
+            .OrderByDescending(model => model.Date).FirstOrDefault();
 
         protected int DaysDifferenceToToday(DateTime lastOrderData) => (int) (DateTime.Now - lastOrderData).TotalDays;
 

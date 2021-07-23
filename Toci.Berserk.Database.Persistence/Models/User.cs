@@ -13,7 +13,8 @@ namespace Toci.Berserk.Database.Persistence.Models
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Companyname { get; set; }
+        public string Ownersurname { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 

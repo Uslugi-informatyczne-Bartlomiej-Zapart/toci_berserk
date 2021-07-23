@@ -20,12 +20,18 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Chemistry> Chemistries { get; set; }
         public virtual DbSet<Chemistrypop> Chemistrypops { get; set; }
+        public virtual DbSet<Club> Clubs { get; set; }
+        public virtual DbSet<Clubduel> Clubduels { get; set; }
+        public virtual DbSet<Competitor> Competitors { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
         public virtual DbSet<Deliverycompany> Deliverycompanies { get; set; }
+        public virtual DbSet<Judge> Judges { get; set; }
         public virtual DbSet<Metric> Metrics { get; set; }
         public virtual DbSet<Metrichistory> Metrichistories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Orderproduct> Orderproducts { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Point> Points { get; set; }
         public virtual DbSet<Predictedorder> Predictedorders { get; set; }
         public virtual DbSet<Predictedorderquantity> Predictedorderquantities { get; set; }
         public virtual DbSet<Product> Products { get; set; }
@@ -33,6 +39,8 @@ namespace Toci.Berserk.Database.Persistence.Models
         public virtual DbSet<Productcompanysearch> Productcompanysearches { get; set; }
         public virtual DbSet<Productscode> Productscodes { get; set; }
         public virtual DbSet<Productshistory> Productshistories { get; set; }
+        public virtual DbSet<Tournament> Tournaments { get; set; }
+        public virtual DbSet<Trainer> Trainers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,7 +54,7 @@ namespace Toci.Berserk.Database.Persistence.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "English_United Kingdom.1252");
+            modelBuilder.HasAnnotation("Relational:Collation", "Polish_Poland.1250");
 
             modelBuilder.Entity<Category>(entity =>
             {
@@ -114,6 +122,84 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .HasConstraintName("chemistrypop_idusers_fkey");
             });
 
+            modelBuilder.Entity<Club>(entity =>
+            {
+                entity.ToTable("clubs");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Idpoints).HasColumnName("idpoints");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Town).HasColumnName("town");
+
+                entity.HasOne(d => d.IdpointsNavigation)
+                    .WithMany(p => p.Clubs)
+                    .HasForeignKey(d => d.Idpoints)
+                    .HasConstraintName("clubs_idpoints_fkey");
+            });
+
+            modelBuilder.Entity<Clubduel>(entity =>
+            {
+                entity.ToTable("clubduels");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Idfirstclub).HasColumnName("idfirstclub");
+
+                entity.Property(e => e.Idsecondclub).HasColumnName("idsecondclub");
+
+                entity.Property(e => e.Idtournament).HasColumnName("idtournament");
+
+                entity.Property(e => e.Winner).HasColumnName("winner");
+
+                entity.HasOne(d => d.IdfirstclubNavigation)
+                    .WithMany(p => p.ClubduelIdfirstclubNavigations)
+                    .HasForeignKey(d => d.Idfirstclub)
+                    .HasConstraintName("clubduels_idfirstclub_fkey");
+
+                entity.HasOne(d => d.IdsecondclubNavigation)
+                    .WithMany(p => p.ClubduelIdsecondclubNavigations)
+                    .HasForeignKey(d => d.Idsecondclub)
+                    .HasConstraintName("clubduels_idsecondclub_fkey");
+
+                entity.HasOne(d => d.IdtournamentNavigation)
+                    .WithMany(p => p.Clubduels)
+                    .HasForeignKey(d => d.Idtournament)
+                    .HasConstraintName("clubduels_idtournament_fkey");
+            });
+
+            modelBuilder.Entity<Competitor>(entity =>
+            {
+                entity.ToTable("competitors");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Idfirstplayer).HasColumnName("idfirstplayer");
+
+                entity.Property(e => e.Idsecondplayer).HasColumnName("idsecondplayer");
+
+                entity.Property(e => e.Idtournament).HasColumnName("idtournament");
+
+                entity.Property(e => e.Winner).HasColumnName("winner");
+
+                entity.HasOne(d => d.IdfirstplayerNavigation)
+                    .WithMany(p => p.CompetitorIdfirstplayerNavigations)
+                    .HasForeignKey(d => d.Idfirstplayer)
+                    .HasConstraintName("competitors_idfirstplayer_fkey");
+
+                entity.HasOne(d => d.IdsecondplayerNavigation)
+                    .WithMany(p => p.CompetitorIdsecondplayerNavigations)
+                    .HasForeignKey(d => d.Idsecondplayer)
+                    .HasConstraintName("competitors_idsecondplayer_fkey");
+
+                entity.HasOne(d => d.IdtournamentNavigation)
+                    .WithMany(p => p.Competitors)
+                    .HasForeignKey(d => d.Idtournament)
+                    .HasConstraintName("competitors_idtournament_fkey");
+            });
+
             modelBuilder.Entity<Delivery>(entity =>
             {
                 entity.ToTable("delivery");
@@ -140,6 +226,15 @@ namespace Toci.Berserk.Database.Persistence.Models
             modelBuilder.Entity<Deliverycompany>(entity =>
             {
                 entity.ToTable("deliverycompanies");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+            });
+
+            modelBuilder.Entity<Judge>(entity =>
+            {
+                entity.ToTable("judges");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -236,6 +331,46 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .WithMany(p => p.Orderproducts)
                     .HasForeignKey(d => d.Idproducts)
                     .HasConstraintName("orderproducts_idproducts_fkey");
+            });
+
+            modelBuilder.Entity<Player>(entity =>
+            {
+                entity.ToTable("players");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Dateofbirth)
+                    .HasColumnName("dateofbirth")
+                    .HasDefaultValueSql("now()");
+
+                entity.Property(e => e.Idclub).HasColumnName("idclub");
+
+                entity.Property(e => e.Idpoints).HasColumnName("idpoints");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Pesel).HasColumnName("pesel");
+
+                entity.Property(e => e.Surname).HasColumnName("surname");
+
+                entity.HasOne(d => d.IdclubNavigation)
+                    .WithMany(p => p.Players)
+                    .HasForeignKey(d => d.Idclub)
+                    .HasConstraintName("players_idclub_fkey");
+
+                entity.HasOne(d => d.IdpointsNavigation)
+                    .WithMany(p => p.Players)
+                    .HasForeignKey(d => d.Idpoints)
+                    .HasConstraintName("players_idpoints_fkey");
+            });
+
+            modelBuilder.Entity<Point>(entity =>
+            {
+                entity.ToTable("points");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Point1).HasColumnName("point");
             });
 
             modelBuilder.Entity<Predictedorder>(entity =>
@@ -384,15 +519,41 @@ namespace Toci.Berserk.Database.Persistence.Models
                     .HasConstraintName("productshistory_iddeletedproductscodes_fkey");
             });
 
+            modelBuilder.Entity<Tournament>(entity =>
+            {
+                entity.ToTable("tournaments");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnName("date")
+                    .HasDefaultValueSql("now()");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+
+                entity.Property(e => e.Town).HasColumnName("town");
+            });
+
+            modelBuilder.Entity<Trainer>(entity =>
+            {
+                entity.ToTable("trainers");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Name).HasColumnName("name");
+            });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("users");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Companyname).HasColumnName("companyname");
+
                 entity.Property(e => e.Login).HasColumnName("login");
 
-                entity.Property(e => e.Name).HasColumnName("name");
+                entity.Property(e => e.Ownersurname).HasColumnName("ownersurname");
 
                 entity.Property(e => e.Password).HasColumnName("password");
             });
