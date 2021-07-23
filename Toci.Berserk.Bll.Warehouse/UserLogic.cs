@@ -28,7 +28,8 @@ namespace Toci.Berserk.Bll.Warehouse
 
             User newUser = Insert(new User()
             {
-                Name = user.Name,
+                Companyname = user.CompanyName,
+                Ownersurname = user.OwnerSurname,
                 Login = user.Login,
                 Password = HashPassword(user.Password)
             });

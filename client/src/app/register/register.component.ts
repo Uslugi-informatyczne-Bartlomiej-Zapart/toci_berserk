@@ -20,16 +20,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      firmName: '',
+      companyName: '',
       ownerSurname: '',
-      name: '',
       login: '',
       password: ''
     });
   }
 
   onSubmit(data:any) {
-    this.RegisterService.register(data.name, data.login, data.password).subscribe(() => {
+    this.RegisterService.register(data.companyName, data.ownerSurname, data.login, data.password).subscribe(() => {
       this.guardService.getUser().subscribe(x => {
         localStorage.setItem('user', x.name);
         console.log(x);

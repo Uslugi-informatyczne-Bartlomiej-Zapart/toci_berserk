@@ -22,7 +22,8 @@ drop table metrics;
 create table users
 (
     id serial primary key,
-    name text,
+    CompanyName text,
+	OwnerSurname text,
     login text,
     password text
 );
@@ -169,6 +170,7 @@ select * from ProductCompanyOrder;
 select * from ProductCompanySearch;
 update orders set status = 2 where date < '2021-07-05';
 select * from deliverycompanies;
+update deliverycompanies set name='dupa' where id=7;
 select * from delivery;
 select * from users;
 select * from products;
@@ -176,3 +178,5 @@ select * from productscodes;
 select * from chemistrypop;
 select * from orderproducts;
 select * from orders order by date;
+update deliverycompanies set name='dupa' where id=7;
+

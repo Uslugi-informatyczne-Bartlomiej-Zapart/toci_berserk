@@ -10,7 +10,7 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  register(name: string, login: string, password: string): Observable<any> {
-      return this.http.post(config.EndpointUrl + 'User/Register', {name: name, login: login, password: password});
+  register(companyName: string, ownerSurname: string, login: string, password: string): Observable<any> {
+      return this.http.post(config.EndpointUrl + 'User/Register', {companyName: companyName, ownerSurname: ownerSurname, login: login, password: password});
   }
 }
