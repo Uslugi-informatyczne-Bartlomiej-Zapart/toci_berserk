@@ -13,4 +13,8 @@ export class ProductsListService {
   getAllProjects(): Observable<any> {
     return this.http.get(config.EndpointUrl + 'Product/Products');
   }
+
+  addNewProduct(model: any) {
+    return this.http.post(config.EndpointUrl + 'Product', model);
+  }
 }

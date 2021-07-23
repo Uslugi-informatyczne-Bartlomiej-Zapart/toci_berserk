@@ -37,11 +37,11 @@ namespace Toci.Berserk.Tests.BllWarehouse
                 ChemistryLogic.Reduce(wsad, 1);
             }
         }
-        
+
         [TestMethod]
         public void seedowanieBazy()
         {
-            int kodzikKreskowy = 4403;
+            int kodzikKreskowy = 4600;
 
 
             for(int i = 1; i < 30; i++)
@@ -50,18 +50,18 @@ namespace Toci.Berserk.Tests.BllWarehouse
             {
                 Product = new Product()
                 {
-                    Name = "Smar " + kodzikKreskowy,
-                    Manufacturer = "Kardam"
+                    Name = "Olej " + kodzikKreskowy,
+                    Manufacturer = "DUpa2"
                 },
                 Code = kodzikKreskowy++,
-                DeliveryCompany = "Manjak"
+                DeliveryCompany = "Frankfurt"
             });
         }
 
         [TestMethod]
         public void SeedowanieOrders()
         {
-            DateTime datka = new DateTime(2021,07,10);
+            DateTime datka = new DateTime(2021,06,15);
             Orders.Insert(new Order
             {
                 Iddeliverycompany = 2,

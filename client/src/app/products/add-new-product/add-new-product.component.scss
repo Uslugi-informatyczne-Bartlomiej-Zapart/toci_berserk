@@ -1,0 +1,31 @@
+.quantitySep {
+    margin: 0 3px;
+}
+
+.upDown {
+    //margin-left: 5px;
+}
+
+
+.categoryTd {
+    position: relative;
+
+    .categoriesPromptsDiv {
+        position: absolute;
+        top: 104%;
+        width: 100%;
+        background-color: #ffffff;
+
+        div {
+            background-color: #d6e8e8;
+            padding: 7px 15px;
+            margin-bottom: 2px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #bfd3d3;
+            }
+        }
+    }
+
+}
