@@ -54,6 +54,7 @@ export class NewOrderByCompanyComponent implements OnInit {
   }
 
   findProductsForCompany(idx: number) {
+    console.log(idx)
     let foundedId;
     for (const [key, value] of Object.entries(this.allDeliveryCompanies)) {
       if(value == this.foundedCompanies[idx]) {
@@ -64,7 +65,7 @@ export class NewOrderByCompanyComponent implements OnInit {
     }
 
     this.prodCompService.findProductsForCompany(foundedId).subscribe( (response: any) => {
-
+      console.log(response)
       this.foundedProducts = response
       this.deliveryInputValue = ""
       this.foundedCompanies = []

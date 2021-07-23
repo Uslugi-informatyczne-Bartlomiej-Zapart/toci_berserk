@@ -2,10 +2,14 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>Rejestracja</mat-card-title>
+      <mat-card-title>INFO O FIRMIE: </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field>
-        <input matInput placeholder="Imię" formControlName="name" type="text"/>
+        <input matInput placeholder="Nazwa Firmy" formControlName="firmName" type="text"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Nazwisko Właścicieli" formControlName="ownerSurname" type="text"/>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Login" formControlName="login" type="text"/>
