@@ -17,9 +17,9 @@ export class AddNewProductComponent implements OnInit {
     quantity: 0,
   }
 
-  allCategories: any = []
-  categoriesPrompts: [] = []
-  categoriesPromptsShow = false
+  allCategoriesNames: any = []
+  categoriesNamesPromptsShow = false
+  categoriesNamesPrompts: any = []
 
   allCompaniesNames: any = []
   companiesNamesPromptsShow = false
@@ -33,9 +33,10 @@ export class AddNewProductComponent implements OnInit {
       this.allCompaniesNames = response
     })
 
-    /*this.prodCompService.getAllCategories().subscribe(response => {
+    this.prodCompService.getCategories().subscribe(response => {
       console.log(response)
-    })*/
+      this.allCategoriesNames = response
+    })
 
   }
 
@@ -53,24 +54,30 @@ export class AddNewProductComponent implements OnInit {
   }
 
   selectCategory(value: any) {
-    this.categoriesPromptsShow = false
+    this.categoriesNamesPromptsShow = false
 
     this.model.category = value
   }
 
-  showCompaniesPrompt() { console.log(2)
+  showCompaniesPrompt() {
     if(this.model.companyName.length == 0) {
       this.companiesNamesPrompts = this.allCompaniesNames
     } else {
       this.companiesNamesPrompts = Object.values(this.allCompaniesNames)
-                                      .filter((comp: any) => comp.includes(this.model.companyName))
+                                      .filter((c: any) => c.toLowerCase().includes(this.model.companyName.toLowerCase()))
     }
 
     this.companiesNamesPromptsShow = true
   }
 
-  getCategoriesPrompt() {
-
+  showCategoriesPrompt() {
+    if(this.model.category.length == 0) {
+      this.categoriesNamesPrompts = this.allCategoriesNames
+    } else {
+      this.categoriesNamesPrompts = this.allCategoriesNames
+                                      .filter((c: any) => c.name.toLowerCase().includes(this.model.category.toLowerCase()))
+    }
+    this.categoriesNamesPromptsShow = true
   }
 
   quantityUp() {

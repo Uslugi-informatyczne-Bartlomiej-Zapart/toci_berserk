@@ -8,6 +8,7 @@ import { config } from 'src/assets/config';
 export class ProductCompanySearchService {
 
   getDeliverCompaniesURL = "Order/Deliverycompanies"
+  getCategoriesURL = "Category/GetAllCategories"
   getProductsFromCompanyURL = "Order/AllProductsFromCurrentCompany?companyId="
 
   constructor(private http: HttpClient) { }
@@ -22,5 +23,8 @@ export class ProductCompanySearchService {
     return this.http.get(x)
   }
 
-
+  getCategories() {
+    let x = config.EndpointUrl + "" + this.getCategoriesURL
+    return this.http.get(x)
+  }
 }

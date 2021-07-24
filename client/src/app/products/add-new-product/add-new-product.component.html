@@ -50,7 +50,12 @@
           <td>
             <div class="categoryTd">
               <div>
-                <input (focus)="getCategoriesPrompt()" class="form-control" [(ngModel)]="model.category" placeholder="Category" type="text" />
+                <input (keyup)="showCategoriesPrompt()" class="form-control" [(ngModel)]="model.category" placeholder="Category" type="text" />
+              </div>
+              <div class="categoriesPromptsDiv" *ngIf="categoriesNamesPromptsShow">
+                <div *ngFor="let category_ of categoriesNamesPrompts" (click)="selectCategory(category_.name)">
+                    {{ category_.name }}
+                </div>
               </div>
             </div>
           </td>
