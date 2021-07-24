@@ -7,13 +7,10 @@ using Toci.Berserk.Microservices;
 
 namespace Toci.Berserk.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
     public class CategoryController : ApiControllerBase<ICategoryLogic, Category>
     {
         public CategoryController(ICategoryLogic categoryLogic) : base(categoryLogic)
-        {
-        }
+        { }
 
         [HttpGet]
         [Route("getAllCategories")]

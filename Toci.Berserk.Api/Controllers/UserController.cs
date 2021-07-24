@@ -11,14 +11,10 @@ using Toci.Berserk.Microservices;
 
 namespace Toci.Berserk.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
     public class UserController : ApiControllerBase<IUserLogic, User>
     {
         public UserController(IUserLogic userLogic) : base(userLogic)
-        {
-
-        }
+        { }
 
         [HttpPost]
         [Route("Register")]

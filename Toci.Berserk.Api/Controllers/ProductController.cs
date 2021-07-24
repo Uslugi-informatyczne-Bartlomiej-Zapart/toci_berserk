@@ -13,14 +13,10 @@ using Toci.Berserk.Microservices;
 
 namespace Toci.Berserk.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
     public class ProductController : ApiControllerBase<IProductLogic, Product>
     {
         public ProductController(IProductLogic productlogic) : base(productlogic)
-        {
-
-        }
+        { }
 
         [HttpPost]
         [Route("SetUniqueProduct")]

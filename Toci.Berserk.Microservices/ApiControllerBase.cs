@@ -7,6 +7,8 @@ using Toci.Berserk.Microservices.Interfaces;
 
 namespace Toci.Berserk.Microservices
 {
+    [ApiController]
+    [Route("[controller]")]
     public abstract class ApiControllerBase<TLogic, TModel> : ControllerBase, IApiControllerBase<TLogic, TModel> where TLogic : ILogicBase<TModel> where TModel : class
     {
         protected TLogic Logic;
