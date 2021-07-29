@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { NewOrderComponent } from './order/new-order/new-order.component';
 import { NewOrderByCompanyComponent } from './order/new-order-by-company/new-order-by-company.component';
+import { AddNewProductComponent } from './products/add-new-product/add-new-product.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProductsUsageComponent } from './products-usage/products-usage.component';
 
@@ -43,7 +44,8 @@ import { ProductsUsageComponent } from './products-usage/products-usage.componen
     NewOrderByCompanyComponent,
     MenuComponent,
     ProductsUsageComponent
-  ],
+    AddNewProductComponent
+],
   imports: [
     BrowserModule,
     FormsModule,

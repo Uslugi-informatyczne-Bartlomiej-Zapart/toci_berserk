@@ -37,14 +37,14 @@ namespace Toci.Berserk.Tests.SeedDb
         [TestMethod]
         public void SeedEntireDatabase()
         {
-            Users();
+            //Users();
             Categories();
             DeliveryCompanies();
-            Products();
-            SeedRandomProducts();
-            Chemistries();
-            OrdersHistory();
-            OrdersSetNewApproved();
+            //Products();
+            //SeedRandomProducts();
+            //Chemistries();
+            //OrdersHistory();
+           // OrdersSetNewApproved();
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace Toci.Berserk.Tests.SeedDb
         [TestMethod]
         public void Products()
         {
-            
+
             string[] names = { "Farba", "Olej", "Smar" };
             string[] manufacturers = { "Dekol", "Dekoral", "Delux" };
             int[] codes = { 1000, 1001, 1002 };
@@ -167,7 +167,7 @@ namespace Toci.Berserk.Tests.SeedDb
         //        Code = 1001
         //    });
         //}
-        
+
         [TestMethod]
         public void SeedRandomProducts()
         {

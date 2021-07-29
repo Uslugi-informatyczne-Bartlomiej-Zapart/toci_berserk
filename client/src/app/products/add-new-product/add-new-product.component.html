@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">Add new Product</a>
+      </div>
+    </nav>
+  </div>
+  <div class="card-body">
+
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th scope="col">product code</th>
+          <th scope="col">product reference</th>
+          <th scope="col">product name</th>
+          <th scope="col">Company name</th>
+          <th scope="col">Category</th>
+          <th scope="col">quantity</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">
+            <input class="form-control" [(ngModel)]="model.productCode" placeholder="Product Code" type="text" />
+          </th>
+          <td>
+            <input class="form-control" [(ngModel)]="model.productReference" placeholder="Product Reference"
+              type="text" />
+          </td>
+          <td>
+            <input class="form-control" [(ngModel)]="model.productName" placeholder="Product Name" type="text" />
+          </td>
+          <td>
+            <div class="categoryTd">
+              <div>
+                <input (keyup)="showCompaniesPrompt()"  class="form-control" [(ngModel)]="model.companyName" placeholder="Company Name" type="text" />
+              </div>
+              <div class="categoriesPromptsDiv" *ngIf="companiesNamesPromptsShow">
+                <div *ngFor="let company_ of companiesNamesPrompts | keyvalue" (click)="selectCompany(company_.value)">
+                    {{ company_.value }}
+                </div>
+              </div>
+            </div>
+
+
+          </td>
+          <td>
+            <div class="categoryTd">
+              <div>
+                <input (keyup)="showCategoriesPrompt()" class="form-control" [(ngModel)]="model.category" placeholder="Category" type="text" />
+              </div>
+              <div class="categoriesPromptsDiv" *ngIf="categoriesNamesPromptsShow">
+                <div *ngFor="let category_ of categoriesNamesPrompts" (click)="selectCategory(category_.name)">
+                    {{ category_.name }}
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="row">
+              <div class="quantityDiv col">
+                <input type="text" [(ngModel)]="model.quantity" placeholder="Quantity" class="form-control" />
+              </div>
+              <div class="upDown col">
+                <button type="button" class="btn btn-info" (click)="quantityUp()">+</button>
+                <span class="quantitySep"></span>
+                <button type="button" class="btn btn-info" (click)="quantityDown()">-</button>
+              </div>
+
+            </div>
+
+
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+
+    <div>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="addProduct()">
+        ADD PRODUCTS
+      </button>
+    </div>
+
+  </div>
+</div>

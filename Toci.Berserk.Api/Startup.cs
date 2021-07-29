@@ -46,6 +46,8 @@ namespace Toci.Berserk.Api
             services.AddScoped<IProductOrderLogic, ProductOrderLogic>();
             services.AddScoped<IProductCompanyLogic, ProductCompanyLogic>();
             services.AddScoped<IProductUsageLogic, ProductUsageLogic>();
+            services.AddScoped<ICategoryLogic, CategoryLogic>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

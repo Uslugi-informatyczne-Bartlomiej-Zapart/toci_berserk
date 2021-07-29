@@ -12,6 +12,7 @@ import { ProductsComponent } from './products/products.component';
 import { OrderHistoryComponent } from './order/order-history/order-history.component';
 import { NewOrderComponent } from './order/new-order/new-order.component';
 import { NewOrderByCompanyComponent } from './order/new-order-by-company/new-order-by-company.component';
+import { AddNewProductComponent } from './products/add-new-product/add-new-product.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProductsUsageComponent } from './products-usage/products-usage.component';
 
@@ -32,7 +33,8 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent },
       { path: 'orders-history', component: OrderHistoryComponent },
       { path: 'new-order', component: NewOrderComponent },
-      { path: 'new-order-by-company', component: NewOrderByCompanyComponent }
+      { path: 'new-order-by-company', component: NewOrderByCompanyComponent },
+      { path: 'add-product', component: AddNewProductComponent }
     ]
   },
 

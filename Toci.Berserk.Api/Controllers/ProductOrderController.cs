@@ -10,15 +10,10 @@ using Toci.Berserk.Microservices;
 
 namespace Toci.Berserk.Api.Controllers
 {
-
-    [ApiController]
-    [Route("[controller]")]
     public class ProductOrderController : ApiControllerBase<IProductOrderLogic, Orderproduct>
     {
         public ProductOrderController(IProductOrderLogic logic) : base(logic)
-        {
-            
-        }
+        { }
 
         [HttpGet]
         [Route("NewProductsOrder")]

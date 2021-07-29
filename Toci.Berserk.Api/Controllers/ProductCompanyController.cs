@@ -9,13 +9,10 @@ using Toci.Berserk.Microservices;
 
 namespace Toci.Berserk.Api.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
     public class ProductCompanyController : ApiControllerBase<IProductCompanyLogic, Productcompanysearch>
     {
         public ProductCompanyController(IProductCompanyLogic Logic) : base(Logic)
-        {
-        }
+        { }
 
         [HttpGet]
         [Route("Search")]
