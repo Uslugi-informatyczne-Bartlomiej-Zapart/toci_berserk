@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Zdjęcia produktów z magazynu</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- <table mat-table [dataSource]="products" class="mat-elevation-z8">
+      <ng-container matColumnDef="idproduct">
+        <th mat-header-cell *matHeaderCellDef>Id produktu</th>
+        <td mat-cell *matCellDef="let element">{{element.product.id}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"> </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Rejestracja</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput placeholder="Nazwa Firmy" formControlName="companyName" type="text"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Nazwisko Właścicieli" formControlName="ownerSurname" type="text"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Login" formControlName="login" type="text"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Hasło" formControlName="password" type="password"/>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary">Zarejestruj</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+
+  </mat-card-content>
+</mat-card>

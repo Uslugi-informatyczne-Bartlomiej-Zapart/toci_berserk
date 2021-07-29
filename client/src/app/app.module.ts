@@ -27,6 +27,7 @@ import { OrderHistoryComponent } from './order/order-history/order-history.compo
 import { NewOrderComponent } from './order/new-order/new-order.component';
 import { NewOrderByCompanyComponent } from './order/new-order-by-company/new-order-by-company.component';
 import { MenuComponent } from './menu/menu.component';
+import { ProductsUsageComponent } from './products-usage/products-usage.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MenuComponent } from './menu/menu.component';
     OrderHistoryComponent,
     NewOrderComponent,
     NewOrderByCompanyComponent,
-    MenuComponent
+    MenuComponent,
+    ProductsUsageComponent
   ],
   imports: [
     BrowserModule,
