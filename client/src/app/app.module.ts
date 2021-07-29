@@ -43,7 +43,7 @@ import { ProductsUsageComponent } from './products-usage/products-usage.componen
     NewOrderComponent,
     NewOrderByCompanyComponent,
     MenuComponent,
-    ProductsUsageComponent
+    ProductsUsageComponent,
     AddNewProductComponent
 ],
   imports: [
