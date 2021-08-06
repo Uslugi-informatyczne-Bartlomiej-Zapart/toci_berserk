@@ -24,19 +24,19 @@
       <tbody>
         <tr>
           <th scope="row">
-            <input class="form-control" [(ngModel)]="model.productCode" placeholder="Product Code" type="text" />
+            <input class="form-control" [(ngModel)]="model.Chemistry.productCode" placeholder="Product Code" type="text" />
           </th>
           <td>
-            <input class="form-control" [(ngModel)]="model.productReference" placeholder="Product Reference"
+            <input class="form-control" [(ngModel)]="model.Reference" placeholder="Product Reference"
               type="text" />
           </td>
           <td>
-            <input class="form-control" [(ngModel)]="model.productName" placeholder="Product Name" type="text" />
+            <input class="form-control" [(ngModel)]="model.Name" placeholder="Product Name" type="text" />
           </td>
           <td>
             <div class="categoryTd">
               <div>
-                <input (keyup)="showCompaniesPrompt()"  class="form-control" [(ngModel)]="model.companyName" placeholder="Company Name" type="text" />
+                <input (keyup)="showCompaniesPrompt()"  class="form-control" [(ngModel)]="model.Manufacturer" placeholder="Company Name" type="text" />
               </div>
               <div class="categoriesPromptsDiv" *ngIf="companiesNamesPromptsShow">
                 <div *ngFor="let company_ of companiesNamesPrompts | keyvalue" (click)="selectCompany(company_.value)">
@@ -50,7 +50,7 @@
           <td>
             <div class="categoryTd">
               <div>
-                <input (keyup)="showCategoriesPrompt()" class="form-control" [(ngModel)]="model.category" placeholder="Category" type="text" />
+                <input (keyup)="showCategoriesPrompt()" class="form-control" [(ngModel)]="model.Chemistry.category" placeholder="Category" type="text" />
               </div>
               <div class="categoriesPromptsDiv" *ngIf="categoriesNamesPromptsShow">
                 <div *ngFor="let category_ of categoriesNamesPrompts" (click)="selectCategory(category_.name)">
@@ -62,7 +62,7 @@
           <td>
             <div class="row">
               <div class="quantityDiv col">
-                <input type="text" [(ngModel)]="model.quantity" placeholder="Quantity" class="form-control" />
+                <input type="text" [(ngModel)]="model.Chemistry.quantity" placeholder="Quantity" class="form-control" />
               </div>
               <div class="upDown col">
                 <button type="button" class="btn btn-info" (click)="quantityUp()">+</button>

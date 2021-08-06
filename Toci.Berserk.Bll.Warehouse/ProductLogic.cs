@@ -37,6 +37,11 @@ namespace Toci.Berserk.Bll.Warehouse
             return result;
         }
 
+        public int AddNewProduct(object product) {
+
+            return 1;
+        }
+
         private Product copyProduct(Product product)
         {
             return new Product()
@@ -70,7 +75,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 });
 
                 product.Product.Id = item.Idproducts.Value;
-                
+
                 Update(product.Product);
 
                 UpdateDeliveryTable(product.Product.Id, product.Price);
@@ -90,7 +95,7 @@ namespace Toci.Berserk.Bll.Warehouse
             return Pld.Id;
         }
 
-        
+
         private void ObtainDeliverCompanyId(string deliveryCompany)
         {
             if (string.IsNullOrEmpty(deliveryCompanyName) || !deliveryCompanyName.Equals(deliveryCompany))
@@ -100,7 +105,7 @@ namespace Toci.Berserk.Bll.Warehouse
                 flagOfHistoryDeliveryList = true;
                 //If error than possibly by null list
                 IDsOfProductsFromCurrentDeliveryCompany = DeliveryLogic.AllProductsFromDeliveryCompany(idOfDeliverCompany)
-                    .Select(x => x.Key).ToList(); 
+                    .Select(x => x.Key).ToList();
             }
         }
 

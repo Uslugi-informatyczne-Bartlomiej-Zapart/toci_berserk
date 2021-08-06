@@ -13,6 +13,7 @@ namespace Toci.Berserk.Bll.Warehouse.Interfaces
     {
         public List<ProductDto> AllProducts();
         public int SetProduct(ProductDto product);
+        int AddNewProduct(object product);
 
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCompanySearchService } from 'src/app/services/product-company-search.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-add-new-product',
@@ -9,13 +10,18 @@ import { ProductCompanySearchService } from 'src/app/services/product-company-se
 export class AddNewProductComponent implements OnInit {
 
   model = {
-    productCode: "",
-    productReference: "",
-    productName: "",
-    companyName: "",
-    category: "",
-    quantity: 0,
+    Name: "",
+    Manufacturer: "",
+    Reference: "",
+
+    Chemistry: {
+      productCode: null,
+      category: "",
+      quantity: 0,
+
+    }
   }
+
 
   allCategoriesNames: any = []
   categoriesNamesPromptsShow = false
@@ -25,7 +31,8 @@ export class AddNewProductComponent implements OnInit {
   companiesNamesPromptsShow = false
   companiesNamesPrompts: any = []
 
-  constructor(private prodCompService: ProductCompanySearchService) { }
+  constructor(private prodCompService: ProductCompanySearchService,
+    private productService: ProductsService) { }
 
   ngOnInit(): void {
     this.prodCompService.getDeliveryCompanies().subscribe(response => {
@@ -42,61 +49,69 @@ export class AddNewProductComponent implements OnInit {
 
   addProduct() {
     console.log(this.model)
-    console.log("adding new project to api")
 
-    this.resetProductModel()
+   this.productService.addProduct(this.model).subscribe(response => {
+      console.log(response)
+    })
+
+    //this.resetProductModel()
   }
 
   selectCompany(value: any) {
     this.companiesNamesPromptsShow = false
 
-    this.model.companyName = value
+    this.model.Manufacturer = value
   }
 
   selectCategory(value: any) {
     this.categoriesNamesPromptsShow = false
 
-    this.model.category = value
+    this.model.Chemistry.category = value
   }
 
   showCompaniesPrompt() {
-    if(this.model.companyName.length == 0) {
+    console.log(this.model.Manufacturer)
+    console.log(this.allCompaniesNames)
+    if(this.model.Manufacturer.length == 0) {
       this.companiesNamesPrompts = this.allCompaniesNames
     } else {
       this.companiesNamesPrompts = Object.values(this.allCompaniesNames)
-                                      .filter((c: any) => c.toLowerCase().includes(this.model.companyName.toLowerCase()))
+                                      .filter((c: any) => { console.log(c); return c.toLowerCase().includes(this.model.Manufacturer.toLowerCase())} )
     }
 
     this.companiesNamesPromptsShow = true
   }
 
   showCategoriesPrompt() {
-    if(this.model.category.length == 0) {
+    if(this.model.Chemistry.category.length == 0) {
       this.categoriesNamesPrompts = this.allCategoriesNames
     } else {
       this.categoriesNamesPrompts = this.allCategoriesNames
-                                      .filter((c: any) => c.name.toLowerCase().includes(this.model.category.toLowerCase()))
+                                      .filter((c: any) => c.name.toLowerCase().includes(this.model.Chemistry.category.toLowerCase()))
     }
     this.categoriesNamesPromptsShow = true
   }
 
   quantityUp() {
-    this.model.quantity++
+    this.model.Chemistry.quantity++
   }
 
   quantityDown() {
-    this.model.quantity--
+    this.model.Chemistry.quantity--
   }
 
   resetProductModel() {
 
     this.model = {
-      productCode: "",
-      productReference: "",
-      productName: "",
-      companyName: "",
-      category: "",
-      quantity: 0,
+      Reference: "",
+      Name: "",
+      Manufacturer: "",
+      Chemistry: {
+        productCode: null,
+        category: "",
+        quantity: 0,
+
+      }
     }
 
   }

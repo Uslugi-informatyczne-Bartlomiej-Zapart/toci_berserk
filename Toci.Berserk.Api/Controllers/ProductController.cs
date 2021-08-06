@@ -25,6 +25,13 @@ namespace Toci.Berserk.Api.Controllers
             Logic.SetProduct(product);
         }
 
+        [HttpPost]
+        [Route("addNewProduct")]
+        public void AddNewProduct(object product)
+        {
+            Logic.AddNewProduct(product);
+        }
+
         [HttpGet]
         [Route("Products")]
         public List<ProductDto> GetAll()
